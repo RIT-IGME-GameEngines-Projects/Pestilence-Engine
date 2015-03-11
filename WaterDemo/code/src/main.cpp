@@ -60,7 +60,20 @@ void keyboard(unsigned char key, int x, int y)
 	case 'q': case 'Q':
 		exit(0);
 		break;
+
+	case 'w': case 'W':
+		glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
+		break;
+
+	case 'f': case 'F':
+		glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
+		break;
+
+	case 'p': case 'P':
+		glPolygonMode(GL_FRONT_AND_BACK, GL_POINT);
+		break;
 	}
+
 
 	glutPostRedisplay();
 }
@@ -78,12 +91,11 @@ void init()
 	glEnable(GL_CULL_FACE);
 	glCullFace(GL_BACK);
 	glClearColor(0.0, 0.0, 0.0, 1.0);
-	
+	//glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
+
 	createCube();
 
 	cube.loadTexture("../assets/textures/texture.jpg");
-
-	//glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
 }
 
 void display()
@@ -115,7 +127,7 @@ int main(int argc, char **argv)
 {
 	glutInit(&argc, argv);
 	glutInitDisplayMode(GLUT_RGBA | GLUT_DOUBLE | GLUT_DEPTH);
-	glutInitWindowSize(512, 512);
+	glutInitWindowSize(800, 600);
 	glutCreateWindow("Water Demo");
 
 	init();

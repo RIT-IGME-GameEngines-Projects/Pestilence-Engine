@@ -20,6 +20,7 @@ public:
 	~Model();
 
 	void makeCube();
+	void makePlane();
 
 	void clearModel();
 

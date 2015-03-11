@@ -128,7 +128,7 @@ GLushort* Model::getIndices() {
 }
 
 void Model::makeCube() {
-	int subdivisions = 3;
+	int subdivisions = 9;
 
 	float width = 1;
 	float incremental = (width / 2) / subdivisions * 2;
@@ -224,6 +224,82 @@ void Model::makeCube() {
 			addTriangle(x1, -width / 2, y1, u1, v1,
 				x2, -width / 2, y1, u2, v1,
 				x2, -width / 2, y2, u2, v2);
+		}
+	}
+}
+
+void Model::makePlane() {
+	int subdivisions = 3;
+
+	float width = 1;
+	float incremental = (width / 2) / subdivisions * 2;
+
+	struct Point {
+		float* x;
+		float* y;
+	};
+
+	Point* points = new Point[subdivisions];
+
+	for (int i = 0; i < subdivisions; i++){
+		points[i].x = new float[subdivisions];
+		points[i].y = new float[subdivisions];
+	}
+	//std::cout << incremental << std::endl;
+
+	float currY = width / 2;
+
+	for (int i = 0; i < subdivisions; i++){
+		float currX = width / 2;
+		points[i].x[0] = currX;
+		points[i].y[0] = currY;
+		currX -= incremental;
+		for (int j = 1; j < subdivisions; j++){
+			points[i].x[j] = currX;
+			currX -= incremental;
+			points[i].y[j] = currY;
+		}
+		currY -= incremental;
+	}
+
+	//
+	for (int i = 0; i < subdivisions; i++){
+		for (int j = 0; j < subdivisions; j++){
+			float x1 = points[i].x[j];
+			float x2 = x1 - incremental;
+			float y1 = points[i].y[j];
+			float y2 = y1 - incremental;
+
+			float u1 = -(x1 + width / 2);
+			float v1 = -(y1 + width / 2);
+			float u2 = u1 + incremental;
+			float v2 = v1 + incremental;
+
+			//top corner
+			//facing Z
+			/*addTriangle(x1, y1, width / 2, u1, v1,
+				x2, y1, width / 2, u2, v1,
+				x2, y2, width / 2, u2, v2);
+			addTriangle(x2, y2, width / 2, u2, v2,
+				x1, y2, width / 2, u1, v2,
+				x1, y1, width / 2, u1, v1);
+
+
+			//Facing X
+			addTriangle(width / 2, x1, y1, u1, v1,
+				width / 2, x2, y1, u2, v1,
+				width / 2, x2, y2, u2, v2);
+			addTriangle(width / 2, x2, y2, u2, v2,
+				width / 2, x1, y2, u1, v2,
+				width / 2, x1, y1, u1, v1);*/
+
+			//Facing Y
+			addTriangle(x1, width / 2, y1, u1, v1,
+				x1, width / 2, y2, u1, v2,
+				x2, width / 2, y2, u2, v2);
+			addTriangle(x2, width / 2, y2, u2, v2,
+				x2, width / 2, y1, u2, v1,
+				x1, width / 2, y1, u1, v1);
 		}
 	}
 }

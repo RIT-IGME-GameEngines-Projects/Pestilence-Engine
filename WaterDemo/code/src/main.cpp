@@ -24,12 +24,7 @@ bool bufferInit = false;
 
 Model cube;
 
-void createCube() {
-	cube = Model();
-	cube.clearModel();
-
-	cube.makeCube();
-
+void render() {
 	NumElements = cube.nVertices();
 	float* points = cube.getVertices();
 	int dataSize = cube.nVertices() * 4 * sizeof(float);
@@ -53,6 +48,16 @@ void createCube() {
 	numVerts[0] = cube.nVertices();
 }
 
+void createCube() {
+	cube = Model();
+	cube.clearModel();
+
+	//cube.makeCube();
+	cube.makePlane();
+
+	render();
+}
+
 void keyboard(unsigned char key, int x, int y)
 {
 	switch (key) {
@@ -72,6 +77,11 @@ void keyboard(unsigned char key, int x, int y)
 	case 'p': case 'P':
 		glPolygonMode(GL_FRONT_AND_BACK, GL_POINT);
 		break;
+
+	case 't': case 'T':
+		cube.pointShiftTest();
+		render();
+		break;
 	}
 
 
@@ -88,8 +98,8 @@ void init()
 	}
 	
 	glEnable(GL_DEPTH_TEST);
-	glEnable(GL_CULL_FACE);
-	glCullFace(GL_BACK);
+	//glEnable(GL_CULL_FACE);
+	//glCullFace(GL_BACK);
 	glClearColor(0.0, 0.0, 0.0, 1.0);
 	//glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
 

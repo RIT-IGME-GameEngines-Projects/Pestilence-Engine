@@ -5,11 +5,15 @@
 #include <iostream>
 #include <cmath>
 #include <stdio.h>
+#include <stdlib.h>
+#include <time.h>
 
 #include <GL/glew.h>
 #include <GL/freeglut.h>
 #include <GL/GL.h>
 #include <SOIL.h>
+
+#include "dataStrucutures\modelStructures.cpp"
 
 using namespace std;
 
@@ -23,6 +27,8 @@ public:
 	void makePlane();
 
 	void clearModel();
+
+	void pointShiftTest();
 
 	void addTriangle(float x0, float y0, float z0, float u0, float v0,
 		float x1, float y1, float z1, float u1, float v1,

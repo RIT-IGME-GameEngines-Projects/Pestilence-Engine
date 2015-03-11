@@ -1,7 +1,7 @@
 #include "model.h"
 
 Model::Model() {
-
+	srand(time(NULL));
 }
 
 Model::~Model() {
@@ -120,6 +120,7 @@ GLushort* Model::getIndices() {
 	}
 
 	indexArray = new GLushort[points.size()];
+	cout << points.size() << endl;
 	for (unsigned int i = 0; i < points.size(); i++) {
 		indexArray[i] = i;
 	}
@@ -128,15 +129,10 @@ GLushort* Model::getIndices() {
 }
 
 void Model::makeCube() {
-	int subdivisions = 9;
+	int subdivisions = 2;
 
 	float width = 1;
 	float incremental = (width / 2) / subdivisions * 2;
-
-	struct Point {
-		float* x;
-		float* y;
-	};
 
 	Point* points = new Point[subdivisions];
 
@@ -229,15 +225,10 @@ void Model::makeCube() {
 }
 
 void Model::makePlane() {
-	int subdivisions = 3;
+	int subdivisions = 1;
 
 	float width = 1;
 	float incremental = (width / 2) / subdivisions * 2;
-
-	struct Point {
-		float* x;
-		float* y;
-	};
 
 	Point* points = new Point[subdivisions];
 
@@ -245,7 +236,7 @@ void Model::makePlane() {
 		points[i].x = new float[subdivisions];
 		points[i].y = new float[subdivisions];
 	}
-	//std::cout << incremental << std::endl;
+	//td::cout << incremental << std::endl;
 
 	float currY = width / 2;
 
@@ -275,25 +266,6 @@ void Model::makePlane() {
 			float u2 = u1 + incremental;
 			float v2 = v1 + incremental;
 
-			//top corner
-			//facing Z
-			/*addTriangle(x1, y1, width / 2, u1, v1,
-				x2, y1, width / 2, u2, v1,
-				x2, y2, width / 2, u2, v2);
-			addTriangle(x2, y2, width / 2, u2, v2,
-				x1, y2, width / 2, u1, v2,
-				x1, y1, width / 2, u1, v1);
-
-
-			//Facing X
-			addTriangle(width / 2, x1, y1, u1, v1,
-				width / 2, x2, y1, u2, v1,
-				width / 2, x2, y2, u2, v2);
-			addTriangle(width / 2, x2, y2, u2, v2,
-				width / 2, x1, y2, u1, v2,
-				width / 2, x1, y1, u1, v1);*/
-
-			//Facing Y
 			addTriangle(x1, width / 2, y1, u1, v1,
 				x1, width / 2, y2, u1, v2,
 				x2, width / 2, y2, u2, v2);
@@ -334,4 +306,25 @@ void Model::setUpTexture(GLuint program){
 	GLfloat color[4] = { 1.0, 1.0, 1.0, 1.0 };
 	glUniform1i(textureLoc, 0);
 	glUniform4fv(colorLoc, 1, color);
+}
+
+void Model::pointShiftTest() {
+
+	//points[0] -= 0.01f;
+	//points[1] -= 0.01f;
+	//points[2] -= 0.01f;
+	//points[3] -= 0.01f;
+	//points[4] -= 0.01f;
+	//points[5] -= 0.01f;
+	//points[6] -= 0.01f;
+	//points[7] -= 0.01f;
+	//points[8] -= 0.01f;
+	//points[9] -= 0.01f;
+	//points[10] -= 0.01f;
+	//points[11] -= 0.01f;
+	for (unsigned int i = 0; i < points.size(); i++) {
+		float random = ((float)(rand() % 10 + 1.0f) - 5)/ 100.0f;
+		//std::cout << random << std::endl;
+		points[i] -= 0.01f;
+	}
 }

@@ -32,15 +32,23 @@ void Model::addTriangle(float x0, float y0, float z0, float u0, float v0,
 	points.push_back(z0);
 	points.push_back(1.0);
 
+	Point p0; p0.x = x0; p0.y = y0; p0.z = z0; p0.w = 1.0f;
+
 	points.push_back(x1);
 	points.push_back(y1);
 	points.push_back(z1);
 	points.push_back(1.0);
 
+	Point p1; p1.x = x1; p1.y = y1; p1.z = z1; p1.w = 1.0f;
+
 	points.push_back(x2);
 	points.push_back(y2);
 	points.push_back(z2);
 	points.push_back(1.0);
+
+	Point p2; p2.x = x2; p2.y = y2; p2.z = z2; p2.w = 1.0f;
+
+	Point* fPoints = new Point[3]; fPoints[0] = p0; fPoints[1] = p1; fPoints[2] = p2;
 
 	// calculate the normal
 	float ux = x1 - x0;
@@ -55,11 +63,16 @@ void Model::addTriangle(float x0, float y0, float z0, float u0, float v0,
 	float ny = (uz * vx) - (ux * vz);
 	float nz = (ux * vy) - (uy * vx);
 
+	Normal* fNormals = new Normal[3];
+
 	// Attach the normal to all 3 vertices
 	for (int i = 0; i < 3; i++) {
 		normals.push_back(nx);
 		normals.push_back(ny);
 		normals.push_back(nz);
+
+		Normal n; n.x = nx; n.y = ny; n.z = nz;
+		fNormals[i] = n;
 	}
 
 	// Attach the texture coords
@@ -69,6 +82,15 @@ void Model::addTriangle(float x0, float y0, float z0, float u0, float v0,
 	uv.push_back(v1);
 	uv.push_back(u2);
 	uv.push_back(v2);
+
+	UV uv0; uv0.u = u0; uv0.v = v0;
+	UV uv1; uv1.u = u1; uv0.v = v1;
+	UV uv2; uv2.u = u2; uv2.v = v2;
+
+	UV* fUVs = new UV[3]; fUVs[0] = uv0; fUVs[1] = uv1; fUVs[2] = uv2;
+
+	Face face; face.points = fPoints; face.normals = fNormals; face.uvs = fUVs;
+	faces.push_back(face);
 }
 
 int Model::nVertices() {
@@ -134,7 +156,12 @@ void Model::makeCube() {
 	float width = 1;
 	float incremental = (width / 2) / subdivisions * 2;
 
-	Point* points = new Point[subdivisions];
+	struct PointArray {
+		float* x;
+		float* y;
+	};
+
+	PointArray* points = new PointArray[subdivisions];
 
 	for (int i = 0; i < subdivisions; i++){
 		points[i].x = new float[subdivisions];
@@ -230,7 +257,12 @@ void Model::makePlane() {
 	float width = 1;
 	float incremental = (width / 2) / subdivisions * 2;
 
-	Point* points = new Point[subdivisions];
+	struct PointArray {
+		float* x;
+		float* y;
+	};
+
+	PointArray* points = new PointArray[subdivisions];
 
 	for (int i = 0; i < subdivisions; i++){
 		points[i].x = new float[subdivisions];

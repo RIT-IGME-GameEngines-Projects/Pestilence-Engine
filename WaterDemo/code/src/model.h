@@ -53,6 +53,9 @@ private:
 	float *normalArray = 0;
 	float *uvArray = 0;
 	GLushort *indexArray = 0;
+
+	vector<Face> faces;
+	Face* faceArray = 0;
 };
 
 #endif

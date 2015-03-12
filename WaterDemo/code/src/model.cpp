@@ -252,7 +252,7 @@ void Model::makeCube() {
 }
 
 void Model::makePlane() {
-	int subdivisions = 1;
+	int subdivisions = 40;
 
 	float width = 1;
 	float incremental = (width / 2) / subdivisions * 2;
@@ -273,6 +273,63 @@ void Model::makePlane() {
 	float currY = width / 2;
 
 	for (int i = 0; i < subdivisions; i++){
+		float currX = width / 2;
+		points[i].x[0] = currX;
+		points[i].y[0] = currY;
+		currX -= incremental;
+		for (int j = 1; j < subdivisions; j++){
+			points[i].x[j] = currX;
+			currX -= incremental;
+			points[i].y[j] = currY;
+		}
+		currY -= incremental;
+	}
+
+	//
+	for (int i = 0; i < subdivisions; i++){
+		for (int j = 0; j < subdivisions; j++){
+			float x1 = points[i].x[j];
+			float x2 = x1 - incremental;
+			float y1 = points[i].y[j];
+			float y2 = y1 - incremental;
+
+			float u1 = -(x1 + width / 2);
+			float v1 = -(y1 + width / 2);
+			float u2 = u1 + incremental;
+			float v2 = v1 + incremental;
+
+			addTriangle(x1, width / 2, y1, u1, v1,
+				x1, width / 2, y2, u1, v2,
+				x2, width / 2, y2, u2, v2);
+			addTriangle(x2, width / 2, y2, u2, v2,
+				x2, width / 2, y1, u2, v1,
+				x1, width / 2, y1, u1, v1);
+		}
+	}
+}
+
+void Model::makeStrip() {
+	int subdivisions = 40;
+
+	float width = 1.2;
+	float incremental = (width / 2) / subdivisions * 2;
+
+	struct PointArray {
+		float* x;
+		float* y;
+	};
+
+	PointArray* points = new PointArray[subdivisions];
+
+	for (int i = 0; i < subdivisions; i++){
+		points[i].x = new float[subdivisions];
+		points[i].y = new float[subdivisions];
+	}
+	//td::cout << incremental << std::endl;
+
+	float currY = width / 2;
+
+	for (int i = 0; i < 1; i++){
 		float currX = width / 2;
 		points[i].x[0] = currX;
 		points[i].y[0] = currY;
@@ -354,9 +411,11 @@ void Model::pointShiftTest() {
 	//points[9] -= 0.01f;
 	//points[10] -= 0.01f;
 	//points[11] -= 0.01f;
+	float point = points[0];
 	for (unsigned int i = 0; i < points.size(); i++) {
-		float random = ((float)(rand() % 10 + 1.0f) - 5)/ 100.0f;
-		//std::cout << random << std::endl;
-		points[i] -= 0.01f;
+		//float random = ((float)(rand() % 2 + 1.0f) - 1)/ 100.0f;
+		points[1] -= 0.01f;
 	}
 }
+
+

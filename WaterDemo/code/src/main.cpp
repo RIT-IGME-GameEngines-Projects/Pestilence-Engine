@@ -52,8 +52,9 @@ void createCube() {
 	cube = Model();
 	cube.clearModel();
 
-	//cube.makeCube();
-	cube.makePlane();
+	cube.makeCube();
+	//cube.makePlane();
+	//cube.makeStrip();
 
 	render();
 }
@@ -98,10 +99,10 @@ void init()
 	}
 	
 	glEnable(GL_DEPTH_TEST);
-	//glEnable(GL_CULL_FACE);
-	//glCullFace(GL_BACK);
+	glEnable(GL_CULL_FACE);
+	glCullFace(GL_BACK);
 	glClearColor(0.0, 0.0, 0.0, 1.0);
-	//glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
+	glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
 
 	createCube();
 

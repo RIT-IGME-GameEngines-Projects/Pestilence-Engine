@@ -25,10 +25,12 @@ public:
 
 	void makeCube();
 	void makePlane();
+	void makeStrip();
 
 	void clearModel();
 
 	void pointShiftTest();
+	void pointShiftByLocation(float x, float y, float z);
 
 	void addTriangle(float x0, float y0, float z0, float u0, float v0,
 		float x1, float y1, float z1, float u1, float v1,

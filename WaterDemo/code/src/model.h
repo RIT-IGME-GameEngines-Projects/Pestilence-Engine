@@ -1,9 +1,12 @@
 #ifndef _MODEL_H_
 #define _MODEL_H_
 
+#define M_PI           3.14159265358979323846 
+
 #include <vector>
 #include <iostream>
 #include <cmath>
+#include <math.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <time.h>

@@ -3,9 +3,9 @@
 Model::Model() {
 	srand(time(NULL));
 	rotation = Quaternion(1.0, 45, 30, 0);
-	yaw = 45;
-	pitch = 30;
-	roll = 0;
+	yaw = 455;
+	pitch = 50;
+	roll = -165;
 }
 
 Model::~Model() {
@@ -435,8 +435,10 @@ void Model::rotate(float iyaw, float ipitch, float iroll, GLuint program) {
 	this->pitch = ipitch;
 	this->roll = iroll;
 
-	Quaternion rotTo = Quaternion::euler(iyaw, ipitch, iroll);
-	Quaternion slerped = Quaternion::slerp(rotation, rotTo, 0.5f);
+	float deg2Rad = 180/M_PI;
+
+	Quaternion rotTo = Quaternion::euler(yaw, pitch, roll);
+	Quaternion slerped = Quaternion::slerp(rotation, rotTo, 1);
 	Matrix4 rotMat = Quaternion::toMatrix(slerped);
 	float* rotMat4 = Matrix4::ToMat4(rotMat);
 	rotation = slerped;
@@ -454,9 +456,9 @@ void Model::rotate(float iyaw, float ipitch, float iroll, GLuint program) {
 	
 	//glUseProgram(program);
 
-	//GLuint rotationLoc = glGetUniformLocation(program, "theta");
+	GLuint rotationLoc = glGetUniformLocation(program, "rotation");
 
-	//glUniformMatrix4fv(rotationLoc, 1, false, rotMat4);
+	glUniformMatrix4fv(rotationLoc, 1, false, rotMat4);
 
 	return;
 }

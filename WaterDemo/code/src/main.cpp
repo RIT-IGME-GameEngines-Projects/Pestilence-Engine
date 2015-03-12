@@ -85,7 +85,7 @@ void keyboard(unsigned char key, int x, int y)
 		break;
 
 	case 'i':
-		cube.rotate(45, 55, 0, program);
+		cube.rotate(cube.yaw + 5, cube.pitch + 2, cube.roll, program);
 		render();
 		break;
 	}

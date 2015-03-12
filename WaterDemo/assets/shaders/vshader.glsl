@@ -9,6 +9,7 @@ varying vec4 color;
 varying vec2 texCoord;
 
 uniform mat4 rotation;
+attribute vec4 rot;
 
 void main()
 {   

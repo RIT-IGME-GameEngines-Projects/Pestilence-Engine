@@ -7,6 +7,7 @@
 
 class Quaternion {
 public:
+	Quaternion();
 	Quaternion(float w, float x, float y, float z);
 	~Quaternion();
 

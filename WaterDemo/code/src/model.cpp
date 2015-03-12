@@ -143,7 +143,7 @@ GLushort* Model::getIndices() {
 	}
 
 	indexArray = new GLushort[points.size()];
-	cout << points.size() << endl;
+	//cout << points.size() << endl;
 	for (unsigned int i = 0; i < points.size(); i++) {
 		indexArray[i] = i;
 	}
@@ -388,10 +388,17 @@ void Model::setUpTexture(GLuint program){
 	
 	GLuint textureLoc = glGetUniformLocation(program, "texture");
 	GLuint colorLoc = glGetUniformLocation(program, "vColor");
-	GLuint theta = glGetUniformLocation(program, "theta");
+	//GLuint theta = glGetUniformLocation(program, "theta");
 
-	float angles[3] = { 45.0, 30.0, 0.0 };
-	glUniform3fv(theta, 1, angles);
+	//float angles[3] = { 45.0, 30.0, 0.0 };
+	/*cout << "angles" << endl;
+	cout << cos(45) << endl;
+	cout << cos(30) << endl;
+	cout << cos(0) << endl;
+	cout << sin(45) << endl;
+	cout << sin(30) << endl;
+	cout << sin(0) << endl;*/
+	//glUniform3fv(theta, 1, angles);
 	rotate(45, 30, 0, program);
 
 	GLfloat color[4] = { 1.0, 1.0, 1.0, 1.0 };
@@ -421,16 +428,32 @@ void Model::pointShiftTest() {
 }
 
 void Model::rotate(float yaw, float pitch, float roll, GLuint program) {
+	this->yaw = yaw;
+	this->pitch = pitch;
+	this->roll = roll;
+
 	Quaternion rotTo = Quaternion::euler(yaw, pitch, roll);
 	Quaternion slerped = Quaternion::slerp(rotation, rotTo, 0.5f);
 	Matrix4 rotMat = Quaternion::toMatrix(slerped);
 	float* rotMat4 = Matrix4::ToMat4(rotMat);
+
+	/*std::cout << "Rotation Matrix" << std::endl;
+	for (int i = 0; i < 16; i++) {
+		std::cout << rotMat4[i] << std::endl;
+	}*/
+
+	std::cout << "rotate" << endl;
+
+	GLuint theta = glGetUniformLocation(program, "theta");
+
+	float angles[3] = { yaw, pitch, roll };
+	glUniform3fv(theta, 1, angles);
 	
-	glUseProgram(program);
+	//glUseProgram(program);
 
-	GLuint rotationLoc = glGetUniformLocation(program, "theta");
+	//GLuint rotationLoc = glGetUniformLocation(program, "theta");
 
-	glUniformMatrix4fv(rotationLoc, 1, false, rotMat4);
+	//glUniformMatrix4fv(rotationLoc, 1, false, rotMat4);
 
 	return;
 }

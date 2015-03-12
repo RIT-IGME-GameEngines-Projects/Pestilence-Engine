@@ -53,6 +53,8 @@ public:
 
 	int nVertices();
 
+	float yaw, pitch, roll;
+
 private:
 	vector<float> points;
 	vector<float> normals;

@@ -2,7 +2,10 @@
 
 Model::Model() {
 	srand(time(NULL));
-	rotation = Quaternion::Identity;
+	rotation = Quaternion(1.0, 45, 30, 0);
+	yaw = 45;
+	pitch = 30;
+	roll = 0;
 }
 
 Model::~Model() {
@@ -399,7 +402,7 @@ void Model::setUpTexture(GLuint program){
 	cout << sin(30) << endl;
 	cout << sin(0) << endl;*/
 	//glUniform3fv(theta, 1, angles);
-	rotate(45, 30, 0, program);
+	//rotate(65, 30, 0, program);
 
 	GLfloat color[4] = { 1.0, 1.0, 1.0, 1.0 };
 	glUniform1i(textureLoc, 0);
@@ -427,25 +430,25 @@ void Model::pointShiftTest() {
 	}
 }
 
-void Model::rotate(float yaw, float pitch, float roll, GLuint program) {
-	this->yaw = yaw;
-	this->pitch = pitch;
-	this->roll = roll;
+void Model::rotate(float iyaw, float ipitch, float iroll, GLuint program) {
+	this->yaw = iyaw;
+	this->pitch = ipitch;
+	this->roll = iroll;
 
-	Quaternion rotTo = Quaternion::euler(yaw, pitch, roll);
+	Quaternion rotTo = Quaternion::euler(iyaw, ipitch, iroll);
 	Quaternion slerped = Quaternion::slerp(rotation, rotTo, 0.5f);
 	Matrix4 rotMat = Quaternion::toMatrix(slerped);
 	float* rotMat4 = Matrix4::ToMat4(rotMat);
+	rotation = slerped;
 
 	/*std::cout << "Rotation Matrix" << std::endl;
 	for (int i = 0; i < 16; i++) {
 		std::cout << rotMat4[i] << std::endl;
 	}*/
 
-	std::cout << "rotate" << endl;
-
 	GLuint theta = glGetUniformLocation(program, "theta");
 
+	//float angles[3] = { slerped.x, slerped.y, slerped.z };
 	float angles[3] = { yaw, pitch, roll };
 	glUniform3fv(theta, 1, angles);
 	

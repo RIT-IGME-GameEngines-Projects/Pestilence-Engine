@@ -11,11 +11,16 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="src\dataStrucutures\matrix4.cpp" />
+    <ClCompile Include="src\dataStrucutures\modelStructures.cpp" />
+    <ClCompile Include="src\dataStrucutures\quaternion.cpp" />
     <ClCompile Include="src\main.cpp" />
     <ClCompile Include="src\model.cpp" />
     <ClCompile Include="src\shaderManager.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="src\dataStrucutures\matrix4.h" />
+    <ClInclude Include="src\dataStrucutures\quaternion.h" />
     <ClInclude Include="src\model.h" />
     <ClInclude Include="src\shaderManager.h" />
   </ItemGroup>

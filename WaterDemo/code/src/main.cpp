@@ -48,70 +48,8 @@ void render() {
 	numVerts[0] = cube.nVertices();
 }
 
-void createCube() {
-	cube = Model();
-	cube.clearModel();
-
-	cube.makeCube();
-	//cube.makePlane();
-	//cube.makeStrip();
-
-	render();
-}
-
-void keyboard(unsigned char key, int x, int y)
-{
-	switch (key) {
-	case 033:
-	case 'q': case 'Q':
-		exit(0);
-		break;
-
-	case 'w': case 'W':
-		glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
-		break;
-
-	case 'f': case 'F':
-		glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
-		break;
-
-	case 'p': case 'P':
-		glPolygonMode(GL_FRONT_AND_BACK, GL_POINT);
-		break;
-
-	case 't': case 'T':
-		cube.pointShiftTest();
-		render();
-		break;
-
-	case 'i':
-		cube.rotate(cube.yaw + 5, cube.pitch + 2, cube.roll, program);
-		render();
-		break;
-	}
-
-
-	glutPostRedisplay();
-}
-
-void init()
-{
-	program = shaderSetup("../assets/shaders/vshader.glsl", "../assets/shaders/fshader.glsl");
-	if (!program) {
-		cerr << "Error setting up shaders - " << errorString(shaderErrorCode) << endl;
-
-		exit(1);
-	}
+void idle() {
 	
-	glEnable(GL_DEPTH_TEST);
-	glEnable(GL_CULL_FACE);
-	glCullFace(GL_BACK);
-	glClearColor(0.0, 0.0, 0.0, 1.0);
-	glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
-
-	createCube();
-
-	cube.loadTexture("../assets/textures/texture.jpg");
 }
 
 void display()
@@ -139,18 +77,89 @@ void display()
 	glutSwapBuffers();
 }
 
+
+void createCube() {
+	cube = Model();
+	cube.clearModel();
+
+	cube.makeCube();
+	//cube.makePlane();
+	//cube.makeStrip();
+
+	render();
+}
+
+void init()
+{
+	program = shaderSetup("../assets/shaders/vshader.glsl", "../assets/shaders/fshader.glsl");
+	if (!program) {
+		cerr << "Error setting up shaders - " << errorString(shaderErrorCode) << endl;
+
+		exit(1);
+	}
+	
+	glEnable(GL_DEPTH_TEST);
+	glEnable(GL_CULL_FACE);
+	glCullFace(GL_BACK);
+	glClearColor(0.0, 0.0, 0.0, 1.0);
+	glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
+
+	createCube();
+
+	cube.loadTexture("../assets/textures/texture.jpg");
+}
+
+
+void keyboard(unsigned char key, int x, int y)
+{
+	switch (key) {
+	case 033:
+	case 'q': case 'Q':
+		exit(0);
+		break;
+
+	case '4':
+		glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
+		break;
+
+	case '5':
+		glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
+		break;
+
+	case '3':
+		glPolygonMode(GL_FRONT_AND_BACK, GL_POINT);
+		break;
+
+	case 'a':
+		cube.rotate(cube.yaw, cube.pitch - 5, cube.roll, program);
+		break;
+	case 'd':
+		cube.rotate(cube.yaw, cube.pitch + 5, cube.roll, program);
+		break;
+	case 'w':
+		cube.rotate(cube.yaw + 5, cube.pitch, cube.roll, program);
+		break;
+	case 's':
+		cube.rotate(cube.yaw - 5, cube.pitch, cube.roll, program);
+		break;
+	}
+
+
+	glutPostRedisplay();
+}
+
 int main(int argc, char **argv)
 {
 	glutInit(&argc, argv);
 	glutInitDisplayMode(GLUT_RGBA | GLUT_DOUBLE | GLUT_DEPTH);
 	glutInitWindowSize(800, 600);
-	glutCreateWindow("Water Demo");
+	glutCreateWindow("SLERP Demo");
 
 	init();
 
+	glutIdleFunc(idle);
 	glutDisplayFunc(display);
 	glutKeyboardFunc(keyboard);
 
-	//glutUpdate
 	glutMainLoop();
 }

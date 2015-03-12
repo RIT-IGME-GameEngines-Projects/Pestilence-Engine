@@ -2,6 +2,13 @@
 
 Quaternion Quaternion::Identity = Quaternion(0.0f, 0.0f, 0.0f, 0.0f);
 
+Quaternion::Quaternion() {
+	w = 0;
+	x = 0;
+	y = 0;
+	z = 0;
+}
+
 Quaternion::Quaternion(float w, float x, float y, float z) {
 	this->w = w;
 	this->x = x;
@@ -72,23 +79,23 @@ Matrix4 Quaternion::toMatrix(Quaternion quat) {
 	Matrix4 mat = Matrix4::Identity;
 
 	float m00 = 1 - (2 * (quat.y * quat.y)) - (2 * (quat.z * quat.z));
-	float m10 = (2 * quat.x * quat.y) - (2 * quat.z * quat.w);
-	float m20 = (2 * quat.x * quat.z) + (2 * quat.y * quat.w);
-	float m30 = 1.0f;
+	float m10 = (2 * (quat.x * quat.y)) - (2 * (quat.z * quat.w));
+	float m20 = (2 * (quat.x * quat.z)) + (2 * (quat.y * quat.w));
+	float m30 = 0.0f;
 
-	float m01 = (2 * quat.x * quat.y) + (2 * quat.z * quat.w);
+	float m01 = (2 * (quat.x * quat.y)) + (2 * (quat.z * quat.w));
 	float m11 = 1 - (2 * (quat.x * quat.x)) - (2 * (quat.z * quat.z));
-	float m21 = (2 * quat.y * quat.z) - (2 * quat.x * quat.w);
-	float m31 = 1.0f;
+	float m21 = (2 * (quat.y * quat.z)) - (2 * (quat.x * quat.w));
+	float m31 = 0.0f;
 
-	float m02 = (2 * quat.x * quat.z) - (2 * quat.y * quat.y);
-	float m12 = (2 * quat.y * quat.z) + (2 * quat.x * quat.w);
-	float m22 = 1 - (2 * (quat.x * quat.x)) - (2 * quat.y * quat.y);
-	float m32 = 1.0f;
+	float m02 = (2 * (quat.x * quat.z)) - (2 * (quat.y * quat.y));
+	float m12 = (2 * (quat.y * quat.z)) + (2 * (quat.x * quat.w));
+	float m22 = 1 - (2 * (quat.x * quat.x)) - (2 * (quat.y * quat.y));
+	float m32 = 0.0f;
 
-	float m03 = 1.0f;
-	float m13 = 1.0f;
-	float m23 = 1.0f;
+	float m03 = 0.0f;
+	float m13 = 0.0f;
+	float m23 = 0.0f;
 	float m33 = 1.0f;
 
 	mat = Matrix4(m00, m01, m02, m03,

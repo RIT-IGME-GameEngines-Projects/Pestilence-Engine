@@ -83,6 +83,11 @@ void keyboard(unsigned char key, int x, int y)
 		cube.pointShiftTest();
 		render();
 		break;
+
+	case 'i':
+		cube.rotate(45, 55, 0, program);
+		render();
+		break;
 	}
 
 

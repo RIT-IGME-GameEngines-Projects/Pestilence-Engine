@@ -14,6 +14,8 @@
 #include <SOIL.h>
 
 #include "dataStrucutures\modelStructures.cpp"
+#include "dataStrucutures\matrix4.h"
+#include "dataStrucutures\quaternion.h"
 
 using namespace std;
 
@@ -39,6 +41,10 @@ public:
 	void loadTexture(char* filename);
 	void setUpTexture(GLuint program);
 
+	void rotate(float yaw, float pitch, float roll, GLuint program);
+
+	//void rotate()
+
 	GLushort *getIndices();
 
 	float *getVertices();
@@ -58,6 +64,8 @@ private:
 
 	vector<Face> faces;
 	Face* faceArray = 0;
+
+	Quaternion rotation;
 };
 
 #endif

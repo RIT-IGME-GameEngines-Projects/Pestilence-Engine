@@ -2,6 +2,7 @@
 
 Model::Model() {
 	srand(time(NULL));
+	rotation = Quaternion::Identity;
 }
 
 Model::~Model() {
@@ -389,8 +390,9 @@ void Model::setUpTexture(GLuint program){
 	GLuint colorLoc = glGetUniformLocation(program, "vColor");
 	GLuint theta = glGetUniformLocation(program, "theta");
 
-	float angles[3] = { 30.0, 30.0, 0.0 };
+	float angles[3] = { 45.0, 30.0, 0.0 };
 	glUniform3fv(theta, 1, angles);
+	rotate(45, 30, 0, program);
 
 	GLfloat color[4] = { 1.0, 1.0, 1.0, 1.0 };
 	glUniform1i(textureLoc, 0);
@@ -418,4 +420,18 @@ void Model::pointShiftTest() {
 	}
 }
 
+void Model::rotate(float yaw, float pitch, float roll, GLuint program) {
+	Quaternion rotTo = Quaternion::euler(yaw, pitch, roll);
+	Quaternion slerped = Quaternion::slerp(rotation, rotTo, 0.5f);
+	Matrix4 rotMat = Quaternion::toMatrix(slerped);
+	float* rotMat4 = Matrix4::ToMat4(rotMat);
+	
+	glUseProgram(program);
+
+	GLuint rotationLoc = glGetUniformLocation(program, "theta");
+
+	glUniformMatrix4fv(rotationLoc, 1, false, rotMat4);
+
+	return;
+}
 

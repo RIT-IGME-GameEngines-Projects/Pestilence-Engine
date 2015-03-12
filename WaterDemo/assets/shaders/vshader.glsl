@@ -8,7 +8,7 @@ uniform vec4 vColor;
 varying vec4 color;
 varying vec2 texCoord;
 
-varying mat4 rotation;
+uniform mat4 rotation;
 
 void main()
 {   
@@ -36,5 +36,6 @@ void main()
                     0.0,  0.0,  0.0,  1.0);
           
     
+	//gl_Position = rotation * vPosition;
     gl_Position = rz * ry * rx * vPosition;
 }

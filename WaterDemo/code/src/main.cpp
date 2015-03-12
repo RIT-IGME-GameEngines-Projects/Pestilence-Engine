@@ -106,7 +106,7 @@ void init()
 
 	createCube();
 
-	cube.loadTexture("../assets/textures/texture.jpg");
+	cube.loadTexture("../assets/textures/dirt.jpg");
 }
 
 
@@ -114,7 +114,6 @@ void keyboard(unsigned char key, int x, int y)
 {
 	switch (key) {
 	case 033:
-	case 'q': case 'Q':
 		exit(0);
 		break;
 
@@ -141,6 +140,12 @@ void keyboard(unsigned char key, int x, int y)
 		break;
 	case 's':
 		cube.rotate(cube.yaw - 5, cube.pitch, cube.roll, program);
+		break;
+	case 'q':
+		cube.rotate(cube.yaw, cube.pitch, cube.roll + 5, program);
+		break;
+	case 'e':
+		cube.rotate(cube.yaw, cube.pitch, cube.roll - 5, program);
 		break;
 	}
 

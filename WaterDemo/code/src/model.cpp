@@ -2,10 +2,12 @@
 
 Model::Model() {
 	srand(time(NULL));
-	rotation = Quaternion(1.0, 45, 30, 0);
-	yaw = 455;
+
+	yaw = 615;
 	pitch = 50;
 	roll = -165;
+
+	rotation = Quaternion::euler(yaw, pitch, roll);
 }
 
 Model::~Model() {
@@ -435,10 +437,8 @@ void Model::rotate(float iyaw, float ipitch, float iroll, GLuint program) {
 	this->pitch = ipitch;
 	this->roll = iroll;
 
-	float deg2Rad = 180/M_PI;
-
 	Quaternion rotTo = Quaternion::euler(yaw, pitch, roll);
-	Quaternion slerped = Quaternion::slerp(rotation, rotTo, 1);
+	Quaternion slerped = Quaternion::slerp(rotation, rotTo, 0);
 	Matrix4 rotMat = Quaternion::toMatrix(slerped);
 	float* rotMat4 = Matrix4::ToMat4(rotMat);
 	rotation = slerped;

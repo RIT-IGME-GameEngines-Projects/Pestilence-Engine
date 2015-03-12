@@ -8,6 +8,8 @@ uniform vec4 vColor;
 varying vec4 color;
 varying vec2 texCoord;
 
+varying mat4 rotation;
+
 void main()
 {   
 	color = vColor;

@@ -19,6 +19,8 @@ public:
 
 	static Matrix4 Identity;
 
+	static Matrix4 Translate(float x, float y, float z);
+
 	static float* ToMat4(Matrix4 mat);
 };
 

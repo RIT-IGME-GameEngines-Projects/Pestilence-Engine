@@ -30,10 +30,20 @@ Matrix4::~Matrix4() {
 
 }
 
-Matrix4 Matrix4::Identity = Matrix4(0, 0, 0, 0,
-									0, 0, 0, 0,
-									0, 0, 0, 0,
-									0, 0, 0, 0);
+Matrix4 Matrix4::Identity = Matrix4(1, 0, 0, 0,
+									0, 1, 0, 0,
+									0, 0, 1, 0,
+									0, 0, 0, 1);
+
+Matrix4 Matrix4::Translate(float x, float y, float z)
+{
+	Matrix4 mat = Matrix4(1, 0, 0, 0,
+						  0, 1, 0, 0,
+						  0, 0, 1, 0,
+						  x, y, z, 1);
+
+	return mat;
+}
 
 float* Matrix4::ToMat4(Matrix4 mat) {
 	float* out = new float[16];

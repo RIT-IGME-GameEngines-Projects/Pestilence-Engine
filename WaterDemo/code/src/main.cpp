@@ -157,16 +157,16 @@ void keyboard(unsigned char key, int x, int y)
 	case 'k':
 		cube.rotate(0, rotateAmt, 0, program);
 		break;
-	case 'u':
+	case 'j':
 		cube.rotate(rotateAmt, 0, 0, program);
 		break;
-	case 'o':
+	case 'l':
 		cube.rotate(-rotateAmt, 0, 0, program);
 		break;
-	case 'j':
+	case 'u':
 		cube.rotate(0, 0, rotateAmt, program);
 		break;
-	case 'l':
+	case 'o':
 		cube.rotate(0, 0, -rotateAmt, program);
 		break;
 	}

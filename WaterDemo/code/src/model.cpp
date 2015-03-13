@@ -443,11 +443,6 @@ void Model::rotate(float iyaw, float ipitch, float iroll, GLuint program) {
 	float* rotMat4 = Matrix4::ToMat4(rotMat);
 	rotation = rotTo;
 
-	std::cout << "Rotation Matrix" << std::endl;
-	for (int i = 0; i < 16; i++) {
-		std::cout << rotMat4[i] << std::endl;
-	}
-
 	GLuint theta = glGetUniformLocation(program, "theta");
 
 	//float angles[3] = { slerped.x, slerped.y, slerped.z };

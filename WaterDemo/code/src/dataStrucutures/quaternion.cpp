@@ -27,18 +27,16 @@ Quaternion Quaternion::euler(float yaw, float pitch, float roll) {
 	float a = pitch * PI360;
 	float b = roll * PI360;
 
-	float c1 = cos(yaw*0.5);
-	float s1 = sin(yaw*0.5);
-	float c2 = cos(pitch*0.5);
-	float s2 = sin(pitch*0.5);
-	float c3 = cos(roll*0.5);
-	float s3 = sin(roll*0.5);
-	float c1c2 = c1*c2;
-	float s1s2 = s1*s2;
+	float c1 = cos(h);
+	float s1 = sin(h);
+	float c2 = cos(a);
+	float s2 = sin(a);
+	float c3 = cos(b);
+	float s3 = sin(b);
 
-	float w = c1c2*c2 - s1s2*s3;
-	float x = c1c2*s3 + s1s2*c3;
-	float y = s1*c2*c3 + c2*s2*s3;
+	float w = c1*c2*c3 - s1*s2*s3;
+	float x = c1*c2*s3 + s1*s2*c3;
+	float y = s1*c2*c3 + c1*s2*s3;
 	float z = c1*s2*c3 - s1*c2*s3;
 
 	q = Quaternion(w, x, y, z);

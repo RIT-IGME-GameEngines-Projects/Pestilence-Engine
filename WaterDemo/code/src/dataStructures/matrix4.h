@@ -1,8 +1,13 @@
 #ifndef _MATRIX4_H_
 #define _MATRIX4_H_
 
+#define M_PI           3.14159265358979323846 
+#define DEG2RAD		   M_PI / 180
+
 #include <stdio.h>
 #include <iostream>
+
+struct Vector3;
 
 class Matrix4 {
 public:
@@ -22,6 +27,9 @@ public:
 	static Matrix4 Translate(float x, float y, float z);
 
 	static float* ToMat4(Matrix4 mat);
+
+	static Matrix4 LookAt(Vector3 pos, Vector3 lookat, Vector3 up);
+	static Matrix4 Perspective(float fov, float aspect, float near, float far);
 };
 
 #endif

@@ -18,9 +18,9 @@
 #include <GL/GL.h>
 #include <SOIL.h>
 
-#include "dataStrucutures\modelStructures.cpp"
-#include "dataStrucutures\matrix4.h"
-#include "dataStrucutures\quaternion.h"
+#include "dataStructures\matrix4.h"
+#include "dataStructures\quaternion.h"
+#include "dataStructures\modelStructures.h"
 
 using namespace std;
 

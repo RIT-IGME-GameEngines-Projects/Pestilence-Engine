@@ -100,10 +100,10 @@ Matrix4 Quaternion::toMatrix(Quaternion quat) {
 	float m23 = 0.0f;
 	float m33 = 1.0f;
 
-	mat = Matrix4(m00, m01, m02, m03,
-				m10, m11, m12, m13,
-				m20, m21, m22, m23,
-				m30, m31, m32, m33);
+	mat = Matrix4(m00, m10, m20, m30,
+				m01, m11, m21, m31,
+				m02, m12, m22, m32,
+				m03, m13, m23, m33);
 
 	return mat;
 }

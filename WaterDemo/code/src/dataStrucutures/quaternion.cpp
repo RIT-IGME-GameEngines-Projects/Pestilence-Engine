@@ -23,6 +23,10 @@ Quaternion::~Quaternion() {
 Quaternion Quaternion::euler(float yaw, float pitch, float roll) {
 	Quaternion q = Quaternion::Identity;
 
+	float h = yaw * PI360;
+	float a = pitch * PI360;
+	float b = roll * PI360;
+
 	float c1 = cos(yaw*0.5);
 	float s1 = sin(yaw*0.5);
 	float c2 = cos(pitch*0.5);

@@ -23,18 +23,20 @@ Quaternion::~Quaternion() {
 Quaternion Quaternion::euler(float yaw, float pitch, float roll) {
 	Quaternion q = Quaternion::Identity;
 
-	float c1 = cos(yaw*0.5);
-	float s1 = sin(yaw*0.5);
-	float c2 = cos(pitch*0.5);
-	float s2 = sin(pitch*0.5);
-	float c3 = cos(roll*0.5);
-	float s3 = sin(roll*0.5);
-	float c1c2 = c1*c2;
-	float s1s2 = s1*s2;
+	float h = yaw * PI360;
+	float a = pitch * PI360;
+	float b = roll * PI360;
 
-	float w = c1c2*c2 - s1s2*s3;
-	float x = c1c2*s3 + s1s2*c3;
-	float y = s1*c2*c3 + c2*s2*s3;
+	float c1 = cos(h);
+	float s1 = sin(h);
+	float c2 = cos(a);
+	float s2 = sin(a);
+	float c3 = cos(b);
+	float s3 = sin(b);
+
+	float w = c1*c2*c3 - s1*s2*s3;
+	float x = c1*c2*s3 + s1*s2*c3;
+	float y = s1*c2*c3 + c1*s2*s3;
 	float z = c1*s2*c3 - s1*c2*s3;
 
 	q = Quaternion(w, x, y, z);
@@ -98,10 +100,10 @@ Matrix4 Quaternion::toMatrix(Quaternion quat) {
 	float m23 = 0.0f;
 	float m33 = 1.0f;
 
-	mat = Matrix4(m00, m01, m02, m03,
-				m10, m11, m12, m13,
-				m20, m21, m22, m23,
-				m30, m31, m32, m33);
+	mat = Matrix4(m00, m10, m20, m30,
+				m01, m11, m21, m31,
+				m02, m12, m22, m32,
+				m03, m13, m23, m33);
 
 	return mat;
 }

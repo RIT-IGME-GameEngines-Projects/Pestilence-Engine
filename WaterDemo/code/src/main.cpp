@@ -102,7 +102,7 @@ void init()
 	glEnable(GL_CULL_FACE);
 	glCullFace(GL_BACK);
 	glClearColor(0.0, 0.0, 0.0, 1.0);
-	glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
+	//glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
 
 	createCube();
 
@@ -112,6 +112,9 @@ void init()
 
 void keyboard(unsigned char key, int x, int y)
 {
+	float rotateAmt = 5;
+	float translateAmt = 0.1;
+
 	switch (key) {
 	case 033:
 		exit(0);
@@ -129,23 +132,42 @@ void keyboard(unsigned char key, int x, int y)
 		glPolygonMode(GL_FRONT_AND_BACK, GL_POINT);
 		break;
 
-	case 'a':
-		cube.rotate(cube.yaw, cube.pitch - 5, cube.roll, program);
-		break;
-	case 'd':
-		cube.rotate(cube.yaw, cube.pitch + 5, cube.roll, program);
-		break;
 	case 'w':
-		cube.rotate(cube.yaw + 5, cube.pitch, cube.roll, program);
+		cube.translate(0, translateAmt, 0, program);
 		break;
 	case 's':
-		cube.rotate(cube.yaw - 5, cube.pitch, cube.roll, program);
+		cube.translate(0, -translateAmt, 0, program);
+		break;
+	case 'a':
+		cube.translate(-translateAmt, 0, 0, program);
+		break;
+	case 'd':
+		cube.translate(translateAmt, 0, 0, program);
 		break;
 	case 'q':
-		cube.rotate(cube.yaw, cube.pitch, cube.roll + 5, program);
+		cube.translate(0, 0, -translateAmt, program);
 		break;
 	case 'e':
-		cube.rotate(cube.yaw, cube.pitch, cube.roll - 5, program);
+		cube.translate(0, 0, translateAmt, program);
+		break;
+
+	case 'i':
+		cube.rotate(0, -rotateAmt, 0, program);
+		break;
+	case 'k':
+		cube.rotate(0, rotateAmt, 0, program);
+		break;
+	case 'j':
+		cube.rotate(rotateAmt, 0, 0, program);
+		break;
+	case 'l':
+		cube.rotate(-rotateAmt, 0, 0, program);
+		break;
+	case 'u':
+		cube.rotate(0, 0, rotateAmt, program);
+		break;
+	case 'o':
+		cube.rotate(0, 0, -rotateAmt, program);
 		break;
 	}
 

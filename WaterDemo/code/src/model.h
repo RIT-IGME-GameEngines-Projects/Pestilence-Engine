@@ -1,9 +1,14 @@
 #ifndef _MODEL_H_
 #define _MODEL_H_
 
+#define M_PI           3.14159265358979323846 
+#define DEG2RAD		   M_PI / 180
+#define PI360		   M_PI / 360
+
 #include <vector>
 #include <iostream>
 #include <cmath>
+#include <math.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <time.h>
@@ -13,9 +18,9 @@
 #include <GL/GL.h>
 #include <SOIL.h>
 
-#include "dataStrucutures\modelStructures.cpp"
-#include "dataStrucutures\matrix4.h"
-#include "dataStrucutures\quaternion.h"
+#include "dataStructures\matrix4.h"
+#include "dataStructures\quaternion.h"
+#include "dataStructures\modelStructures.h"
 
 using namespace std;
 
@@ -41,6 +46,7 @@ public:
 	void loadTexture(char* filename);
 	void setUpTexture(GLuint program);
 
+	void translate(float x, float y, float z, GLuint program);
 	void rotate(float yaw, float pitch, float roll, GLuint program);
 
 	//void rotate()
@@ -53,7 +59,8 @@ public:
 
 	int nVertices();
 
-	float yaw, pitch, roll;
+	Vector3 position;
+	Euler3 angles;
 
 private:
 	vector<float> points;

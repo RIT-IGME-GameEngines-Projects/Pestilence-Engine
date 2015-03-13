@@ -10,13 +10,13 @@
     <ClCompile Include="src\shaderManager.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\dataStrucutures\modelStructures.cpp">
+    <ClCompile Include="src\camera.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\dataStrucutures\quaternion.cpp">
+    <ClCompile Include="src\dataStructures\matrix4.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\dataStrucutures\matrix4.cpp">
+    <ClCompile Include="src\dataStructures\quaternion.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -27,10 +27,16 @@
     <ClInclude Include="src\shaderManager.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\dataStrucutures\matrix4.h">
+    <ClInclude Include="src\camera.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\dataStrucutures\quaternion.h">
+    <ClInclude Include="src\dataStructures\matrix4.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\dataStructures\modelStructures.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\dataStructures\quaternion.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

@@ -19,6 +19,9 @@
     <ClCompile Include="src\dataStructures\quaternion.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="src\Spline.cpp">
+      <Filter>Splines</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\model.h">
@@ -39,6 +42,12 @@
     <ClInclude Include="src\dataStructures\quaternion.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="src\Spline.h">
+      <Filter>Splines</Filter>
+    </ClInclude>
+    <ClInclude Include="src\MyVector.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Header Files">
@@ -49,6 +58,9 @@
     </Filter>
     <Filter Include="Shaders">
       <UniqueIdentifier>{14757dab-086d-466b-adc6-3b78631673be}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Splines">
+      <UniqueIdentifier>{dbcc6f6d-a625-4e11-bd34-8df7affeae09}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>

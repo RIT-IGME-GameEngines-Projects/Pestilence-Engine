@@ -32,13 +32,13 @@ bool bufferInit = false;
 
 int index = 0;
 int cnt = 0;
-int timer = 20;
+int timer = 2;
 
 Model cube;
 MyVector<Vector3> gCubes;
 // test spline
 
-Vector3 vec[] = { Vector3(-.8, -.8, 0), Vector3(-.5, -.3, 0), Vector3(0, 0, 0) };
+Vector3 vec[] = { Vector3(-.8, -.8, 0), Vector3(1,1,0), Vector3(1, -1,0) };
 Spline* spine = new Spline(vec, 3);
 
 clock_t currTime;
@@ -83,14 +83,16 @@ void idle() {
 		currTime = endTime;
 		cnt = 0;
 		index++;
-		cout << index << endl;
+		cout << index << ":[" << cube.position.x << ", " << cube.position.y << "]  " << std::endl;
 		if (index >= gCubes.GetSize()) {
 			index = 0;
 		}
 		
 		//cube.translate(0.1, 0, 0, program);
-		
-		cube.translate(abs(cube.position.x - gCubes[index].x), abs(cube.position.y - gCubes[index].y), abs(cube.position.z - gCubes[index].z), program);
+		//cube.translate(abs(cube.position.x - gCubes[index].x), abs(cube.position.y - gCubes[index].y), abs(cube.position.z - gCubes[index].z), program);
+		cube.position.x = gCubes.GetCopyAt(index).x; 
+		cube.position.y = gCubes.GetCopyAt(index).y;
+		//cube.translate(abs(cube.position.x - gCubes[index].x), abs(cube.position.y - gCubes[index].y), abs(cube.position.z - gCubes[index].z), program);
 		glutPostRedisplay();
 	}
 	//cube.translate(0.1, 0, 0, program);
@@ -142,6 +144,11 @@ void createGCubes()
 	for (int i = 0; i < spine->graphPoints->GetSize(); i++)
 	{
 		Vector3 currPt = *(spine->graphPoints->GetCopyAt(i));
+		if (i == 0)
+		{
+			cube.position.x = currPt.x; 
+			cube.position.y = currPt.y;
+		}
 		//Model m = Model();
 		//m.clearModel(); 
 		//m.makeCube(); 

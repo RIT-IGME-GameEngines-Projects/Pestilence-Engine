@@ -64,7 +64,7 @@ public:
 	void generateGraphPts()
 	{
 		this->graphPoints->Release();
-		float increment = .001; 
+		float increment = .01; 
 		for (int i = 0; i < (this->controlPoints->GetSize()-2); i+=2)
 		{
 			// for each "curve"; e.g. [0,1,2], [2,3,4]

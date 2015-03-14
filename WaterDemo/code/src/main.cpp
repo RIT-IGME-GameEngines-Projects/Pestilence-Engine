@@ -8,6 +8,7 @@
 
 #include "shaderManager.h"
 #include "model.h"
+#include "sse\quaternionX.h"
 
 using namespace std;
 
@@ -103,6 +104,12 @@ void init()
 	glCullFace(GL_BACK);
 	glClearColor(0.0, 0.0, 0.0, 1.0);
 	//glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
+
+	QuaternionX quat1 = QuaternionX(10, 0, 5, 2);
+	QuaternionX q1 = quat1.euler(45, 30, 0);
+	QuaternionX quat2 = QuaternionX();
+	QuaternionX q2 = quat2.euler(50, 100, 20);
+	QuaternionX::slerp(q1.quatData, q2.quatData, 0);
 
 	createCube();
 

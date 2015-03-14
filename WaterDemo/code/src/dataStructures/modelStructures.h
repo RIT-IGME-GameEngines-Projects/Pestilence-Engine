@@ -1,5 +1,5 @@
-#ifndef MODELSTRUCTURES_H
-#define MODELSTRUCTURES_H
+#ifndef _MODEL_STRUCTURES_H_
+#define _MODEL_STRUCTURES_H_
 
 struct Point {
 	float x;

@@ -19,7 +19,7 @@
 #include <SOIL.h>
 
 #include "dataStructures\matrix4.h"
-#include "dataStructures\quaternion.h"
+#include "sse\quaternionX.h"
 #include "dataStructures\modelStructures.h"
 
 using namespace std;
@@ -77,7 +77,7 @@ private:
 	vector<Face> faces;
 	Face* faceArray = 0;
 
-	Quaternion rotation;
+	QuaternionX rotx;
 };
 
 #endif

@@ -5,6 +5,7 @@
 #define PI360		   M_PI / 360
 
 #include <math.h>
+#include <xmmintrin.h>
 
 #include "matrix4.h"
 

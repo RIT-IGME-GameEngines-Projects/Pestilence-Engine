@@ -51,14 +51,48 @@ public:
 		{
 			// Generate a control point - for values, look at the vector currently on top
 			// and the vector that we're adding and interpolate a circle that has them both as points
-			this->controlPoints->Push(new Vector3(0,0,0));
+			this->controlPoints->Push(
+				new Vector3(generateControlPoint((*this->controlPoints->GetTop()), _vec)));
 
 			// Push the new point
 			this->controlPoints->Push(new Vector3(_vec));
 		}
 	};
 
-	// print out each vertex
+	// we will ignore z for now
+	Vector3 generateControlPoint(Vector3 start, Vector3 end)
+	{
+		// make a standard kind of control point
+		// this will be the average between the two plus
+		// half the largest dimension distance between them
+		// in the axis that has the least distance between them
+		float xDist = fabs( start.x - end.x );
+		float yDist = fabs(start.y - end.y);
+
+		float gDist;
+		enum axis { XAX, YAX };
+		axis gAxis;
+		// get greatest distance - the average of the axis points will be the halfway pt
+		gDist = xDist; gAxis = XAX;
+		if (yDist > gDist){ gDist = yDist; gAxis = YAX;}
+
+		Vector3 cPoint; // our returnable
+		switch (gAxis)
+		{
+			case XAX: 
+				cPoint.x = start.x + (.5 * gDist); 
+				cPoint.y = start.y + (.5 * yDist); 
+			case YAX: 
+				cPoint.y = start.y + (.5 * gDist);
+				cPoint.x = start.x + (.5 * xDist);
+		}
+		cPoint.z = 0; 
+
+		return cPoint;
+
+	};
+
+	// print out each vertex - for debugging
 	void Print()
 	{
 		for (int i = 0; i < controlPoints->GetSize(); i++)

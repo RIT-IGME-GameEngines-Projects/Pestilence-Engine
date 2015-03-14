@@ -1,3 +1,6 @@
+#ifndef MODELSTRUCTURES_H
+#define MODELSTRUCTURES_H
+
 struct Point {
 	float x;
 	float y;
@@ -57,3 +60,5 @@ public:
 		this->roll = roll;
 	}
 };
+
+#endif

@@ -58,8 +58,28 @@ QuaternionX QuaternionX::slerp(__m128 q1, __m128 q2, float u) {
 		return QuaternionX(q1f[0], q1f[1], q1f[2], q1f[3]);
 	}
 
+	float halfTheta = acos(cosHalfTheta);
+	float sinHalfTheta = sqrt(1.0 - cosHalfTheta * cosHalfTheta);
 
-	return QuaternionX::Identity;
+	if (fabs(sinHalfTheta) <= 0.001) {
+		__m128 scalar = _mm_set1_ps(0.5f);
+		q1 = _mm_mul_ps(q1, scalar);
+		q2 = _mm_mul_ps(q2, scalar);
+		__m128 result = _mm_add_ps(q1, q2);
+		float* fResult = QuaternionX::toArray(result);
+		return QuaternionX(fResult[0], fResult[1], fResult[2], fResult[3]);
+	}
+
+	float ratioA = sin((1 - u) * halfTheta) / sinHalfTheta;
+	float ratioB = sin((u*halfTheta) / sinHalfTheta);
+
+	__m128 scalar1 = _mm_set1_ps(ratioA);
+	__m128 scalar2 = _mm_set1_ps(ratioB);
+	q1 = _mm_mul_ps(q1, scalar1);
+	q2 = _mm_mul_ps(q2, scalar2);
+	__m128 result = _mm_add_ps(q1, q2);
+	float* fResult = QuaternionX::toArray(result);
+	return QuaternionX(fResult[0], fResult[1], fResult[2], fResult[3]);
 }
 
 float QuaternionX::getFloat(__m128 V, unsigned int i) {

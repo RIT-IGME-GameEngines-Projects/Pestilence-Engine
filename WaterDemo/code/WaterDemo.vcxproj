@@ -17,6 +17,7 @@
     <ClCompile Include="src\main.cpp" />
     <ClCompile Include="src\model.cpp" />
     <ClCompile Include="src\shaderManager.cpp" />
+    <ClCompile Include="src\sse\quaternionX.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\camera.h" />
@@ -25,6 +26,7 @@
     <ClInclude Include="src\dataStructures\quaternion.h" />
     <ClInclude Include="src\model.h" />
     <ClInclude Include="src\shaderManager.h" />
+    <ClInclude Include="src\sse\quaternionX.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="..\assets\shaders\fshader.glsl" />

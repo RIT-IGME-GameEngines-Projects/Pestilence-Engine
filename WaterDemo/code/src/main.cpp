@@ -109,7 +109,13 @@ void init()
 	QuaternionX q1 = quat1.euler(45, 30, 0);
 	QuaternionX quat2 = QuaternionX();
 	QuaternionX q2 = quat2.euler(50, 100, 20);
-	QuaternionX::slerp(q1.quatData, q2.quatData, 0);
+	QuaternionX result = QuaternionX::slerp(q1.quatData, q2.quatData, 0);
+
+	Quaternion rquat1 = Quaternion();
+	Quaternion rq1 = rquat1.euler(45, 30, 0);
+	Quaternion rquat2 = Quaternion();
+	Quaternion rq2 = rquat2.euler(50, 100, 20);
+	Quaternion rresult = Quaternion::slerp(rq2, rq2, 0);
 
 	createCube();
 

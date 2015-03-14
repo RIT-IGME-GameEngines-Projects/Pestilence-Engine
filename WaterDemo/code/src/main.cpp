@@ -9,9 +9,13 @@
 
 #include "shaderManager.h"
 #include "model.h"
+<<<<<<< HEAD
 #include "Spline.h"
 
 #define FPS  60
+=======
+#include "sse\quaternionX.h"
+>>>>>>> sse-slerp
 
 using namespace std;
 

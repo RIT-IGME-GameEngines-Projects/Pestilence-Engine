@@ -34,6 +34,7 @@ Quaternion Quaternion::euler(float yaw, float pitch, float roll) {
 	float c3 = cos(b);
 	float s3 = sin(b);
 
+	// **SSE-COMPATIBLE**
 	float w = c1*c2*c3 - s1*s2*s3;
 	float x = c1*c2*s3 + s1*s2*c3;
 	float y = s1*c2*c3 + c1*s2*s3;

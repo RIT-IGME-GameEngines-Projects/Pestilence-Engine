@@ -8,7 +8,7 @@
 
 #include "MyVector.h" 
 #include "dataStructures\modelStructures.h"
-
+#define MATH_PI 3.14
 
 using namespace std;
 
@@ -23,6 +23,7 @@ public:
 	{
 		// initialize control points data structure
 		this->controlPoints = new MyVector<Vector3*>();
+		this->graphPoints = new MyVector<Vector3*>();
 	};
 
 	//Constructor with array of Vector3s
@@ -30,6 +31,7 @@ public:
 	{
 		// initialize vector
 		this->controlPoints = new MyVector<Vector3*>(); 
+		this->graphPoints = new MyVector<Vector3*>();
 		for (int i = 0; i < length; i++)
 		{
 			this->addControlPoint(vec[i]);
@@ -59,6 +61,28 @@ public:
 		}
 	};
 
+	void generateGraphPts()
+	{
+		this->graphPoints->Release();
+		float increment = .001; 
+		for (int i = 0; i < (this->controlPoints->GetSize()-2); i+=2)
+		{
+			// for each "curve"; e.g. [0,1,2], [2,3,4]
+			Vector3 s = *(this->controlPoints->GetCopyAt(i));
+			Vector3 m = *(this->controlPoints->GetCopyAt(i+1));
+			Vector3 f = *(this->controlPoints->GetCopyAt(i+2));
+			for (float j = s.x; j < f.x; j += increment)
+			{
+				// draw points along the curve
+				// this DEFINITELY needs to get fixed but we'll see where it goes for now
+				float xPt = ((1 + cos(MATH_PI + j * MATH_PI)) / 2);
+
+				float yPt = ((1 + sin(MATH_PI + j * MATH_PI)) / 2);
+				this->graphPoints->Push(new Vector3(xPt, yPt, 0));
+			}
+
+		}
+	}
 	// we will ignore z for now
 	Vector3 generateControlPoint(Vector3 start, Vector3 end)
 	{
@@ -87,7 +111,7 @@ public:
 				cPoint.x = start.x + (.5 * xDist);
 		}
 		cPoint.z = 0; 
-
+		generateGraphPts(); // generate graph points
 		return cPoint;
 
 	};
@@ -101,6 +125,12 @@ public:
 			if (i % 2 == 0) std::cout << "P:"; 
 			else std::cout << "C:";
 			std::cout << "[" <<  vec.x << ", " << vec.y << ", " << vec.z << "]" <<  std::endl; 
+		}
+
+		for (int i = 0; i < graphPoints->GetSize(); i++)
+		{
+			Vector3 vec = *(graphPoints->GetCopyAt(i));
+			std::cout << "Graph: [" << vec.x <<", " << vec.y << "]" << std::endl;
 		}
 	}
 
@@ -118,7 +148,7 @@ public:
 	}
 private: 
 	MyVector<Vector3*>* controlPoints; // Pointer to MyVector of Vector3s
-
+	MyVector<Vector3*>* graphPoints; // pointer to myVector of Vector3s representing points along the bezier curved spline
 
 };
 

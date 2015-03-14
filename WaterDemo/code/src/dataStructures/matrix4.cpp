@@ -47,6 +47,15 @@ Matrix4 Matrix4::Translate(float x, float y, float z)
 	return mat;
 }
 
+Matrix4 Matrix4::Scale(float x, float y, float z) {
+	Matrix4 mat = Matrix4(x, 0, 0, 0,
+						  0, y, 0, 0,
+						  0, 0, z, 0,
+						  0, 0, 0, 1);
+
+	return mat;
+}
+
 Matrix4 Matrix4::LookAt(Vector3 position, Vector3 lookat, Vector3 up)
 {
 	return Matrix4::Identity;

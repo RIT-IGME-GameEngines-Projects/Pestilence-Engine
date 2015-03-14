@@ -15,5 +15,5 @@ void main()
 	color = vColor;
 	texCoord = vTexCoord;
           
-	gl_Position = translation * rotation * vPosition;
+	gl_Position = translation * rotation * scale * vPosition;
 }

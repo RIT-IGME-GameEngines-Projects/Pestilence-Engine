@@ -36,8 +36,8 @@ Spline* spine = new Spline(vec, 3);
 
 void render() {
 
-	if (mode == QUATERNION)
-	{
+	//if (mode == QUATERNION)
+	//{
 		NumElements = cube.nVertices();
 		float* points = cube.getVertices();
 		int dataSize = cube.nVertices() * 4 * sizeof(float);
@@ -59,11 +59,11 @@ void render() {
 		glBufferData(GL_ELEMENT_ARRAY_BUFFER, edataSize, elements, GL_STATIC_DRAW);
 
 		numVerts[0] = cube.nVertices();
-	}
+	/*}
 	else
 	{
 
-	}
+	}*/
 }
 
 void idle() {

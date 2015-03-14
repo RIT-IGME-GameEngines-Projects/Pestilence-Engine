@@ -4,7 +4,7 @@ Model::Model() {
 	srand(time(NULL));
 
 	angles = Euler3(45, 30, 0);
-	scale = Vector3(1, 1, 1);
+	scale = Vector3(0.5, 0.5, 0.5);
 	position = Vector3();
 
 	rotation = Quaternion::euler(angles.yaw, angles.pitch, angles.roll);

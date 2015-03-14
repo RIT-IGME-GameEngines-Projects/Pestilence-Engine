@@ -8,10 +8,15 @@
 
 #include "shaderManager.h"
 #include "model.h"
+#include "Spline.h"
 
 using namespace std;
 
 #define BUFFER_OFFSET(i) ((char*)NULL + (i))
+
+
+enum exampleType{ QUATERNION, SPLINE };
+exampleType mode = SPLINE;
 
 GLuint buffer[1];
 GLuint ebuffer[1];
@@ -24,28 +29,41 @@ bool bufferInit = false;
 
 Model cube;
 
+// test spline
+
+Vector3 vec[] = { Vector3(-.8, -.8, 0), Vector3(-.5, -.3, 0), Vector3(0, 0, 0) };
+Spline* spine = new Spline(vec, 3); 
+
 void render() {
-	NumElements = cube.nVertices();
-	float* points = cube.getVertices();
-	int dataSize = cube.nVertices() * 4 * sizeof(float);
-	float* texCoords = cube.getUV();
-	int tdataSize = cube.nVertices() * 2 * sizeof(float);
-	GLushort* elements = cube.getIndices();
-	int edataSize = cube.nVertices() * sizeof(GLushort);
 
-	glGenBuffers(1, &buffer[0]);
-	glBindBuffer(GL_ARRAY_BUFFER, buffer[0]);
+	if (mode == QUATERNION)
+	{
+		NumElements = cube.nVertices();
+		float* points = cube.getVertices();
+		int dataSize = cube.nVertices() * 4 * sizeof(float);
+		float* texCoords = cube.getUV();
+		int tdataSize = cube.nVertices() * 2 * sizeof(float);
+		GLushort* elements = cube.getIndices();
+		int edataSize = cube.nVertices() * sizeof(GLushort);
 
-	glBufferData(GL_ARRAY_BUFFER, dataSize + tdataSize, 0, GL_STATIC_DRAW);
-	glBufferSubData(GL_ARRAY_BUFFER, 0, dataSize, points);
-	glBufferSubData(GL_ARRAY_BUFFER, dataSize, tdataSize, texCoords);
+		glGenBuffers(1, &buffer[0]);
+		glBindBuffer(GL_ARRAY_BUFFER, buffer[0]);
 
-	glGenBuffers(1, &ebuffer[0]);
-	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, ebuffer[0]);
+		glBufferData(GL_ARRAY_BUFFER, dataSize + tdataSize, 0, GL_STATIC_DRAW);
+		glBufferSubData(GL_ARRAY_BUFFER, 0, dataSize, points);
+		glBufferSubData(GL_ARRAY_BUFFER, dataSize, tdataSize, texCoords);
 
-	glBufferData(GL_ELEMENT_ARRAY_BUFFER, edataSize, elements, GL_STATIC_DRAW);
+		glGenBuffers(1, &ebuffer[0]);
+		glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, ebuffer[0]);
 
-	numVerts[0] = cube.nVertices();
+		glBufferData(GL_ELEMENT_ARRAY_BUFFER, edataSize, elements, GL_STATIC_DRAW);
+
+		numVerts[0] = cube.nVertices();
+	}
+	else
+	{
+
+	}
 }
 
 void idle() {

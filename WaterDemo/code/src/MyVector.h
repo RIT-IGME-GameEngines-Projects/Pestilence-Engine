@@ -162,6 +162,11 @@ public:
 		return this->m_pData[nIndex];
 	};
 
+	const T GetCopyAt(const unsigned int nIndex)
+	{
+		return this->m_pData[nIndex];
+	};
+
 	/* Returns true if no elements are in the vector. */
 	bool IsEmpty(void){
 		return (this->m_pData == nullptr ? true : false);

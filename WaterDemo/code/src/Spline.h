@@ -6,10 +6,11 @@
 #include <stdlib.h>
 #include <time.h>
 
-#include "dataStructures\matrix4.h"
-#include "dataStructures\quaternion.h"
-#include "dataStructures\modelStructures.h"
 #include "MyVector.h" 
+#include "dataStructures\modelStructures.h"
+
+
+using namespace std;
 
 // Basically every other point will be a "control" 
 // That is used to determine what kind of curve will be drawn. 
@@ -24,6 +25,19 @@ public:
 		this->controlPoints = new MyVector<Vector3*>();
 	};
 
+	//Constructor with array of Vector3s
+	Spline(Vector3 vec[], int length)
+	{
+		// initialize vector
+		this->controlPoints = new MyVector<Vector3*>(); 
+		for (int i = 0; i < length; i++)
+		{
+			this->addControlPoint(vec[i]);
+		}
+
+		this->Print();
+	}
+
 	// Destructor
 	~Spline();
 
@@ -37,12 +51,24 @@ public:
 		{
 			// Generate a control point - for values, look at the vector currently on top
 			// and the vector that we're adding and interpolate a circle that has them both as points
-			this->controlPoints->Push(new Vector3(/*interpolation*/));
+			this->controlPoints->Push(new Vector3(0,0,0));
 
 			// Push the new point
 			this->controlPoints->Push(new Vector3(_vec));
 		}
 	};
+
+	// print out each vertex
+	void Print()
+	{
+		for (int i = 0; i < controlPoints->GetSize(); i++)
+		{
+			Vector3 vec = *(controlPoints->GetCopyAt(i)); 
+			if (i % 2 == 0) std::cout << "P:"; 
+			else std::cout << "C:";
+			std::cout << "[" <<  vec.x << ", " << vec.y << ", " << vec.z << "]" <<  std::endl; 
+		}
+	}
 
 	void removeLastPoint()
 	{
@@ -51,6 +77,7 @@ public:
 		this->controlPoints->Pop(); 
 	}
 
+	// ignore for now
 	void moveControlAt(Vector3 approxArea)
 	{
 
@@ -60,4 +87,5 @@ private:
 
 
 };
+
 

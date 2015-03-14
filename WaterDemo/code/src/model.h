@@ -46,6 +46,7 @@ public:
 	void loadTexture(char* filename);
 	void setUpTexture(GLuint program);
 
+	void scalem(float x, float y, float z, GLuint program);
 	void translate(float x, float y, float z, GLuint program);
 	void rotate(float yaw, float pitch, float roll, GLuint program);
 
@@ -60,6 +61,7 @@ public:
 	int nVertices();
 
 	Vector3 position;
+	Vector3 scale;
 	Euler3 angles;
 
 private:

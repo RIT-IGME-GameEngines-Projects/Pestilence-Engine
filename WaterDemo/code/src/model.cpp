@@ -4,6 +4,7 @@ Model::Model() {
 	srand(time(NULL));
 
 	angles = Euler3(45, 30, 0);
+	scale = Vector3(1, 1, 1);
 	position = Vector3();
 
 	rotation = Quaternion::euler(angles.yaw, angles.pitch, angles.roll);
@@ -399,6 +400,7 @@ void Model::setUpTexture(GLuint program){
 
 	translate(0, 0, 0, program);
 	rotate(0, 0, 0, program);
+	scalem(0, 0, 0, program);
 }
 
 void Model::pointShiftTest() {
@@ -420,6 +422,19 @@ void Model::translate(float x, float y, float z, GLuint program)
 
 	GLuint translateLoc = glGetUniformLocation(program, "translation");
 	glUniformMatrix4fv(translateLoc, 1, false, transMat4);
+}
+
+void Model::scalem(float x, float y, float z, GLuint program) 
+{
+	scale.x += x;
+	scale.y += y;
+	scale.z += z;
+
+	Matrix4 scaleMat = Matrix4::Scale(scale.x, scale.y, scale.z);
+	float* scaleMat4 = Matrix4::ToMat4(scaleMat);
+
+	GLuint scaleLoc = glGetUniformLocation(program, "scale");
+	glUniformMatrix4fv(scaleLoc, 1, false, scaleMat4);
 }
 
 void Model::rotate(float yaw, float pitch, float roll, GLuint program) {

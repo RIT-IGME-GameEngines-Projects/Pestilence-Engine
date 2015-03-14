@@ -145,8 +145,7 @@ public:
 	void moveControlAt(Vector3 approxArea)
 	{
 
-	}
-private: 
+	}	
 	MyVector<Vector3*>* controlPoints; // Pointer to MyVector of Vector3s
 	MyVector<Vector3*>* graphPoints; // pointer to myVector of Vector3s representing points along the bezier curved spline
 

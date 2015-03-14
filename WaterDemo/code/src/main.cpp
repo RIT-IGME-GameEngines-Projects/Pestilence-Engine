@@ -28,7 +28,7 @@ int numVerts[1];
 bool bufferInit = false;
 
 Model cube;
-
+MyVector<Model> gCubes;
 // test spline
 
 Vector3 vec[] = { Vector3(-.8, -.8, 0), Vector3(-.5, -.3, 0), Vector3(0, 0, 0) };
@@ -107,6 +107,20 @@ void createCube() {
 	render();
 }
 
+void createGCubes()
+{
+	for (int i = 0; i < spine->graphPoints->GetSize(); i++)
+	{
+		Vector3 currPt = *(spine->graphPoints->GetCopyAt(i));
+		Model m = Model();
+		m.clearModel(); 
+		m.makeCube(); 
+		m.position.x = currPt.x; 
+		m.position.y = currPt.y; 
+		gCubes.Push(m);
+	}
+}
+
 void init()
 {
 	program = shaderSetup("../assets/shaders/vshader.glsl", "../assets/shaders/fshader.glsl");
@@ -123,7 +137,8 @@ void init()
 	//glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
 
 	createCube();
-
+	createGCubes();
+	createGCubes();
 	cube.loadTexture("../assets/textures/dirt.jpg");
 }
 

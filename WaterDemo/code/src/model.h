@@ -28,6 +28,7 @@ class Model{
 
 public:
 	Model();
+	Model(Vector3 pos, Vector3 scal, Euler3 angle);
 	~Model();
 
 	void makeCube();

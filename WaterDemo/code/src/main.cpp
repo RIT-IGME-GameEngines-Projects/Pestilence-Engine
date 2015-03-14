@@ -1,5 +1,6 @@
 #include <cstdlib>
 #include <iostream>
+#include <ctime>
 
 #include <GL/glew.h>
 #include <GL/freeglut.h>
@@ -9,6 +10,8 @@
 #include "shaderManager.h"
 #include "model.h"
 #include "Spline.h"
+
+#define FPS  60
 
 using namespace std;
 
@@ -27,12 +30,18 @@ int numVerts[1];
 
 bool bufferInit = false;
 
+int index = 0;
+int cnt = 0;
+int timer = 20;
+
 Model cube;
-MyVector<Model> gCubes;
+MyVector<Vector3> gCubes;
 // test spline
 
 Vector3 vec[] = { Vector3(-.8, -.8, 0), Vector3(-.5, -.3, 0), Vector3(0, 0, 0) };
-Spline* spine = new Spline(vec, 3); 
+Spline* spine = new Spline(vec, 3);
+
+clock_t currTime;
 
 void render() {
 
@@ -67,7 +76,24 @@ void render() {
 }
 
 void idle() {
+	clock_t endTime = clock();
+	double elapsedSeconds = double(endTime - currTime) / FPS;
 	
+	if (elapsedSeconds >= timer) {
+		currTime = endTime;
+		cnt = 0;
+		index++;
+		cout << index << endl;
+		if (index >= gCubes.GetSize()) {
+			index = 0;
+		}
+		
+		//cube.translate(0.1, 0, 0, program);
+		
+		cube.translate(abs(cube.position.x - gCubes[index].x), abs(cube.position.y - gCubes[index].y), abs(cube.position.z - gCubes[index].z), program);
+		glutPostRedisplay();
+	}
+	//cube.translate(0.1, 0, 0, program);
 }
 
 void display()
@@ -89,6 +115,10 @@ void display()
 	glVertexAttribPointer(vTexCoords, 2, GL_FLOAT, GL_FALSE, 0, BUFFER_OFFSET(dataSize));
 
 	cube.setUpTexture(program);
+	/*for (int i = 0; i < gCubes.GetSize(); i++)
+	{
+		gCubes[i].setUpTexture(program);
+	}*/
 
 	glDrawElements(GL_TRIANGLES, numVerts[0], GL_UNSIGNED_SHORT, (void*)0);
 
@@ -97,7 +127,7 @@ void display()
 
 
 void createCube() {
-	cube = Model();
+	cube = Model(Vector3(0,0,0), Vector3(0.2, 0.2, 0.2), Euler3(45, 30, 0));
 	cube.clearModel();
 
 	cube.makeCube();
@@ -112,13 +142,13 @@ void createGCubes()
 	for (int i = 0; i < spine->graphPoints->GetSize(); i++)
 	{
 		Vector3 currPt = *(spine->graphPoints->GetCopyAt(i));
-		Model m = Model();
-		m.clearModel(); 
-		m.makeCube(); 
-		m.position.x = currPt.x; 
-		m.position.y = currPt.y; 
-		gCubes.Push(m);
+		//Model m = Model();
+		//m.clearModel(); 
+		//m.makeCube(); 
+		//m.translate(currPt.x, currPt.y, currPt.z, program);
+		gCubes.Push(currPt);
 	}
+	render();
 }
 
 void init()
@@ -138,8 +168,12 @@ void init()
 
 	createCube();
 	createGCubes();
-	createGCubes();
+	//createGCubes();
 	cube.loadTexture("../assets/textures/dirt.jpg");
+	/*for (int i = 0; i < gCubes.GetSize(); i++)
+	{
+		gCubes[i].loadTexture("../assets/textures/dirt.jpg");
+	}*/
 }
 
 
@@ -210,6 +244,8 @@ void keyboard(unsigned char key, int x, int y)
 
 int main(int argc, char **argv)
 {
+	currTime = clock();
+
 	glutInit(&argc, argv);
 	glutInitDisplayMode(GLUT_RGBA | GLUT_DOUBLE | GLUT_DEPTH);
 	glutInitWindowSize(800, 600);

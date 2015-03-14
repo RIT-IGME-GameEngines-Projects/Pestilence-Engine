@@ -9,13 +9,11 @@
 
 #include "shaderManager.h"
 #include "model.h"
-<<<<<<< HEAD
 #include "Spline.h"
 
-#define FPS  60
-=======
 #include "sse\quaternionX.h"
->>>>>>> sse-slerp
+
+#define FPS  60
 
 using namespace std;
 
@@ -36,7 +34,7 @@ bool bufferInit = false;
 
 int index = 0;
 int cnt = 0;
-int timer = 2;
+float timer = 0.1;
 
 Model cube;
 MyVector<Vector3> gCubes;

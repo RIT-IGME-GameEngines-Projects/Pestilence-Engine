@@ -17,7 +17,7 @@ Model::Model(Vector3 pos, Vector3 scal, Euler3 angle) {
 	scale = scal;
 	position = pos;
 
-	rotation = Quaternion::euler(angles.yaw, angles.pitch, angles.roll);
+	rotx = QuaternionX::euler(angles.yaw, angles.pitch, angles.roll);
 }
 
 Model::~Model() {

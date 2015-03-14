@@ -62,6 +62,7 @@ QuaternionX QuaternionX::slerp(__m128 q1, __m128 q2, float u) {
 	float sinHalfTheta = sqrt(1.0 - cosHalfTheta * cosHalfTheta);
 
 	if (fabs(sinHalfTheta) <= 0.001) {
+		//multiply by scalar 0.5 then add to each other to produce result
 		__m128 scalar = _mm_set1_ps(0.5f);
 		q1 = _mm_mul_ps(q1, scalar);
 		q2 = _mm_mul_ps(q2, scalar);
@@ -80,6 +81,42 @@ QuaternionX QuaternionX::slerp(__m128 q1, __m128 q2, float u) {
 	__m128 result = _mm_add_ps(q1, q2);
 	float* fResult = QuaternionX::toArray(result);
 	return QuaternionX(fResult[0], fResult[1], fResult[2], fResult[3]);
+}
+
+Matrix4 QuaternionX::toMatrix(__m128 quatData) {
+	Matrix4 mat = Matrix4::Identity;
+
+	float quatW = QuaternionX::getFloat(quatData, 0);
+	float quatX = QuaternionX::getFloat(quatData, 1);
+	float quatY = QuaternionX::getFloat(quatData, 2);
+	float quatZ = QuaternionX::getFloat(quatData, 3);
+
+	float m00 = 1 - (2 * (quatY * quatY)) - (2 * (quatZ * quatZ));
+	float m10 = (2 * (quatX * quatY)) - (2 * (quatZ * quatW));
+	float m20 = (2 * (quatX * quatZ)) + (2 * (quatY * quatW));
+	float m30 = 0.0f;
+
+	float m01 = (2 * (quatX * quatY)) + (2 * (quatZ * quatW));
+	float m11 = 1 - (2 * (quatX * quatX)) - (2 * (quatZ * quatZ));
+	float m21 = (2 * (quatY * quatZ)) - (2 * (quatX * quatW));
+	float m31 = 0.0f;
+
+	float m02 = (2 * (quatX * quatZ)) - (2 * (quatY * quatY));
+	float m12 = (2 * (quatY * quatZ)) + (2 * (quatX * quatW));
+	float m22 = 1 - (2 * (quatX * quatX)) - (2 * (quatY * quatY));
+	float m32 = 0.0f;
+
+	float m03 = 0.0f;
+	float m13 = 0.0f;
+	float m23 = 0.0f;
+	float m33 = 1.0f;
+
+	mat = Matrix4(m00, m10, m20, m30,
+		m01, m11, m21, m31,
+		m02, m12, m22, m32,
+		m03, m13, m23, m33);
+
+	return mat;
 }
 
 float QuaternionX::getFloat(__m128 V, unsigned int i) {

@@ -105,18 +105,6 @@ void init()
 	glClearColor(0.0, 0.0, 0.0, 1.0);
 	//glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
 
-	QuaternionX quat1 = QuaternionX(10, 0, 5, 2);
-	QuaternionX q1 = quat1.euler(45, 30, 0);
-	QuaternionX quat2 = QuaternionX();
-	QuaternionX q2 = quat2.euler(50, 100, 20);
-	QuaternionX result = QuaternionX::slerp(q1.quatData, q2.quatData, 0);
-
-	Quaternion rquat1 = Quaternion();
-	Quaternion rq1 = rquat1.euler(45, 30, 0);
-	Quaternion rquat2 = Quaternion();
-	Quaternion rq2 = rquat2.euler(50, 100, 20);
-	Quaternion rresult = Quaternion::slerp(rq2, rq2, 0);
-
 	createCube();
 
 	cube.loadTexture("../assets/textures/dirt.jpg");

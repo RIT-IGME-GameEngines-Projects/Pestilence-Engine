@@ -22,7 +22,7 @@ public:
 	static float getFloat(__m128 V, unsigned int i);
 	static float* toArray(__m128 V);
 
-	//static Matrix4 toMatrix(QuaternionX quat);
+	static Matrix4 toMatrix(__m128 quat);
 	static QuaternionX euler(float yaw, float pitch, float roll);
 	static QuaternionX slerp(__m128 q1, __m128 q2, float u);
 };

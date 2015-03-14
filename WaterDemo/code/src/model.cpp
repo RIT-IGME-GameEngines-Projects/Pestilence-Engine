@@ -6,7 +6,7 @@ Model::Model() {
 	angles = Euler3(45, 30, 0);
 	position = Vector3();
 
-	rotation = Quaternion::euler(angles.yaw, angles.pitch, angles.roll);
+	rotx = QuaternionX::euler(angles.yaw, angles.pitch, angles.roll);
 }
 
 Model::~Model() {
@@ -427,11 +427,11 @@ void Model::rotate(float yaw, float pitch, float roll, GLuint program) {
 	angles.pitch += pitch;
 	angles.roll += roll;
 
-	Quaternion rotTo = Quaternion::euler(angles.yaw, angles.pitch, angles.roll);
-	Quaternion slerped = Quaternion::slerp(rotation, rotTo, 0);
-	Matrix4 rotMat = Quaternion::toMatrix(slerped);
+	QuaternionX rotTo = QuaternionX::euler(angles.yaw, angles.pitch, angles.roll);
+	QuaternionX slerped = QuaternionX::slerp(rotx.quatData, rotTo.quatData, 0);
+	Matrix4 rotMat = QuaternionX::toMatrix(slerped.quatData);
 	float* rotMat4 = Matrix4::ToMat4(rotMat);
-	rotation = rotTo;
+	rotx = rotTo;
 
 	GLuint rotationLoc = glGetUniformLocation(program, "rotation");
 	glUniformMatrix4fv(rotationLoc, 1, false, rotMat4);

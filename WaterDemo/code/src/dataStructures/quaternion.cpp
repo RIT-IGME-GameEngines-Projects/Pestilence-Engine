@@ -60,7 +60,6 @@ Quaternion Quaternion::slerp(Quaternion q1, Quaternion q2, float u) {
 	float sinHalfTheta = sqrt(1.0 - cosHalfTheta* cosHalfTheta);
 
 	if (fabs(sinHalfTheta) < 0.001) {
-		// **SSE-COMPATIBLE**
 		q.w = (q1.w * 0.5 + q2.w * 0.5);
 		q.x = (q1.x * 0.5 + q2.x * 0.5);
 		q.y = (q1.y * 0.5 + q2.y * 0.5);
@@ -71,7 +70,6 @@ Quaternion Quaternion::slerp(Quaternion q1, Quaternion q2, float u) {
 	float ratioA = sin((1 - u) * halfTheta) / sinHalfTheta;
 	float ratioB = sin((u*halfTheta) / sinHalfTheta);
 
-	// **SSE-COMPATIBLE**
 	q.w = (q1.w * ratioA + q2.w * ratioB);
 	q.x = (q1.x * ratioA + q2.x * ratioB);
 	q.y = (q1.y * ratioA + q2.y * ratioB);
@@ -83,7 +81,6 @@ Quaternion Quaternion::slerp(Quaternion q1, Quaternion q2, float u) {
 Matrix4 Quaternion::toMatrix(Quaternion quat) {
 	Matrix4 mat = Matrix4::Identity;
 
-	// **SSE-COMPATIBLE**
 	float m00 = 1 - (2 * (quat.y * quat.y)) - (2 * (quat.z * quat.z));
 	float m10 = (2 * (quat.x * quat.y)) - (2 * (quat.z * quat.w));
 	float m20 = (2 * (quat.x * quat.z)) + (2 * (quat.y * quat.w));

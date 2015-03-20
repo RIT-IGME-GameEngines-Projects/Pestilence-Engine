@@ -258,7 +258,7 @@ int main(int argc, char **argv)
 	glutInit(&argc, argv);
 	glutInitDisplayMode(GLUT_RGBA | GLUT_DOUBLE | GLUT_DEPTH);
 	glutInitWindowSize(800, 600);
-	glutCreateWindow("SLERP Demo");
+	glutCreateWindow("Pesilence Engine 0.01");
 
 	init();
 

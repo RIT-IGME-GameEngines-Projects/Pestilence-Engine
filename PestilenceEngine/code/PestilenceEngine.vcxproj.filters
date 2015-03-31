@@ -25,6 +25,9 @@
     <ClCompile Include="src\sse\quaternionX.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="src\logger.cpp">
+      <Filter>Utils</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\model.h">
@@ -54,6 +57,9 @@
     <ClInclude Include="src\sse\quaternionX.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="src\logger.h">
+      <Filter>Utils</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Header Files">
@@ -67,6 +73,9 @@
     </Filter>
     <Filter Include="Splines">
       <UniqueIdentifier>{dbcc6f6d-a625-4e11-bd34-8df7affeae09}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Utils">
+      <UniqueIdentifier>{e21ed4fa-181c-4bcc-88e8-e5da0520fc12}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>

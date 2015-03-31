@@ -17,6 +17,7 @@
     <ClCompile Include="src\main.cpp" />
     <ClCompile Include="src\model.cpp" />
     <ClCompile Include="src\shaderManager.cpp" />
+    <ClCompile Include="src\logger.cpp" />
     <ClCompile Include="src\Spline.cpp" />
     <ClCompile Include="src\sse\quaternionX.cpp" />
   </ItemGroup>
@@ -25,6 +26,7 @@
     <ClInclude Include="src\dataStructures\matrix4.h" />
     <ClInclude Include="src\dataStructures\modelStructures.h" />
     <ClInclude Include="src\dataStructures\quaternion.h" />
+    <ClInclude Include="src\logger.h" />
     <ClInclude Include="src\model.h" />
     <ClInclude Include="src\MyVector.h" />
     <ClInclude Include="src\shaderManager.h" />

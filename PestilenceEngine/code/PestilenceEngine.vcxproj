@@ -14,6 +14,7 @@
     <ClCompile Include="src\camera.cpp" />
     <ClCompile Include="src\dataStructures\matrix4.cpp" />
     <ClCompile Include="src\dataStructures\quaternion.cpp" />
+    <ClCompile Include="src\inputManager.cpp" />
     <ClCompile Include="src\main.cpp" />
     <ClCompile Include="src\model.cpp" />
     <ClCompile Include="src\shaderManager.cpp" />
@@ -25,6 +26,7 @@
     <ClInclude Include="src\dataStructures\matrix4.h" />
     <ClInclude Include="src\dataStructures\modelStructures.h" />
     <ClInclude Include="src\dataStructures\quaternion.h" />
+    <ClInclude Include="src\inputManager.h" />
     <ClInclude Include="src\model.h" />
     <ClInclude Include="src\MyVector.h" />
     <ClInclude Include="src\shaderManager.h" />

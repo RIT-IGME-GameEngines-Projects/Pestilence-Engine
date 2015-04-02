@@ -13,6 +13,8 @@
 
 #include "sse\quaternionX.h"
 
+#include "inputManager.h"
+
 #define FPS  60
 
 using namespace std;

@@ -1,2 +1,2 @@
-# SSE-Optimization
-A project demonstration Streaming SIMD Extensions used for optimization in a simple graphical engine.
+# Pestilence Engine
+A game engine in OpenGL and C++ being designed and developed for a turn-based strategy type game.

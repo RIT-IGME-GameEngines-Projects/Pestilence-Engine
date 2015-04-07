@@ -13,6 +13,8 @@
 
 #include "sse\quaternionX.h"
 
+#include "logger.h"
+
 #define FPS  60
 
 using namespace std;
@@ -44,6 +46,8 @@ Vector3 vec[] = { Vector3(-.8, -.8, 0), Vector3(1,1,0), Vector3(1, -1,0) };
 Spline* spine = new Spline(vec, 3);
 
 clock_t currTime;
+
+Logger gamelog = Logger();
 
 void render() {
 
@@ -163,6 +167,9 @@ void createGCubes()
 void init()
 {
 	program = shaderSetup("../assets/shaders/vshader.glsl", "../assets/shaders/fshader.glsl");
+
+	gamelog.log(_RELEASE, "Release Pestilence Started!!");
+
 	if (!program) {
 		cerr << "Error setting up shaders - " << errorString(shaderErrorCode) << endl;
 

@@ -34,3 +34,7 @@ void InputManager::keyboard(unsigned char key, int x, int y) {
 		break;
 	}
 }
+
+void InputManager::mouse(int button, int state, int x, int y) {
+
+}

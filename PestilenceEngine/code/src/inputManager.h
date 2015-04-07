@@ -14,6 +14,7 @@ public:
 	void release();
 
 	static void keyboard(unsigned char key, int x, int y);
+	static void mouse(int button, int state, int x, int y);
 
 private:
 	InputManager();

@@ -188,7 +188,7 @@ void init()
 }
 
 
-void keyboard(unsigned char key, int x, int y)
+/*void keyboard(unsigned char key, int x, int y)
 {
 	float rotateAmt = 5;
 	float translateAmt = 0.1;
@@ -251,7 +251,7 @@ void keyboard(unsigned char key, int x, int y)
 
 
 	glutPostRedisplay();
-}
+}*/
 
 int main(int argc, char **argv)
 {
@@ -266,7 +266,7 @@ int main(int argc, char **argv)
 
 	glutIdleFunc(idle);
 	glutDisplayFunc(display);
-	glutKeyboardFunc(keyboard);
+	glutKeyboardFunc(InputManager::keyboard);
 
 	glutMainLoop();
 }

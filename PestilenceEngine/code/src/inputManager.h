@@ -7,43 +7,16 @@
 
 class InputManager {
 public:
-	static InputManager *instance() {
-		if (s_Instance == nullptr) {
-			s_Instance = new InputManager();
-		}
-		return s_Instance;
-	}
+	~InputManager();
 
-	void release() {
-		delete s_Instance;
-		s_Instance = nullptr;
-	}
+	static InputManager& instance();
 
-	void keyboard(unsigned char key, int x, int y) {
-		switch (key) {
-		case 033:
-			exit(0);
-			break;
+	void release();
 
-		case '4':
-			glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
-			break;
-
-		case '5':
-			glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
-			break;
-
-		case '3':
-			glPolygonMode(GL_FRONT_AND_BACK, GL_POINT);
-			break;
-		}
-	}
+	static void keyboard(unsigned char key, int x, int y);
 
 private:
-	static InputManager *s_Instance;
-
 	InputManager();
-	~InputManager();
 };
 
 #endif

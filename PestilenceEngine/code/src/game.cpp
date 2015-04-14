@@ -9,6 +9,11 @@ Game::~Game() {
 	graphics = nullptr;
 }
 
+Game& Game::instance() {
+	static Game instance;
+	return instance;
+}
+
 void Game::init() {
 	currTime = clock();
 	graphics->init();

@@ -7,14 +7,17 @@
 
 class Game {
 public:
-	Game();
 	~Game();
+
+	static Game& instance();
 
 	void init();
 	void update();
 	void render();
 
 private:
+	Game();
+
 	Graphics* graphics;
 
 	clock_t currTime;

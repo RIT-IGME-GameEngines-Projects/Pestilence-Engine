@@ -28,6 +28,9 @@
     <ClCompile Include="src\logger.cpp">
       <Filter>Utils</Filter>
     </ClCompile>
+    <ClCompile Include="src\ObjLoader.cpp">
+      <Filter>Utils</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\model.h">
@@ -58,6 +61,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="src\logger.h">
+      <Filter>Utils</Filter>
+    </ClInclude>
+    <ClInclude Include="src\ObjLoader.h">
       <Filter>Utils</Filter>
     </ClInclude>
   </ItemGroup>

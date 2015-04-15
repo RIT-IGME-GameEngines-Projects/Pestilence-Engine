@@ -22,6 +22,8 @@
     <ClCompile Include="src\shaderManager.cpp" />
     <ClCompile Include="src\Spline.cpp" />
     <ClCompile Include="src\sse\quaternionX.cpp" />
+    <ClCompile Include="src\utils\scheduler.cpp" />
+    <ClCompile Include="src\utils\threadPool.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\camera.h" />
@@ -36,6 +38,8 @@
     <ClInclude Include="src\shaderManager.h" />
     <ClInclude Include="src\Spline.h" />
     <ClInclude Include="src\sse\quaternionX.h" />
+    <ClInclude Include="src\utils\scheduler.h" />
+    <ClInclude Include="src\utils\threadPool.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="..\assets\shaders\fshader.glsl" />

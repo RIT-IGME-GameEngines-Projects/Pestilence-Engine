@@ -40,7 +40,6 @@ private:
 
 	bool bufferInit = false;
 
-	Vector3 vec;
 	Spline* spine;
 };
 

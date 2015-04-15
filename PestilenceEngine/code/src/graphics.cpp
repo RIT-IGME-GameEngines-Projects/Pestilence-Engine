@@ -21,6 +21,9 @@ void Graphics::init() {
 	glCullFace(GL_BACK);
 	glClearColor(0.0, 0.0, 0.0, 1.0);
 
+	Vector3 vec[] = { Vector3(-.8, -.8, 0), Vector3(1, 1, 0), Vector3(1, -1, 0) };
+	spine = new Spline(vec, 3);
+
 	createCube();
 	createGCubes();
 

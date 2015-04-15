@@ -31,6 +31,12 @@
     <ClCompile Include="src\ObjLoader.cpp">
       <Filter>Utils</Filter>
     </ClCompile>
+    <ClCompile Include="src\Triangle.cpp">
+      <Filter>Utils</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Vertex.cpp">
+      <Filter>Utils</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\model.h">
@@ -64,6 +70,12 @@
       <Filter>Utils</Filter>
     </ClInclude>
     <ClInclude Include="src\ObjLoader.h">
+      <Filter>Utils</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Triangle.h">
+      <Filter>Utils</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Vertex.h">
       <Filter>Utils</Filter>
     </ClInclude>
   </ItemGroup>

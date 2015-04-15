@@ -21,6 +21,8 @@
     <ClCompile Include="src\logger.cpp" />
     <ClCompile Include="src\Spline.cpp" />
     <ClCompile Include="src\sse\quaternionX.cpp" />
+    <ClCompile Include="src\Triangle.cpp" />
+    <ClCompile Include="src\Vertex.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\camera.h" />
@@ -34,6 +36,8 @@
     <ClInclude Include="src\shaderManager.h" />
     <ClInclude Include="src\Spline.h" />
     <ClInclude Include="src\sse\quaternionX.h" />
+    <ClInclude Include="src\Triangle.h" />
+    <ClInclude Include="src\Vertex.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="..\assets\shaders\fshader.glsl" />

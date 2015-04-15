@@ -2,6 +2,7 @@
 #define _GAME_H_
 
 #include "graphics.h"
+#include "logger.h"
 
 #define FPS  60
 
@@ -25,6 +26,7 @@ private:
 	int cnt = 0;
 	float timer = 0.1;
 
+	Logger* logger;
 };
 
 #endif

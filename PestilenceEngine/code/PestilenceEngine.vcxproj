@@ -14,6 +14,9 @@
     <ClCompile Include="src\camera.cpp" />
     <ClCompile Include="src\dataStructures\matrix4.cpp" />
     <ClCompile Include="src\dataStructures\quaternion.cpp" />
+    <ClCompile Include="src\game.cpp" />
+    <ClCompile Include="src\graphics.cpp" />
+    <ClCompile Include="src\inputManager.cpp" />
     <ClCompile Include="src\main.cpp" />
     <ClCompile Include="src\model.cpp" />
     <ClCompile Include="src\ObjLoader.cpp" />
@@ -22,6 +25,8 @@
     <ClCompile Include="src\Spline.cpp" />
     <ClCompile Include="src\sse\quaternionX.cpp" />
     <ClCompile Include="src\Triangle.cpp" />
+    <ClCompile Include="src\utils\scheduler.cpp" />
+    <ClCompile Include="src\utils\threadPool.cpp" />
     <ClCompile Include="src\Vertex.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -29,6 +34,9 @@
     <ClInclude Include="src\dataStructures\matrix4.h" />
     <ClInclude Include="src\dataStructures\modelStructures.h" />
     <ClInclude Include="src\dataStructures\quaternion.h" />
+    <ClInclude Include="src\game.h" />
+    <ClInclude Include="src\graphics.h" />
+    <ClInclude Include="src\inputManager.h" />
     <ClInclude Include="src\logger.h" />
     <ClInclude Include="src\model.h" />
     <ClInclude Include="src\MyVector.h" />
@@ -37,6 +45,8 @@
     <ClInclude Include="src\Spline.h" />
     <ClInclude Include="src\sse\quaternionX.h" />
     <ClInclude Include="src\Triangle.h" />
+    <ClInclude Include="src\utils\scheduler.h" />
+    <ClInclude Include="src\utils\threadPool.h" />
     <ClInclude Include="src\Vertex.h" />
   </ItemGroup>
   <ItemGroup>

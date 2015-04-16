@@ -17,6 +17,8 @@ Game& Game::instance() {
 void Game::init() {
 	currTime = clock();
 	graphics->init();
+	Model* m = new Model();
+	m->loadModel("../assets/models/crate.obj");
 }
 
 void Game::update() {

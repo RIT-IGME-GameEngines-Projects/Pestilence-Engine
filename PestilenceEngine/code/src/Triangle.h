@@ -26,6 +26,9 @@ public:
 		this->n_a->print(); 
 		this->n_b->print(); 
 		this->n_c->print();
+		this->t_a->print();
+		this->t_b->print();
+		this->t_c->print();
 	};
 	// Three-point constructor in local coordinates
 	~Triangle();

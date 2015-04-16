@@ -21,6 +21,7 @@
 #include "dataStructures\matrix4.h"
 #include "sse\quaternionX.h"
 #include "dataStructures\modelStructures.h"
+#include "ObjLoader.h"
 
 using namespace std;
 
@@ -31,14 +32,8 @@ public:
 	Model(Vector3 pos, Vector3 scal, Euler3 angle);
 	~Model();
 
-	void makeCube();
-	void makePlane();
-	void makeStrip();
-
+	void loadModel(char* filename);
 	void clearModel();
-
-	void pointShiftTest();
-	void pointShiftByLocation(float x, float y, float z);
 
 	void addTriangle(float x0, float y0, float z0, float u0, float v0,
 		float x1, float y1, float z1, float u1, float v1,
@@ -47,7 +42,7 @@ public:
 	void loadTexture(char* filename);
 	void setUpTexture(GLuint program);
 
-	void scalem(float x, float y, float z, GLuint program);
+	void scale(float x, float y, float z, GLuint program);
 	void translate(float x, float y, float z, GLuint program);
 	void rotate(float yaw, float pitch, float roll, GLuint program);
 
@@ -62,7 +57,7 @@ public:
 	int nVertices();
 
 	Vector3 position;
-	Vector3 scale;
+	Vector3 scalem;
 	Euler3 angles;
 
 private:

@@ -8,6 +8,7 @@
 
 #include "shaderManager.h"
 #include "model.h"
+#include "graphics\primitive.h"
 #include "Spline.h"
 
 #include "sse\quaternionX.h"
@@ -24,10 +25,11 @@ public:
 
 	void buildGeometryBuffers();
 
+	void loadModel(char* filename);
 	void createCube();
 	void createGCubes();
 
-	Model cube;
+	Primitive cube;
 	MyVector<Vector3> gCubes;
 
 private:
@@ -41,6 +43,8 @@ private:
 	bool bufferInit = false;
 
 	Spline* spine;
+
+	ObjLoader* objLoader;
 };
 
 #endif

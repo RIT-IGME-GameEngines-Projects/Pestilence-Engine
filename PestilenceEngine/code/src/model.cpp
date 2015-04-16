@@ -4,7 +4,7 @@ Model::Model() {
 	srand(time(NULL));
 
 	angles = Euler3(45, 30, 0);
-	scale = Vector3(0.1, 0.1, 0.1);
+	scalem = Vector3(0.1, 0.1, 0.1);
 	position = Vector3();
 
 	rotx = QuaternionX::euler(angles.yaw, angles.pitch, angles.roll);
@@ -14,7 +14,7 @@ Model::Model(Vector3 pos, Vector3 scal, Euler3 angle) {
 	srand(time(NULL));
 
 	angles = angle;
-	scale = scal;
+	scalem = scal;
 	position = pos;
 
 	rotx = QuaternionX::euler(angles.yaw, angles.pitch, angles.roll);
@@ -38,6 +38,11 @@ void Model::clearModel() {
 	points.clear();
 	normals.clear();
 	uv.clear();
+}
+
+void Model::loadModel(char* filename) {
+	ObjLoader* loader = new ObjLoader();
+	loader->readFile(filename);
 }
 
 void Model::addTriangle(float x0, float y0, float z0, float u0, float v0,
@@ -166,220 +171,7 @@ GLushort* Model::getIndices() {
 	return indexArray;
 }
 
-void Model::makeCube() {
-	int subdivisions = 2;
 
-	float width = 1;
-	float incremental = (width / 2) / subdivisions * 2;
-
-	struct PointArray {
-		float* x;
-		float* y;
-	};
-
-	PointArray* points = new PointArray[subdivisions];
-
-	for (int i = 0; i < subdivisions; i++){
-		points[i].x = new float[subdivisions];
-		points[i].y = new float[subdivisions];
-	}
-	//std::cout << incremental << std::endl;
-
-	float currY = width / 2;
-
-	for (int i = 0; i < subdivisions; i++){
-		float currX = width / 2;
-		points[i].x[0] = currX;
-		points[i].y[0] = currY;
-		currX -= incremental;
-		for (int j = 1; j < subdivisions; j++){
-			points[i].x[j] = currX;
-			currX -= incremental;
-			points[i].y[j] = currY;
-		}
-		currY -= incremental;
-	}
-
-	//
-	for (int i = 0; i < subdivisions; i++){
-		for (int j = 0; j < subdivisions; j++){
-			float x1 = points[i].x[j];
-			float x2 = x1 - incremental;
-			float y1 = points[i].y[j];
-			float y2 = y1 - incremental;
-
-			float u1 = -(x1 + width / 2);
-			float v1 = -(y1 + width / 2);
-			float u2 = u1 + incremental;
-			float v2 = v1 + incremental;
-
-			//top corner
-			//facing Z
-			addTriangle(x1, y1, width / 2, u1, v1,
-				x2, y1, width / 2, u2, v1,
-				x2, y2, width / 2, u2, v2);
-			addTriangle(x2, y2, width / 2, u2, v2,
-				x1, y2, width / 2, u1, v2,
-				x1, y1, width / 2, u1, v1);
-
-
-			//Facing X
-			addTriangle(width / 2, x1, y1, u1, v1,
-				width / 2, x2, y1, u2, v1,
-				width / 2, x2, y2, u2, v2);
-			addTriangle(width / 2, x2, y2, u2, v2,
-				width / 2, x1, y2, u1, v2,
-				width / 2, x1, y1, u1, v1);
-
-			//Facing Y
-			addTriangle(x1, width / 2, y1, u1, v1,
-				x1, width / 2, y2, u1, v2,
-				x2, width / 2, y2, u2, v2);
-			addTriangle(x2, width / 2, y2, u2, v2,
-				x2, width / 2, y1, u2, v1,
-				x1, width / 2, y1, u1, v1);
-
-			//bot corner
-			// Facing Z
-			addTriangle(x2, y2, -width / 2, u2, v2,
-				x2, y1, -width / 2, u2, v1,
-				x1, y1, -width / 2, u1, v1);
-			addTriangle(x1, y1, -width / 2, u1, v1,
-				x1, y2, -width / 2, u1, v2,
-				x2, y2, -width / 2, u2, v2);
-
-			//facing X
-			addTriangle(-width / 2, x2, y2, u2, v2,
-				-width / 2, x2, y1, u2, v1,
-				-width / 2, x1, y1, u1, v1);
-			addTriangle(-width / 2, x1, y1, u1, v1,
-				-width / 2, x1, y2, u1, v2,
-				-width / 2, x2, y2, u2, v2);
-
-			//facing Y
-			addTriangle(x2, -width / 2, y2, u2, v2,
-				x1, -width / 2, y2, u1, v2,
-				x1, -width / 2, y1, u1, v1);
-			addTriangle(x1, -width / 2, y1, u1, v1,
-				x2, -width / 2, y1, u2, v1,
-				x2, -width / 2, y2, u2, v2);
-		}
-	}
-}
-
-void Model::makePlane() {
-	int subdivisions = 40;
-
-	float width = 1;
-	float incremental = (width / 2) / subdivisions * 2;
-
-	struct PointArray {
-		float* x;
-		float* y;
-	};
-
-	PointArray* points = new PointArray[subdivisions];
-
-	for (int i = 0; i < subdivisions; i++){
-		points[i].x = new float[subdivisions];
-		points[i].y = new float[subdivisions];
-	}
-	//td::cout << incremental << std::endl;
-
-	float currY = width / 2;
-
-	for (int i = 0; i < subdivisions; i++){
-		float currX = width / 2;
-		points[i].x[0] = currX;
-		points[i].y[0] = currY;
-		currX -= incremental;
-		for (int j = 1; j < subdivisions; j++){
-			points[i].x[j] = currX;
-			currX -= incremental;
-			points[i].y[j] = currY;
-		}
-		currY -= incremental;
-	}
-
-	//
-	for (int i = 0; i < subdivisions; i++){
-		for (int j = 0; j < subdivisions; j++){
-			float x1 = points[i].x[j];
-			float x2 = x1 - incremental;
-			float y1 = points[i].y[j];
-			float y2 = y1 - incremental;
-
-			float u1 = -(x1 + width / 2);
-			float v1 = -(y1 + width / 2);
-			float u2 = u1 + incremental;
-			float v2 = v1 + incremental;
-
-			addTriangle(x1, width / 2, y1, u1, v1,
-				x1, width / 2, y2, u1, v2,
-				x2, width / 2, y2, u2, v2);
-			addTriangle(x2, width / 2, y2, u2, v2,
-				x2, width / 2, y1, u2, v1,
-				x1, width / 2, y1, u1, v1);
-		}
-	}
-}
-
-void Model::makeStrip() {
-	int subdivisions = 40;
-
-	float width = 1.2;
-	float incremental = (width / 2) / subdivisions * 2;
-
-	struct PointArray {
-		float* x;
-		float* y;
-	};
-
-	PointArray* points = new PointArray[subdivisions];
-
-	for (int i = 0; i < subdivisions; i++){
-		points[i].x = new float[subdivisions];
-		points[i].y = new float[subdivisions];
-	}
-	//td::cout << incremental << std::endl;
-
-	float currY = width / 2;
-
-	for (int i = 0; i < 1; i++){
-		float currX = width / 2;
-		points[i].x[0] = currX;
-		points[i].y[0] = currY;
-		currX -= incremental;
-		for (int j = 1; j < subdivisions; j++){
-			points[i].x[j] = currX;
-			currX -= incremental;
-			points[i].y[j] = currY;
-		}
-		currY -= incremental;
-	}
-
-	//
-	for (int i = 0; i < subdivisions; i++){
-		for (int j = 0; j < subdivisions; j++){
-			float x1 = points[i].x[j];
-			float x2 = x1 - incremental;
-			float y1 = points[i].y[j];
-			float y2 = y1 - incremental;
-
-			float u1 = -(x1 + width / 2);
-			float v1 = -(y1 + width / 2);
-			float u2 = u1 + incremental;
-			float v2 = v1 + incremental;
-
-			addTriangle(x1, width / 2, y1, u1, v1,
-				x1, width / 2, y2, u1, v2,
-				x2, width / 2, y2, u2, v2);
-			addTriangle(x2, width / 2, y2, u2, v2,
-				x2, width / 2, y1, u2, v1,
-				x1, width / 2, y1, u1, v1);
-		}
-	}
-}
 
 void Model::loadTexture(char* filename) {
 	GLuint texture = SOIL_load_OGL_texture(
@@ -410,15 +202,7 @@ void Model::setUpTexture(GLuint program){
 
 	translate(0, 0, 0, program);
 	rotate(0, 0, 0, program);
-	scalem(0, 0, 0, program);
-}
-
-void Model::pointShiftTest() {
-	float point = points[0];
-	for (unsigned int i = 0; i < points.size(); i++) {
-		//float random = ((float)(rand() % 2 + 1.0f) - 1)/ 100.0f;
-		points[1] -= 0.01f;
-	}
+	scale(0, 0, 0, program);
 }
 
 void Model::translate(float x, float y, float z, GLuint program)
@@ -434,13 +218,13 @@ void Model::translate(float x, float y, float z, GLuint program)
 	glUniformMatrix4fv(translateLoc, 1, false, transMat4);
 }
 
-void Model::scalem(float x, float y, float z, GLuint program) 
+void Model::scale(float x, float y, float z, GLuint program) 
 {
-	scale.x += x;
-	scale.y += y;
-	scale.z += z;
+	scalem.x += x;
+	scalem.y += y;
+	scalem.z += z;
 
-	Matrix4 scaleMat = Matrix4::Scale(scale.x, scale.y, scale.z);
+	Matrix4 scaleMat = Matrix4::Scale(scalem.x, scalem.y, scalem.z);
 	float* scaleMat4 = Matrix4::ToMat4(scaleMat);
 
 	GLuint scaleLoc = glGetUniformLocation(program, "scale");

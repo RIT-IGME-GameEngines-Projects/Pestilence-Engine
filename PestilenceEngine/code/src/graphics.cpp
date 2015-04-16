@@ -48,10 +48,6 @@ void Graphics::render() {
 	glVertexAttribPointer(vTexCoords, 2, GL_FLOAT, GL_FALSE, 0, BUFFER_OFFSET(dataSize));
 
 	cube.setUpTexture(program);
-	/*for (int i = 0; i < gCubes.GetSize(); i++)
-	{
-	gCubes[i].setUpTexture(program);
-	}*/
 
 	glDrawElements(GL_TRIANGLES, numVerts[0], GL_UNSIGNED_SHORT, (void*)0);
 
@@ -82,9 +78,13 @@ void Graphics::buildGeometryBuffers() {
 	numVerts[0] = cube.nVertices();
 }
 
+void Graphics::loadModel(char* filename) {
+
+}
+
 void Graphics::createCube() {
-	cube = Model(Vector3(0, 0, 0), Vector3(0.2, 0.2, 0.2), Euler3(45, 30, 0));
-	cube.clearModel();
+	cube = Primitive(Vector3(0, 0, 0), Vector3(0.2, 0.2, 0.2), Euler3(45, 30, 0));
+	cube.clearPrimitive();
 
 	cube.makeCube();
 	//cube.makePlane();

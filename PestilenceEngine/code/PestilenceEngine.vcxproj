@@ -16,6 +16,7 @@
     <ClCompile Include="src\dataStructures\quaternion.cpp" />
     <ClCompile Include="src\game.cpp" />
     <ClCompile Include="src\graphics.cpp" />
+    <ClCompile Include="src\graphics\primitive.cpp" />
     <ClCompile Include="src\inputManager.cpp" />
     <ClCompile Include="src\main.cpp" />
     <ClCompile Include="src\model.cpp" />
@@ -36,6 +37,7 @@
     <ClInclude Include="src\dataStructures\quaternion.h" />
     <ClInclude Include="src\game.h" />
     <ClInclude Include="src\graphics.h" />
+    <ClInclude Include="src\graphics\primitive.h" />
     <ClInclude Include="src\inputManager.h" />
     <ClInclude Include="src\logger.h" />
     <ClInclude Include="src\model.h" />

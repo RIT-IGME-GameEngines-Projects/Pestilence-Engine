@@ -16,6 +16,9 @@ Vertex::Vertex(const Vertex& v)
 }
 Vertex::Vertex(float _x, float _y)
 {
+	this->x = new float(_x);
+	this->y = new float(_y);
+	this->z = new float(0);
 }
 Vertex::Vertex(float _x, float _y, float _z)
 {

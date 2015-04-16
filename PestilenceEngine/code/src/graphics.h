@@ -29,6 +29,7 @@ public:
 	void createCube();
 	void createGCubes();
 
+	Model box;
 	Primitive cube;
 	MyVector<Vector3> gCubes;
 

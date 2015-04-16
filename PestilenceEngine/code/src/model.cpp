@@ -42,7 +42,51 @@ void Model::clearModel() {
 
 void Model::loadModel(char* filename) {
 	ObjLoader* loader = new ObjLoader();
-	loader->readFile(filename);
+	vector<Triangle>* triangles = new vector<Triangle>();
+	loader->readFile(filename, triangles);
+	this->triangles = triangles;
+	convertTriangles(*triangles);
+}
+
+void Model::convertTriangles(vector<Triangle> tris)
+{
+	for (unsigned int i = 0; i < tris.size(); i++)
+	{
+		Triangle tri = tris[i];
+
+		points.push_back(tri.a->getX());
+		points.push_back(tri.a->getY());
+		points.push_back(tri.a->getZ());
+
+		points.push_back(tri.b->getX());
+		points.push_back(tri.b->getY());
+		points.push_back(tri.b->getZ());
+
+		points.push_back(tri.c->getX());
+		points.push_back(tri.c->getY());
+		points.push_back(tri.c->getZ());
+
+		uv.push_back(tri.t_a->getX());
+		uv.push_back(tri.t_a->getY());
+		
+		uv.push_back(tri.t_b->getX());
+		uv.push_back(tri.t_b->getY());
+
+		uv.push_back(tri.t_c->getX());
+		uv.push_back(tri.t_c->getY());
+
+		normals.push_back(tri.n_a->getX());
+		normals.push_back(tri.n_a->getY());
+		normals.push_back(tri.n_a->getZ());
+
+		normals.push_back(tri.n_b->getX());
+		normals.push_back(tri.n_b->getY());
+		normals.push_back(tri.n_b->getZ());
+
+		normals.push_back(tri.n_c->getX());
+		normals.push_back(tri.n_c->getY());
+		normals.push_back(tri.n_c->getZ());
+	}
 }
 
 void Model::addTriangle(float x0, float y0, float z0, float u0, float v0,

@@ -3,7 +3,9 @@
 
 Vertex::Vertex()
 {
-	this->x = new float(0); 
+	this->x = 0;
+	y = 0;
+	z = 0;
 }
 
 // Copy constructor
@@ -16,59 +18,59 @@ Vertex::Vertex(const Vertex& v)
 }
 Vertex::Vertex(float _x, float _y)
 {
-	this->x = new float(_x);
-	this->y = new float(_y);
-	this->z = new float(0);
+	this->x = _x;
+	this->y = _y;
+	this->z = 0;
 }
 Vertex::Vertex(float _x, float _y, float _z)
 {
-	this->x = new float(_x); 
-	this->y = new float(_y); 
-	this->z = new float(_z);
+	this->x = _x; 
+	this->y = _y; 
+	this->z = _z;
 }
 
-const float& Vertex::getX()
+const float Vertex::getX()
 {
-	if (this->x == nullptr)
+	if (this->x == NULL)
 		return 0;
-	else return *this->x;
+	else return this->x;
 }
 
-const float& Vertex::getY()
+const float Vertex::getY()
 {
-	if (this->y == nullptr)
+	if (this->y == NULL)
 		return 0;
-	else return *this->y;
+	else return this->y;
 }
 
-const float& Vertex::getZ()
+const float Vertex::getZ()
 {
-	if (this->z == nullptr)
+	if (this->z == NULL)
 		return 0;
-	else return *this->z;
+	else return this->z;
 }
 
 
 void Vertex::setX(float _x)
 {
-	*(this->x) = _x; 
+	this->x = _x; 
 }
 
 void Vertex::setY(float _y)
 {
-	*(this->y) = _y;
+	this->y = _y;
 }
 
 void Vertex::setZ(float _z)
 {
-	*(this->z) = _z;
+	this->z = _z;
 }
 
 void Vertex::set(Vertex _v)
 {
-	*(this->x) = _v.getX(); 
-	*(this->y) = _v.getY(); 
-	*(this->z) = _v.getZ();
+	this->x = _v.getX(); 
+	this->y = _v.getY(); 
+	this->z = _v.getZ();
 }; 
 
 

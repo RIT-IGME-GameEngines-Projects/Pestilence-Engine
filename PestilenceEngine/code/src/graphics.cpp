@@ -22,65 +22,62 @@ void Graphics::init() {
 	glEnable(GL_CULL_FACE);
 	glCullFace(GL_BACK);
 
-	glClearColor(0.0f, 0.0f, 0.4f, 0.0f);
+	glClearColor(0.0f, 0.0f, 0.0f, 0.0f);
 
-	Vector3 vec[] = { Vector3(-.8, -.8, 0), Vector3(1, 1, 0), Vector3(1, -1, 0) };
-	spine = new Spline(vec, 3);
+	//Vector3 vec[] = { Vector3(-.8, -.8, 0), Vector3(1, 1, 0), Vector3(1, -1, 0) };
+	//spine = new Spline(vec, 3);
 
 	createCube();
 	//createGCubes();
+	buildGeometryBuffers();
 }
 
 void Graphics::render() {
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
-	/*glBindBuffer(GL_ARRAY_BUFFER, buffer[0]);
-	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, ebuffer[0]);*/
-
 	glUseProgram(program);
+
+	mat4 mvp = Camera::instance().MVP();
+	glUniformMatrix4fv(m_MVPLoc, 1, GL_FALSE, &mvp[0][0]);
 
 	cube.loadTexture("../assets/textures/t_crate.jpg");
 
 	cube.render(program);
 
-	/*int dataSize = numVerts[0] * 4 * sizeof(float);
-	GLuint vPosition = glGetAttribLocation(program, "vPosition");
-	glEnableVertexAttribArray(vPosition);
-	glVertexAttribPointer(vPosition, 4, GL_FLOAT, GL_FALSE, 0, BUFFER_OFFSET(0));
+	/*glEnableVertexAttribArray(0);
+	glBindBuffer(GL_ARRAY_BUFFER, m_VertexBuffer);
+	glVertexAttribPointer(
+		0,
+		3,
+		GL_FLOAT,
+		GL_FALSE,
+		0,
+		(void*)0
+	);
 
-	GLuint vTexCoords = glGetAttribLocation(program, "vTexCoord");
-	glEnableVertexAttribArray(vTexCoords);
-	glVertexAttribPointer(vTexCoords, 2, GL_FLOAT, GL_FALSE, 0, BUFFER_OFFSET(dataSize));
+	glDrawArrays(GL_TRIANGLES, 0, 3);
 
-	cube.setUpTexture(program);
-
-	glDrawElements(GL_TRIANGLES, numVerts[0], GL_UNSIGNED_SHORT, (void*)0);*/
+	glDisableVertexAttribArray(0);*/
 
 	glutSwapBuffers();
 }
 
 void Graphics::buildGeometryBuffers() {
-	/*NumElements = cube.nVertices();
-	float* points = cube.getVertices();
-	int dataSize = cube.nVertices() * 4 * sizeof(float);
-	float* texCoords = cube.getUV();
-	int tdataSize = cube.nVertices() * 2 * sizeof(float);
-	GLushort* elements = cube.getIndices();
-	int edataSize = cube.nVertices() * sizeof(GLushort);
+	/*glGenVertexArrays(1, &m_VertexArray);
+	glBindVertexArray(m_VertexArray);
 
-	glGenBuffers(1, &buffer[0]);
-	glBindBuffer(GL_ARRAY_BUFFER, buffer[0]);
+	m_MVPLoc = glGetUniformLocation(program, "MVP");
 
-	glBufferData(GL_ARRAY_BUFFER, dataSize + tdataSize, 0, GL_STATIC_DRAW);
-	glBufferSubData(GL_ARRAY_BUFFER, 0, dataSize, points);
-	glBufferSubData(GL_ARRAY_BUFFER, dataSize, tdataSize, texCoords);
+	static const GLfloat vertices[] = {
+		-1.0f, -1.0f, 0.0f,
+		1.0f, -1.0f, 0.0f,
+		0.0f, 1.0f, 0.0f
+	};
 
-	glGenBuffers(1, &ebuffer[0]);
-	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, ebuffer[0]);
-
-	glBufferData(GL_ELEMENT_ARRAY_BUFFER, edataSize, elements, GL_STATIC_DRAW);
-
-	numVerts[0] = cube.nVertices();*/
+	glGenBuffers(1, &m_VertexBuffer);
+	glBindBuffer(GL_ARRAY_BUFFER, m_VertexBuffer);
+	glBufferData(GL_ARRAY_BUFFER, sizeof(vertices), vertices, GL_STATIC_DRAW);*/
+	cube.buildGeometryBuffers();
 }
 
 void Graphics::createCube() {
@@ -92,7 +89,6 @@ void Graphics::createCube() {
 	cube = Model(Vector3(0, 0, 0), Vector3(0.2, 0.2, 0.2), Euler3(45, 30, 0));
 	cube.clearModel();
 	cube.loadModel("../assets/models/sm_crate.obj");
-	cube.buildGeometryBuffers();
 }
 
 void Graphics::createGCubes() {

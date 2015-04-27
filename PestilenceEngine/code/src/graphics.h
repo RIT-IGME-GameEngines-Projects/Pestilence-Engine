@@ -10,6 +10,7 @@
 #include "model.h"
 #include "graphics\primitive.h"
 #include "Spline.h"
+#include "camera.h"
 
 #include "sse\quaternionX.h"
 
@@ -45,6 +46,8 @@ private:
 	Spline* spine;
 
 	ObjLoader* objLoader;
+
+	GLuint m_VertexArray, m_VertexBuffer, m_MVPLoc;
 };
 
 #endif

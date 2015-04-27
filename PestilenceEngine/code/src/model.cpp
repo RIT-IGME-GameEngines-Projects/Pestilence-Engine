@@ -67,6 +67,9 @@ void Model::render(GLuint program) {
 	);
 
 	glDrawArrays(GL_TRIANGLES, 0, vertices.size());
+	
+	glDisableVertexAttribArray(0);
+	glDisableVertexAttribArray(1);
 }
 
 void Model::loadTexture(char* filename) {
@@ -80,6 +83,8 @@ void Model::loadTexture(char* filename) {
 	if (texture == 0) {
 		printf("SOIL loading error: '%s'\n", SOIL_last_result());
 	}
+	
+	//GLuint textureLoc = glGetUniformLocation()
 
 	glActiveTexture(GL_TEXTURE0 + 0);
 	glBindTexture(GL_TEXTURE_2D, texture);

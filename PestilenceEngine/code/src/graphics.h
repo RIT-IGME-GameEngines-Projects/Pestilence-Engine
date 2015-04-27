@@ -48,6 +48,7 @@ private:
 	ObjLoader* objLoader;
 
 	GLuint m_VertexArray, m_VertexBuffer, m_MVPLoc;
+	vector<vec3> vertices;
 };
 
 #endif

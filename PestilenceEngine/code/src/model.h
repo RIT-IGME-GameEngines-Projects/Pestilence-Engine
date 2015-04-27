@@ -59,6 +59,7 @@ public:
 private:
 	QuaternionX rotx;
 	GLuint vertexBuffer, uvBuffer;
+	GLuint texture;
 };
 
 #endif

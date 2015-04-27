@@ -44,11 +44,13 @@ void Model:: buildGeometryBuffers() {
 }
 
 void Model::render(GLuint program) {
+	setUpTexture(program);
+
 	glEnableVertexAttribArray(0);
 	glBindBuffer(GL_ARRAY_BUFFER, vertexBuffer);
 	glVertexAttribPointer(
 		0,
-		3, 
+		3,
 		GL_FLOAT,
 		GL_FALSE,
 		0,
@@ -58,12 +60,12 @@ void Model::render(GLuint program) {
 	glEnableVertexAttribArray(1);
 	glBindBuffer(GL_ARRAY_BUFFER, uvBuffer);
 	glVertexAttribPointer(
-		1,
-		2,
-		GL_FLOAT,
-		GL_FALSE,
-		0, 
-		(void*)0
+		1,                                // attribute
+		2,                                // size
+		GL_FLOAT,                         // type
+		GL_FALSE,                         // normalized?
+		0,                                // stride
+		(void*)0                          // array buffer offset
 	);
 
 	glDrawArrays(GL_TRIANGLES, 0, vertices.size());
@@ -73,7 +75,7 @@ void Model::render(GLuint program) {
 }
 
 void Model::loadTexture(char* filename) {
-	GLuint texture = SOIL_load_OGL_texture(
+	texture = SOIL_load_OGL_texture(
 		filename,
 		SOIL_LOAD_AUTO,
 		SOIL_CREATE_NEW_ID,
@@ -85,25 +87,21 @@ void Model::loadTexture(char* filename) {
 	}
 	
 	//GLuint textureLoc = glGetUniformLocation()
-
-	glActiveTexture(GL_TEXTURE0 + 0);
-	glBindTexture(GL_TEXTURE_2D, texture);
-	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
 }
 
 void Model::setUpTexture(GLuint program){
 	glUseProgram(program);
 	
-	GLuint textureLoc = glGetUniformLocation(program, "texture");
-	GLuint colorLoc = glGetUniformLocation(program, "vColor");
+	GLuint textureLoc = glGetUniformLocation(program, "textureSampler");
 
-	GLfloat color[4] = { 1.0, 1.0, 1.0, 1.0 };
+	glActiveTexture(GL_TEXTURE0 + 0);
+	glBindTexture(GL_TEXTURE_2D, texture);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
 	glUniform1i(textureLoc, 0);
-	glUniform4fv(colorLoc, 1, color);
 
-	translate(0, 0, 0, program);
+	/*translate(0, 0, 0, program);
 	rotate(0, 0, 0, program);
-	scale(0, 0, 0, program);
+	scale(0, 0, 0, program);*/
 }
 
 void Model::translate(float x, float y, float z, GLuint program)

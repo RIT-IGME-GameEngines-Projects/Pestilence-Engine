@@ -25,12 +25,11 @@ public:
 
 	void buildGeometryBuffers();
 
-	void loadModel(char* filename);
 	void createCube();
 	void createGCubes();
 
-	Model box;
-	Primitive cube;
+	Model cube;
+	//Primitive cube;
 	MyVector<Vector3> gCubes;
 
 private:

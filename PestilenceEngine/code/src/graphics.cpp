@@ -17,28 +17,33 @@ void Graphics::init() {
 	}
 
 	glEnable(GL_DEPTH_TEST);
+	glDepthFunc(GL_LESS);
+
 	glEnable(GL_CULL_FACE);
 	glCullFace(GL_BACK);
-	glClearColor(0.0, 0.0, 0.0, 1.0);
+
+	glClearColor(0.0f, 0.0f, 0.4f, 0.0f);
 
 	Vector3 vec[] = { Vector3(-.8, -.8, 0), Vector3(1, 1, 0), Vector3(1, -1, 0) };
 	spine = new Spline(vec, 3);
 
 	createCube();
-	createGCubes();
-
-	cube.loadTexture("../assets/textures/dirt.jpg");
+	//createGCubes();
 }
 
 void Graphics::render() {
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
-	glBindBuffer(GL_ARRAY_BUFFER, buffer[0]);
-	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, ebuffer[0]);
+	/*glBindBuffer(GL_ARRAY_BUFFER, buffer[0]);
+	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, ebuffer[0]);*/
 
 	glUseProgram(program);
 
-	int dataSize = numVerts[0] * 4 * sizeof(float);
+	cube.loadTexture("../assets/textures/t_crate.jpg");
+
+	cube.render(program);
+
+	/*int dataSize = numVerts[0] * 4 * sizeof(float);
 	GLuint vPosition = glGetAttribLocation(program, "vPosition");
 	glEnableVertexAttribArray(vPosition);
 	glVertexAttribPointer(vPosition, 4, GL_FLOAT, GL_FALSE, 0, BUFFER_OFFSET(0));
@@ -49,13 +54,13 @@ void Graphics::render() {
 
 	cube.setUpTexture(program);
 
-	glDrawElements(GL_TRIANGLES, numVerts[0], GL_UNSIGNED_SHORT, (void*)0);
+	glDrawElements(GL_TRIANGLES, numVerts[0], GL_UNSIGNED_SHORT, (void*)0);*/
 
 	glutSwapBuffers();
 }
 
 void Graphics::buildGeometryBuffers() {
-	NumElements = cube.nVertices();
+	/*NumElements = cube.nVertices();
 	float* points = cube.getVertices();
 	int dataSize = cube.nVertices() * 4 * sizeof(float);
 	float* texCoords = cube.getUV();
@@ -75,22 +80,19 @@ void Graphics::buildGeometryBuffers() {
 
 	glBufferData(GL_ELEMENT_ARRAY_BUFFER, edataSize, elements, GL_STATIC_DRAW);
 
-	numVerts[0] = cube.nVertices();
-}
-
-void Graphics::loadModel(char* filename) {
-
+	numVerts[0] = cube.nVertices();*/
 }
 
 void Graphics::createCube() {
-	cube = Primitive(Vector3(0, 0, 0), Vector3(0.2, 0.2, 0.2), Euler3(45, 30, 0));
+	/*cube = Primitive(Vector3(0, 0, 0), Vector3(0.2, 0.2, 0.2), Euler3(45, 30, 0));
 	cube.clearPrimitive();
-
 	cube.makeCube();
-	//cube.makePlane();
-	//cube.makeStrip();
+	buildGeometryBuffers();*/
 
-	buildGeometryBuffers();
+	cube = Model(Vector3(0, 0, 0), Vector3(0.2, 0.2, 0.2), Euler3(45, 30, 0));
+	cube.clearModel();
+	cube.loadModel("../assets/models/sm_crate.obj");
+	cube.buildGeometryBuffers();
 }
 
 void Graphics::createGCubes() {

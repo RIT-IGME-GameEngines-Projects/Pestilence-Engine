@@ -17,8 +17,6 @@ Game& Game::instance() {
 void Game::init() {
 	currTime = clock();
 	graphics->init();
-	Model* m = new Model();
-	m->loadModel("../assets/models/crate.obj");
 }
 
 void Game::update() {
@@ -28,13 +26,13 @@ void Game::update() {
 
 	if (elapsedSeconds >= timer) {
 		currTime = endTime;
-		cnt = 0;
+		/*cnt = 0;
 		index++;
 		if (index >= graphics->gCubes.GetSize()) {
 			index = 0;
 		}
 		graphics->cube.position.x = graphics->gCubes.GetCopyAt(index).x;
-		graphics->cube.position.y = graphics->gCubes.GetCopyAt(index).y;
+		graphics->cube.position.y = graphics->gCubes.GetCopyAt(index).y;*/
 		glutPostRedisplay();
 	}
 }

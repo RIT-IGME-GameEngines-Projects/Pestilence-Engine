@@ -31,9 +31,10 @@ void Model::clearModel() {
 void Model::loadModel(char* filename) {
 	ObjLoader* loader = new ObjLoader();
 	loader->readFile(filename, vertices, uvs, normals);
+	cout << "Read model file" << endl;
 }
 
-void Model:: buildGeometryBuffers() {
+void Model::buildGeometryBuffers() {
 	glGenBuffers(1, &vertexBuffer);
 	glBindBuffer(GL_ARRAY_BUFFER, vertexBuffer);
 	glBufferData(GL_ARRAY_BUFFER, vertices.size() * sizeof(vec3), &vertices[0], GL_STATIC_DRAW);

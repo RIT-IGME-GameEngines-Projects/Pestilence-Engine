@@ -34,21 +34,21 @@ Triangle::Triangle(Vertex a, Vertex b, Vertex c)
 
 // Triangle with verts, UVs, and normals initialized
 // This will be the most commonly used. 
-Triangle::Triangle(Vertex a, Vertex b, Vertex c,
-	Vertex na, Vertex nb, Vertex nc, 
-	Vertex ta, Vertex tb, Vertex tc)
+Triangle::Triangle(Vertex* a, Vertex* b, Vertex* c,
+	Vertex* na, Vertex* nb, Vertex* nc, 
+	Vertex* ta, Vertex* tb, Vertex* tc)
 {
-	this->a = new Vertex(a); 
-	this->b = new Vertex(b); 
-	this->c = new Vertex(c);
+	this->a = a; 
+	this->b = b; 
+	this->c = c;
 
-	this->n_a = new Vertex(na); 
-	this->n_b = new Vertex(nb); 
-	this->n_c = new Vertex(nc); 
+	this->n_a = na; 
+	this->n_b = nb; 
+	this->n_c = nc; 
 
-	this->t_a = new Vertex(ta); 
-	this->t_b = new Vertex(tb); 
-	this->t_b = new Vertex(tc); 
+	this->t_a = ta; 
+	this->t_b = tb; 
+	this->t_c = tc; 
 }
 
 

@@ -18,9 +18,9 @@ public:
 	~Vertex();
 
 	// Getters for individual values
-	const float& getX(); 
-	const float& getY(); 
-	const float& getZ(); 
+	const float getX(); 
+	const float getY(); 
+	const float getZ(); 
 
 	// Getter for all three values
 	const Vertex& get()
@@ -41,8 +41,8 @@ public:
 	};
 
 private: 
-	float* x = nullptr;
-	float* y = nullptr;
-	float* z = nullptr;
+	float x;
+	float y;
+	float z;
 };
 

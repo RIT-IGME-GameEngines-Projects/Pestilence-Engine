@@ -55,6 +55,9 @@
     <ClCompile Include="src\graphics\primitive.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="src\light\lightManager.cpp">
+      <Filter>Light</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\model.h">
@@ -114,6 +117,21 @@
     <ClInclude Include="src\graphics\primitive.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="src\light\lightManager.h">
+      <Filter>Light</Filter>
+    </ClInclude>
+    <ClInclude Include="src\light\lights.h">
+      <Filter>Light</Filter>
+    </ClInclude>
+    <ClInclude Include="src\light\pointLight.h">
+      <Filter>Light</Filter>
+    </ClInclude>
+    <ClInclude Include="src\light\spotLight.h">
+      <Filter>Light</Filter>
+    </ClInclude>
+    <ClInclude Include="src\light\directionalLight.h">
+      <Filter>Light</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Header Files">
@@ -130,6 +148,9 @@
     </Filter>
     <Filter Include="Utils">
       <UniqueIdentifier>{e21ed4fa-181c-4bcc-88e8-e5da0520fc12}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Light">
+      <UniqueIdentifier>{3aaac778-1a2e-47ec-9d24-9a8ff88afb7f}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>

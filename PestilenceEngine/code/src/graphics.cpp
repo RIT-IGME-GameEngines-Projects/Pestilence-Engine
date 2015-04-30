@@ -57,8 +57,8 @@ void Graphics::buildGeometryBuffers() {
 void Graphics::createCube() {
 	cube = Model();
 	cube.clearModel();
-	cube.loadModel("../assets/models/sm_suzanne.obj");
-	cube.loadTexture("../assets/textures/t_suzanne.png");
+	cube.loadModel("../assets/models/sm_apple.obj");
+	cube.loadTexture("../assets/textures/t_default.jpg");
 }
 
 void Graphics::createGCubes() {

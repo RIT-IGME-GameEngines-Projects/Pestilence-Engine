@@ -4,7 +4,8 @@ Camera::Camera() {
 	m_Projection = perspective(m_FOV, m_Aspect, m_Near, m_Far);
 	m_View = mat4();
 	m_World = mat4(1.0f);
-	m_Position = vec3(4, 3, 3);
+	//m_Position = vec3(4, 3, 3);
+	m_Position = vec3(20, 15, 15);
 	m_Forward = vec3(0, 0, 0);
 	m_Up = vec3(0, 1, 0);
 }

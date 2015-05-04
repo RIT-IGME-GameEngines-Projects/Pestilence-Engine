@@ -34,7 +34,7 @@ void Model::loadModel(char* filename) {
 	cout << "Read model file" << endl;
 }
 
-void Model::buildGeometryBuffers() {
+void Model::buildGeometryBuffers(GLuint program) {
 	glGenBuffers(1, &vertexBuffer);
 	glBindBuffer(GL_ARRAY_BUFFER, vertexBuffer);
 	glBufferData(GL_ARRAY_BUFFER, vertices.size() * sizeof(vec3), &vertices[0], GL_STATIC_DRAW);
@@ -42,9 +42,22 @@ void Model::buildGeometryBuffers() {
 	glGenBuffers(1, &uvBuffer);
 	glBindBuffer(GL_ARRAY_BUFFER, uvBuffer);
 	glBufferData(GL_ARRAY_BUFFER, uvs.size() * sizeof(vec2), &uvs[0], GL_STATIC_DRAW);
+
+	glGenBuffers(1, &normalBuffer);
+	glBindBuffer(GL_ARRAY_BUFFER, normalBuffer);
+	glBufferData(GL_ARRAY_BUFFER, normals.size() * sizeof(vec3), &normals[0], GL_STATIC_DRAW);
 }
 
 void Model::render(GLuint program) {
+	mat4 mvp = Camera::instance().MVP();
+	glUniformMatrix4fv(Camera::instance().MVPLoc(), 1, GL_FALSE, &mvp[0][0]);
+
+	mat4 m = Camera::instance().World();
+	glUniformMatrix4fv(Camera::instance().MLoc(), 1, GL_FALSE, &m[0][0]);
+
+	mat4 v = Camera::instance().View();
+	glUniformMatrix4fv(Camera::instance().VLoc(), 1, GL_FALSE, &v[0][0]);
+
 	setUpTexture(program);
 
 	glEnableVertexAttribArray(0);

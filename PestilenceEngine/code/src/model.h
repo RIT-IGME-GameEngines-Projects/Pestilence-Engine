@@ -22,6 +22,8 @@
 #include "sse\quaternionX.h"
 #include "dataStructures\modelStructures.h"
 #include "ObjLoader.h"
+#include "camera.h"
+#include "light/lightManager.h"
 
 #include "glm/glm.hpp"
 
@@ -41,7 +43,7 @@ public:
 	void loadTexture(char* filename);
 	void setUpTexture(GLuint program);
 
-	void buildGeometryBuffers();
+	void buildGeometryBuffers(GLuint program);
 	void render(GLuint program);
 
 	void scale(float x, float y, float z, GLuint program);
@@ -58,7 +60,7 @@ public:
 
 private:
 	QuaternionX rotx;
-	GLuint vertexBuffer, uvBuffer;
+	GLuint vertexBuffer, uvBuffer, normalBuffer;
 	GLuint texture;
 };
 

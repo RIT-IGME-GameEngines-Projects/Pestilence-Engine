@@ -19,6 +19,12 @@ Camera& Camera::instance() {
 	return instance;
 }
 
+void Camera::buildBuffers(GLuint program) {
+	m_MVPLoc = glGetUniformLocation(program, "MVP");
+	m_MLoc = glGetUniformLocation(program, "M");
+	m_VLoc = glGetUniformLocation(program, "V");
+}
+
 void Camera::keyboard(unsigned char key, int x, int y) {
 
 }

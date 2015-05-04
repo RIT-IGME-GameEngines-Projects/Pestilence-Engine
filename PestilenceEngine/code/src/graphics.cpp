@@ -32,27 +32,28 @@ void Graphics::init() {
 	buildGeometryBuffers();
 }
 
+void Graphics::buildGeometryBuffers() {
+	glGenVertexArrays(1, &m_VertexArray);
+	glBindVertexArray(m_VertexArray);
+
+	Camera::instance().buildBuffers(program);
+
+	LightManager::instance().buildBuffers(program);
+
+	cube.buildGeometryBuffers(program);
+}
+
+
 void Graphics::render() {
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
 	glUseProgram(program);
-
-	mat4 mvp = Camera::instance().MVP();
-	glUniformMatrix4fv(m_MVPLoc, 1, GL_FALSE, &mvp[0][0]);
 
 	cube.render(program);
 
 	glutSwapBuffers();
 }
 
-void Graphics::buildGeometryBuffers() {
-	glGenVertexArrays(1, &m_VertexArray);
-	glBindVertexArray(m_VertexArray);
-
-	m_MVPLoc = glGetUniformLocation(program, "MVP");
-
-	cube.buildGeometryBuffers();
-}
 
 void Graphics::createCube() {
 	cube = Model();

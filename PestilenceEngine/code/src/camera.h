@@ -1,6 +1,10 @@
 #ifndef _CAMERA_H_
 #define _CAMERA_H_
 
+#include <GL/glew.h>
+#include <GL/freeglut.h>
+#include <GL/GL.h>
+
 #include "dataStructures\modelStructures.h"
 
 #include "glm/glm.hpp"
@@ -13,6 +17,8 @@ class Camera
 public:
 	static Camera& instance();
 
+	void buildBuffers(GLuint program);
+
 	void keyboard(unsigned char key, int x, int y);
 	void mouse(int button, int state, int x, int y);
 	
@@ -20,6 +26,10 @@ public:
 	mat4 View();
 	mat4 World();
 	mat4 MVP();
+
+	GLuint MVPLoc() { return m_MVPLoc; };
+	GLuint MLoc() { return m_MLoc; };
+	GLuint VLoc() { return m_VLoc; };
 
 	~Camera();
 
@@ -34,6 +44,8 @@ private:
 	mat4 m_Projection, m_View, m_World;
 
 	vec3 m_Position, m_Forward, m_Up;
+
+	GLuint m_MVPLoc, m_MLoc, m_VLoc;
 };
 
 #endif

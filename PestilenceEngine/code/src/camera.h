@@ -31,6 +31,10 @@ public:
 	GLuint MLoc() { return m_MLoc; };
 	GLuint VLoc() { return m_VLoc; };
 
+	GLuint TranslateLoc() { return m_TranslateLoc; };
+	GLuint RotateLoc() { return m_RotateLoc; };
+	GLuint ScaleLoc() { return m_ScaleLoc; };
+
 	~Camera();
 
 private:
@@ -48,6 +52,7 @@ private:
 	float speed = 0.1f;
 
 	GLuint m_MVPLoc, m_MLoc, m_VLoc;
+	GLuint m_TranslateLoc, m_RotateLoc, m_ScaleLoc;
 };
 
 #endif

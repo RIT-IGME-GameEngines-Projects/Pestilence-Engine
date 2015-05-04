@@ -22,6 +22,10 @@ void Camera::buildBuffers(GLuint program) {
 	m_MVPLoc = glGetUniformLocation(program, "MVP");
 	m_MLoc = glGetUniformLocation(program, "M");
 	m_VLoc = glGetUniformLocation(program, "V");
+
+	m_TranslateLoc = glGetUniformLocation(program, "m_translate");
+	m_RotateLoc = glGetUniformLocation(program, "m_rotation");
+	m_ScaleLoc = glGetUniformLocation(program, "m_scale");
 }
 
 void Camera::keyboard(unsigned char key, int x, int y) {

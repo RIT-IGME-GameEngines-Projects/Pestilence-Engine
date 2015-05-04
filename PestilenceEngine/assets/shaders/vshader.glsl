@@ -17,12 +17,17 @@ out vec3 c_lightDir;
 uniform mat4 MVP;
 uniform mat4 V;
 uniform mat4 M;
+uniform mat4 m_translation;
+uniform mat4 m_scale;
+uniform mat4 m_rotation;
 uniform vec3 w_lightPos;
 
 void main()
 {   
 	// Output position
 	gl_Position = MVP * vec4(m_position, 1);
+
+	//M = m_translate * m_rotate * m_scale * M;
 
 	// Position of vertex in worldspace
 	w_position = (M * vec4(m_position,1)).xyz;

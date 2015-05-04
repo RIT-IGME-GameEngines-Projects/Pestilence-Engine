@@ -26,11 +26,12 @@ void Graphics::init() {
 
 	LightManager::instance().addDirectionalLight(DirectionalLight(vec3(4, 4, 4), vec3(1, 1, 1), 25.0f));
 
-	//Vector3 vec[] = { Vector3(-.8, -.8, 0), Vector3(1, 1, 0), Vector3(1, -1, 0) };
-	//spine = new Spline(vec, 3);
+	suzanne1 = Model();
+	suzanne1.clearModel();
+	suzanne1.loadModel("../assets/models/sm_suzanne.obj");
+	suzanne1.loadTexture("../assets/textures/t_suzanne.png");
 
-	createCube();
-	//createGCubes();
+
 	buildGeometryBuffers();
 }
 
@@ -42,7 +43,7 @@ void Graphics::buildGeometryBuffers() {
 
 	LightManager::instance().buildBuffers(program);
 
-	cube.buildGeometryBuffers(program);
+	suzanne1.buildGeometryBuffers(program);
 }
 
 
@@ -51,17 +52,14 @@ void Graphics::render() {
 
 	glUseProgram(program);
 
-	cube.render(program);
+	suzanne1.render(program);
 
 	glutSwapBuffers();
 }
 
 
 void Graphics::createCube() {
-	cube = Model();
-	cube.clearModel();
-	cube.loadModel("../assets/models/sm_suzanne.obj");
-	cube.loadTexture("../assets/textures/t_suzanne.png");
+	
 }
 
 void Graphics::createGCubes() {

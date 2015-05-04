@@ -31,6 +31,7 @@ public:
 	void createGCubes();
 
 	Model cube;
+	Model suzanne1, suzanne2, suzanne3;
 	//Primitive cube;
 	MyVector<Vector3> gCubes;
 

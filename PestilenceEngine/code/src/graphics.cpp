@@ -24,6 +24,8 @@ void Graphics::init() {
 
 	glClearColor(1.0f, 1.0f, 1.0f, 1.0f);
 
+	LightManager::instance().addDirectionalLight(DirectionalLight(vec3(4, 4, 4), vec3(1, 1, 1), 50.0f));
+
 	//Vector3 vec[] = { Vector3(-.8, -.8, 0), Vector3(1, 1, 0), Vector3(1, -1, 0) };
 	//spine = new Spline(vec, 3);
 
@@ -58,8 +60,8 @@ void Graphics::render() {
 void Graphics::createCube() {
 	cube = Model();
 	cube.clearModel();
-	cube.loadModel("../assets/models/sm_apple.obj");
-	cube.loadTexture("../assets/textures/t_default.jpg");
+	cube.loadModel("../assets/models/sm_suzanne.obj");
+	cube.loadTexture("../assets/textures/t_suzanne.png");
 }
 
 void Graphics::createGCubes() {

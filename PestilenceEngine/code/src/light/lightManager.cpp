@@ -1,5 +1,13 @@
 #include "lightManager.h"
 
+LightManager::LightManager() {
+
+}
+
+LightManager::~LightManager() {
+
+}
+
 LightManager& LightManager::instance() {
 	static LightManager instance;
 	return instance;

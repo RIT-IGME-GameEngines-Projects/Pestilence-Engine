@@ -11,11 +11,13 @@ public:
 	DirectionalLight() {
 		m_Position = vec3();
 		m_Color = vec3(1, 1, 1);
+		m_Power = 25.0f;
 	}
 
-	DirectionalLight(vec3 position, vec3 color) {
+	DirectionalLight(vec3 position, vec3 color, float power) {
 		m_Position = position;
 		m_Color = color;
+		m_Power = power;
 	}
 
 	void buildBuffers(GLuint program) {
@@ -28,11 +30,14 @@ public:
 	GLuint ColorLoc() { return m_ColorLoc; };
 	GLuint PowerLoc() { return m_PowerLoc; };
 
+	vec3 Position() { return m_Position; };
+	vec3 Color() { return m_Color; };
+	float Power() { return m_Power; };
+
 private:
 	vec3 m_Position;
 	vec3 m_Color;
 	float m_Power;
-
 
 	GLuint m_DirLoc, m_ColorLoc, m_PowerLoc;
 };

@@ -39,7 +39,7 @@ void main()
 	c_normal = (V * M * vec4(m_normal,0)).xyz;
 
 	// UV of vertex
-	UV = vUV;
+	UV = m_uv;
 }
 
 // REFERENCE: https://code.google.com/p/opengl-tutorial-org/source/browse/tutorial08_basic_shading/StandardShading.vertexshader

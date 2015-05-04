@@ -2,7 +2,7 @@
 
 in vec2 UV;
 in vec3 w_position;
-in vec3 c_normal
+in vec3 c_normal;
 in vec3 c_eyeDir;
 in vec3 c_lightDir;
 
@@ -35,7 +35,7 @@ void main()
 	// Reflection angle
 	vec3 R = reflect(-l, n);
 
-	float cosAlpha - clamp(dot(E,R), 0, 1);
+	float cosAlpha = clamp(dot(E,R), 0, 1);
 
 	color = AmbientColor + 
 			DiffuseColor * lightColor * lightPower * cosTheta / (distance*distance) + 

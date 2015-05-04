@@ -50,13 +50,20 @@ void Model::buildGeometryBuffers(GLuint program) {
 
 void Model::render(GLuint program) {
 	mat4 mvp = Camera::instance().MVP();
-	glUniformMatrix4fv(Camera::instance().MVPLoc(), 1, GL_FALSE, &mvp[0][0]);
-
 	mat4 m = Camera::instance().World();
-	glUniformMatrix4fv(Camera::instance().MLoc(), 1, GL_FALSE, &m[0][0]);
-
 	mat4 v = Camera::instance().View();
+
+	vec3 lightPos = LightManager::instance().Sun().Position();
+	vec3 lightColor = LightManager::instance().Sun().Color();
+	float lightPower = LightManager::instance().Sun().Power();
+
+	glUniformMatrix4fv(Camera::instance().MVPLoc(), 1, GL_FALSE, &mvp[0][0]);
+	glUniformMatrix4fv(Camera::instance().MLoc(), 1, GL_FALSE, &m[0][0]);
 	glUniformMatrix4fv(Camera::instance().VLoc(), 1, GL_FALSE, &v[0][0]);
+
+	glUniform3f(LightManager::instance().Sun().DirLoc(), lightPos.x, lightPos.y, lightPos.z);
+	glUniform3f(LightManager::instance().Sun().ColorLoc(), lightColor.x, lightColor.y, lightColor.z);
+	glUniform1f(LightManager::instance().Sun().PowerLoc(), lightPower);
 
 	setUpTexture(program);
 
@@ -69,7 +76,7 @@ void Model::render(GLuint program) {
 		GL_FALSE,
 		0,
 		(void*)0
-	);
+		);
 
 	glEnableVertexAttribArray(1);
 	glBindBuffer(GL_ARRAY_BUFFER, uvBuffer);
@@ -80,12 +87,24 @@ void Model::render(GLuint program) {
 		GL_FALSE,                         // normalized?
 		0,                                // stride
 		(void*)0                          // array buffer offset
+		);
+
+	glEnableVertexAttribArray(2);
+	glBindBuffer(GL_ARRAY_BUFFER, normalBuffer);
+	glVertexAttribPointer(
+		2,
+		3,
+		GL_FLOAT,
+		GL_FALSE,
+		0,
+		(void*)0
 	);
 
 	glDrawArrays(GL_TRIANGLES, 0, vertices.size());
 	
 	glDisableVertexAttribArray(0);
 	glDisableVertexAttribArray(1);
+	glDisableVertexAttribArray(2);
 }
 
 void Model::loadTexture(char* filename) {

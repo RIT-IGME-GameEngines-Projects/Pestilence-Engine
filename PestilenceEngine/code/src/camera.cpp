@@ -25,7 +25,28 @@ void Camera::buildBuffers(GLuint program) {
 }
 
 void Camera::keyboard(unsigned char key, int x, int y) {
+	switch (key) {
+	case 'w' | 'W':
+		m_Position.z += speed;
+		break;
+	case 's' | 'S':
+		m_Position.z -= speed;
+		break;
 
+	case 'a' | 'A':
+		m_Position.x -= speed;
+		break;
+	case 'd' | 'D':
+		m_Position.x += speed;
+		break;
+
+	case 'q' | 'Q':
+		m_Position.y -= speed;
+		break;
+	case 'e' | 'E':
+		m_Position.y += speed;
+		break;
+	}
 }
 
 void Camera::mouse(int button, int state, int x, int y) {

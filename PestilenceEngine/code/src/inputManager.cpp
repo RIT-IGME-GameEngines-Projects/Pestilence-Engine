@@ -33,6 +33,8 @@ void InputManager::keyboard(unsigned char key, int x, int y) {
 		glPolygonMode(GL_FRONT_AND_BACK, GL_POINT);
 		break;
 	}
+
+	Camera::instance().keyboard(key, x, y);
 }
 
 void InputManager::mouse(int button, int state, int x, int y) {

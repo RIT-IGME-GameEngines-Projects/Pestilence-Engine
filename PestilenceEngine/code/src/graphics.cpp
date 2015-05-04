@@ -24,7 +24,7 @@ void Graphics::init() {
 
 	glClearColor(1.0f, 1.0f, 1.0f, 1.0f);
 
-	LightManager::instance().addDirectionalLight(DirectionalLight(vec3(4, 4, 4), vec3(1, 1, 1), 50.0f));
+	LightManager::instance().addDirectionalLight(DirectionalLight(vec3(4, 4, 4), vec3(1, 1, 1), 25.0f));
 
 	//Vector3 vec[] = { Vector3(-.8, -.8, 0), Vector3(1, 1, 0), Vector3(1, -1, 0) };
 	//spine = new Spline(vec, 3);

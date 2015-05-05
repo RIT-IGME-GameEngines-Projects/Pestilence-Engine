@@ -7,6 +7,10 @@
 #include <stdio.h>
 #include <iostream>
 
+#include "glm/glm.hpp"
+
+using namespace glm;
+
 struct Vector3;
 
 class Matrix4 {
@@ -27,7 +31,7 @@ public:
 	static Matrix4 Translate(float x, float y, float z);
 	static Matrix4 Scale(float x, float y, float z);
 
-	static float* ToMat4(Matrix4 mat);
+	static mat4 ToMat4(Matrix4 mat);
 
 	static Matrix4 LookAt(Vector3 pos, Vector3 lookat, Vector3 up);
 	static Matrix4 Perspective(float fov, float aspect, float near, float far);

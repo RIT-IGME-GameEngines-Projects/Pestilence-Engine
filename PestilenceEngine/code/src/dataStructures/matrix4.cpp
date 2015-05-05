@@ -72,28 +72,11 @@ Matrix4 Matrix4::Perspective(float fov, float aspect, float near, float far)
 	return Matrix4::Identity;
 }
 
-float* Matrix4::ToMat4(Matrix4 mat) {
-	float* out = new float[16];
+mat4 Matrix4::ToMat4(Matrix4 mat) {
+	mat4 outMat = mat4(mat.m00, mat.m01, mat.m02, mat.m03,
+		mat.m10, mat.m11, mat.m12, mat.m13,
+		mat.m20, mat.m21, mat.m22, mat.m23,
+		mat.m30, mat.m31, mat.m32, mat.m33);
 
-	out[0] = mat.m00;
-	out[1] = mat.m01;
-	out[2] = mat.m02;
-	out[3] = mat.m03;
-
-	out[4] = mat.m10;
-	out[5] = mat.m11;
-	out[6] = mat.m12;
-	out[7] = mat.m13;
-
-	out[8] = mat.m20;
-	out[9] = mat.m21;
-	out[10] = mat.m22;
-	out[11] = mat.m23;
-
-	out[12] = mat.m30;
-	out[13] = mat.m31;
-	out[14] = mat.m32;
-	out[15] = mat.m33;
-
-	return out;
+	return outMat;
 }

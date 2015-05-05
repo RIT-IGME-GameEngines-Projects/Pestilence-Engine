@@ -23,7 +23,7 @@ void Camera::buildBuffers(GLuint program) {
 	m_MLoc = glGetUniformLocation(program, "M");
 	m_VLoc = glGetUniformLocation(program, "V");
 
-	m_TranslateLoc = glGetUniformLocation(program, "m_translate");
+	m_TranslateLoc = glGetUniformLocation(program, "m_translation");
 	m_RotateLoc = glGetUniformLocation(program, "m_rotation");
 	m_ScaleLoc = glGetUniformLocation(program, "m_scale");
 }

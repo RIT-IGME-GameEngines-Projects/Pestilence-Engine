@@ -428,10 +428,10 @@ void Primitive::translate(float x, float y, float z, GLuint program)
 	position.z += z;
 
 	Matrix4 transMat = Matrix4::Translate(position.x, position.y, position.z);
-	float* transMat4 = Matrix4::ToMat4(transMat);
+	mat4 transMat4 = Matrix4::ToMat4(transMat);
 
 	GLuint translateLoc = glGetUniformLocation(program, "translation");
-	glUniformMatrix4fv(translateLoc, 1, false, transMat4);
+	glUniformMatrix4fv(translateLoc, 1, false, &transMat4[0][0]);
 }
 
 void Primitive::scalem(float x, float y, float z, GLuint program)
@@ -441,10 +441,10 @@ void Primitive::scalem(float x, float y, float z, GLuint program)
 	scale.z += z;
 
 	Matrix4 scaleMat = Matrix4::Scale(scale.x, scale.y, scale.z);
-	float* scaleMat4 = Matrix4::ToMat4(scaleMat);
+	mat4 scaleMat4 = Matrix4::ToMat4(scaleMat);
 
 	GLuint scaleLoc = glGetUniformLocation(program, "scale");
-	glUniformMatrix4fv(scaleLoc, 1, false, scaleMat4);
+	glUniformMatrix4fv(scaleLoc, 1, false, &scaleMat4[0][0]);
 }
 
 void Primitive::rotate(float yaw, float pitch, float roll, GLuint program) {
@@ -455,10 +455,10 @@ void Primitive::rotate(float yaw, float pitch, float roll, GLuint program) {
 	QuaternionX rotTo = QuaternionX::euler(angles.yaw, angles.pitch, angles.roll);
 	QuaternionX slerped = QuaternionX::slerp(rotx.quatData, rotTo.quatData, 0);
 	Matrix4 rotMat = QuaternionX::toMatrix(slerped.quatData);
-	float* rotMat4 = Matrix4::ToMat4(rotMat);
+	mat4 rotMat4 = Matrix4::ToMat4(rotMat);
 	rotx = rotTo;
 
 	GLuint rotationLoc = glGetUniformLocation(program, "rotation");
-	glUniformMatrix4fv(rotationLoc, 1, false, rotMat4);
+	glUniformMatrix4fv(rotationLoc, 1, false, &rotMat4[0][0]);
 }
 

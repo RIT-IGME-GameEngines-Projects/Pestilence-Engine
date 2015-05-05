@@ -3,11 +3,15 @@
 Model::Model() {
 	srand(time(NULL));
 
-	angles = Euler3(45, 30, 0);
-	scalem = Vector3(0.1, 0.1, 0.1);
+	angles = Euler3(0, 0, 0);
+	scalem = Vector3(1, 1, 1);
 	position = Vector3();
 
 	rotx = QuaternionX::euler(angles.yaw, angles.pitch, angles.roll);
+
+	translate(0, 0, 0);
+	scale(0, 0, 0);
+	rotate(0, 0, 0);
 }
 
 Model::Model(Vector3 pos, Vector3 scal, Euler3 angle) {
@@ -53,16 +57,19 @@ void Model::render(GLuint program) {
 	mat4 m = Camera::instance().World();
 	mat4 v = Camera::instance().View();
 
+	//m = m_Translate * m_Rotation * m_Scale * m;
+
 	vec3 lightPos = LightManager::instance().Sun().Position();
 	vec3 lightColor = LightManager::instance().Sun().Color();
 	float lightPower = LightManager::instance().Sun().Power();
-
 
 	glUniformMatrix4fv(Camera::instance().MVPLoc(), 1, GL_FALSE, &mvp[0][0]);
 	glUniformMatrix4fv(Camera::instance().MLoc(), 1, GL_FALSE, &m[0][0]);
 	glUniformMatrix4fv(Camera::instance().VLoc(), 1, GL_FALSE, &v[0][0]);
 
-	//glUniformMatrix4fv(Camera::instance().TranslateLoc(), 1, GL_FALSE);
+	glUniformMatrix4fv(Camera::instance().TranslateLoc(), 1, GL_FALSE, &m_Translate[0][0]);
+	glUniformMatrix4fv(Camera::instance().RotateLoc(), 1, GL_FALSE, &m_Rotation[0][0]);
+	glUniformMatrix4fv(Camera::instance().ScaleLoc(), 1, GL_FALSE, &m_Scale[0][0]);
 
 	glUniform3f(LightManager::instance().Sun().DirLoc(), lightPos.x, lightPos.y, lightPos.z);
 	glUniform3f(LightManager::instance().Sun().ColorLoc(), lightColor.x, lightColor.y, lightColor.z);
@@ -140,33 +147,27 @@ void Model::setUpTexture(GLuint program){
 	scale(0, 0, 0, program);*/
 }
 
-void Model::translate(float x, float y, float z, GLuint program)
+void Model::translate(float x, float y, float z)
 {
 	position.x += x;
 	position.y += y;
 	position.z += z;
 
 	Matrix4 transMat = Matrix4::Translate(position.x, position.y, position.z);
-	float* transMat4 = Matrix4::ToMat4(transMat);
-
-	GLuint translateLoc = glGetUniformLocation(program, "translation");
-	glUniformMatrix4fv(translateLoc, 1, false, transMat4);
+	m_Translate = Matrix4::ToMat4(transMat);
 }
 
-void Model::scale(float x, float y, float z, GLuint program) 
+void Model::scale(float x, float y, float z) 
 {
 	scalem.x = x;
 	scalem.y = y;
 	scalem.z = z;
 
 	Matrix4 scaleMat = Matrix4::Scale(scalem.x, scalem.y, scalem.z);
-	float* scaleMat4 = Matrix4::ToMat4(scaleMat);
-
-	GLuint scaleLoc = glGetUniformLocation(program, "scale");
-	glUniformMatrix4fv(scaleLoc, 1, false, scaleMat4);
+	m_Scale = Matrix4::ToMat4(scaleMat);
 }
 
-void Model::rotate(float yaw, float pitch, float roll, GLuint program) {
+void Model::rotate(float yaw, float pitch, float roll) {
 	angles.yaw += yaw;
 	angles.pitch += pitch;
 	angles.roll += roll;
@@ -174,10 +175,7 @@ void Model::rotate(float yaw, float pitch, float roll, GLuint program) {
 	QuaternionX rotTo = QuaternionX::euler(angles.yaw, angles.pitch, angles.roll);
 	QuaternionX slerped = QuaternionX::slerp(rotx.quatData, rotTo.quatData, 0);
 	Matrix4 rotMat = QuaternionX::toMatrix(slerped.quatData);
-	float* rotMat4 = Matrix4::ToMat4(rotMat);
+	m_Rotation = Matrix4::ToMat4(rotMat);
 	rotx = rotTo;
-
-	GLuint rotationLoc = glGetUniformLocation(program, "rotation");
-	glUniformMatrix4fv(rotationLoc, 1, false, rotMat4);
 }
 

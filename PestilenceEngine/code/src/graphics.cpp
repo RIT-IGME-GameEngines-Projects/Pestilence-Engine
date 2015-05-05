@@ -24,41 +24,66 @@ void Graphics::init() {
 
 	glClearColor(1.0f, 1.0f, 1.0f, 1.0f);
 
-	//Vector3 vec[] = { Vector3(-.8, -.8, 0), Vector3(1, 1, 0), Vector3(1, -1, 0) };
-	//spine = new Spline(vec, 3);
+	LightManager::instance().addDirectionalLight(DirectionalLight(vec3(4, 4, 4), vec3(1, 1, 1), 25.0f));
 
-	createCube();
-	//createGCubes();
+	suzanne1 = Model();
+	suzanne1.clearModel();
+	suzanne1.loadModel("../assets/models/sm_suzanne.obj");
+	suzanne1.loadTexture("../assets/textures/t_suzanne.png");
+
+	suzanne2 = Model();
+	suzanne2.clearModel();
+	suzanne2.loadModel("../assets/models/sm_suzanne.obj");
+	suzanne2.loadTexture("../assets/textures/t_suzanne.png");
+	suzanne2.translate(3, 0, 0);
+	suzanne2.rotate(90, 90, 90);
+
+	suzanne3 = Model();
+	suzanne3.clearModel();
+	suzanne3.loadModel("../assets/models/sm_suzanne.obj");
+	suzanne3.loadTexture("../assets/textures/t_suzanne.png");
+	suzanne3.translate(-3, 0, 0);
+
+	cube = Model();
+	cube.clearModel();
+	cube.loadModel("../assets/models/sm_crate.obj");
+	cube.loadTexture("../assets/textures/t_crate.jpg");
+	cube.translate(0, 4, 0);
+
 	buildGeometryBuffers();
-}
-
-void Graphics::render() {
-	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-
-	glUseProgram(program);
-
-	mat4 mvp = Camera::instance().MVP();
-	glUniformMatrix4fv(m_MVPLoc, 1, GL_FALSE, &mvp[0][0]);
-
-	cube.render(program);
-
-	glutSwapBuffers();
 }
 
 void Graphics::buildGeometryBuffers() {
 	glGenVertexArrays(1, &m_VertexArray);
 	glBindVertexArray(m_VertexArray);
 
-	m_MVPLoc = glGetUniformLocation(program, "MVP");
+	Camera::instance().buildBuffers(program);
 
-	cube.buildGeometryBuffers();
+	LightManager::instance().buildBuffers(program);
+
+	suzanne1.buildGeometryBuffers(program);
+	suzanne2.buildGeometryBuffers(program);
+	suzanne3.buildGeometryBuffers(program);
+	cube.buildGeometryBuffers(program);
 }
 
+
+void Graphics::render() {
+	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+
+	glUseProgram(program);
+
+	suzanne1.render(program);
+	suzanne2.render(program);
+	suzanne3.render(program);
+	cube.render(program);
+
+	glutSwapBuffers();
+}
+
+
 void Graphics::createCube() {
-	cube = Model();
-	cube.clearModel();
-	cube.loadModel("../assets/models/sm_suzanne.obj");
-	cube.loadTexture("../assets/textures/t_suzanne.png");
+	
 }
 
 void Graphics::createGCubes() {

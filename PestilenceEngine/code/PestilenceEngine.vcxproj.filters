@@ -4,26 +4,11 @@
     <ClCompile Include="src\main.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\model.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\shaderManager.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="src\camera.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\dataStructures\matrix4.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\dataStructures\quaternion.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="src\Spline.cpp">
       <Filter>Splines</Filter>
-    </ClCompile>
-    <ClCompile Include="src\sse\quaternionX.cpp">
-      <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="src\logger.cpp">
       <Filter>Utils</Filter>
@@ -31,58 +16,55 @@
     <ClCompile Include="src\ObjLoader.cpp">
       <Filter>Utils</Filter>
     </ClCompile>
-    <ClCompile Include="src\Triangle.cpp">
-      <Filter>Utils</Filter>
-    </ClCompile>
-    <ClCompile Include="src\Vertex.cpp">
-      <Filter>Utils</Filter>
-    </ClCompile>
-    <ClCompile Include="src\utils\scheduler.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\utils\threadPool.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="src\game.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\graphics.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="src\inputManager.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="src\light\lightManager.cpp">
+      <Filter>Light</Filter>
+    </ClCompile>
+    <ClCompile Include="src\utils\threadPool.cpp">
+      <Filter>System</Filter>
+    </ClCompile>
+    <ClCompile Include="src\utils\scheduler.cpp">
+      <Filter>System</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Triangle.cpp">
+      <Filter>Data Structures</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Vertex.cpp">
+      <Filter>Data Structures</Filter>
+    </ClCompile>
+    <ClCompile Include="src\dataStructures\matrix4.cpp">
+      <Filter>Data Structures</Filter>
+    </ClCompile>
+    <ClCompile Include="src\sse\quaternionX.cpp">
+      <Filter>Data Structures</Filter>
+    </ClCompile>
+    <ClCompile Include="src\dataStructures\quaternion.cpp">
+      <Filter>Data Structures</Filter>
+    </ClCompile>
+    <ClCompile Include="src\graphics.cpp">
+      <Filter>Graphics</Filter>
+    </ClCompile>
+    <ClCompile Include="src\model.cpp">
+      <Filter>Graphics</Filter>
+    </ClCompile>
     <ClCompile Include="src\graphics\primitive.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Graphics</Filter>
+    </ClCompile>
+    <ClCompile Include="src\shaderManager.cpp">
+      <Filter>Graphics</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="src\model.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="src\shaderManager.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="src\camera.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="src\dataStructures\matrix4.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="src\dataStructures\modelStructures.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="src\dataStructures\quaternion.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="src\Spline.h">
       <Filter>Splines</Filter>
-    </ClInclude>
-    <ClInclude Include="src\MyVector.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="src\sse\quaternionX.h">
-      <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="src\logger.h">
       <Filter>Utils</Filter>
@@ -90,29 +72,65 @@
     <ClInclude Include="src\ObjLoader.h">
       <Filter>Utils</Filter>
     </ClInclude>
-    <ClInclude Include="src\Triangle.h">
-      <Filter>Utils</Filter>
-    </ClInclude>
-    <ClInclude Include="src\Vertex.h">
-      <Filter>Utils</Filter>
-    </ClInclude>
-    <ClInclude Include="src\utils\scheduler.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="src\utils\threadPool.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="src\game.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="src\graphics.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="src\inputManager.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="src\light\lightManager.h">
+      <Filter>Light</Filter>
+    </ClInclude>
+    <ClInclude Include="src\light\lights.h">
+      <Filter>Light</Filter>
+    </ClInclude>
+    <ClInclude Include="src\light\pointLight.h">
+      <Filter>Light</Filter>
+    </ClInclude>
+    <ClInclude Include="src\light\spotLight.h">
+      <Filter>Light</Filter>
+    </ClInclude>
+    <ClInclude Include="src\light\directionalLight.h">
+      <Filter>Light</Filter>
+    </ClInclude>
+    <ClInclude Include="src\utils\threadPool.h">
+      <Filter>System</Filter>
+    </ClInclude>
+    <ClInclude Include="src\utils\scheduler.h">
+      <Filter>System</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Vertex.h">
+      <Filter>Data Structures</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Triangle.h">
+      <Filter>Data Structures</Filter>
+    </ClInclude>
+    <ClInclude Include="src\sse\quaternionX.h">
+      <Filter>Data Structures</Filter>
+    </ClInclude>
+    <ClInclude Include="src\dataStructures\quaternion.h">
+      <Filter>Data Structures</Filter>
+    </ClInclude>
+    <ClInclude Include="src\MyVector.h">
+      <Filter>Data Structures</Filter>
+    </ClInclude>
+    <ClInclude Include="src\dataStructures\modelStructures.h">
+      <Filter>Data Structures</Filter>
+    </ClInclude>
+    <ClInclude Include="src\dataStructures\matrix4.h">
+      <Filter>Data Structures</Filter>
+    </ClInclude>
+    <ClInclude Include="src\shaderManager.h">
+      <Filter>Graphics</Filter>
+    </ClInclude>
     <ClInclude Include="src\graphics\primitive.h">
-      <Filter>Header Files</Filter>
+      <Filter>Graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="src\model.h">
+      <Filter>Graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="src\graphics.h">
+      <Filter>Graphics</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -130,6 +148,18 @@
     </Filter>
     <Filter Include="Utils">
       <UniqueIdentifier>{e21ed4fa-181c-4bcc-88e8-e5da0520fc12}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Light">
+      <UniqueIdentifier>{3aaac778-1a2e-47ec-9d24-9a8ff88afb7f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="System">
+      <UniqueIdentifier>{c63cac79-a70f-4640-aefc-46696b5cc101}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Data Structures">
+      <UniqueIdentifier>{7a523b68-ac29-4f69-9b64-555da2de4782}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Graphics">
+      <UniqueIdentifier>{6621e3a6-c79c-4eaf-977b-d7bec1b4a5d6}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>

@@ -43,7 +43,6 @@ public:
 			std::cout << "Unable to open file " << filename << "." << std::endl;
 			return;
 		}
-		int vcount = 0;
 		while (1)
 		{
 			char lineHeader[256];
@@ -59,8 +58,6 @@ public:
 					fscanf(file, "%f %f %f\n", &a, &b, &c);
 					vec3 v = vec3(a, b, c);
 					temp_verts.push_back(v);
-					cout << vcount << endl;
-					vcount++;
 				}
 				else if (strcmp(lineHeader, "vt") == 0)
 				{

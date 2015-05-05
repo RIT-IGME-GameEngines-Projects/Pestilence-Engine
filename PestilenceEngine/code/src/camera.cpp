@@ -18,8 +18,39 @@ Camera& Camera::instance() {
 	return instance;
 }
 
-void Camera::keyboard(unsigned char key, int x, int y) {
+void Camera::buildBuffers(GLuint program) {
+	m_MVPLoc = glGetUniformLocation(program, "MVP");
+	m_MLoc = glGetUniformLocation(program, "M");
+	m_VLoc = glGetUniformLocation(program, "V");
 
+	m_TranslateLoc = glGetUniformLocation(program, "m_translation");
+	m_RotateLoc = glGetUniformLocation(program, "m_rotation");
+	m_ScaleLoc = glGetUniformLocation(program, "m_scale");
+}
+
+void Camera::keyboard(unsigned char key, int x, int y) {
+	switch (key) {
+	case 'w' | 'W':
+		m_Position.z += speed;
+		break;
+	case 's' | 'S':
+		m_Position.z -= speed;
+		break;
+
+	case 'a' | 'A':
+		m_Position.x -= speed;
+		break;
+	case 'd' | 'D':
+		m_Position.x += speed;
+		break;
+
+	case 'q' | 'Q':
+		m_Position.y -= speed;
+		break;
+	case 'e' | 'E':
+		m_Position.y += speed;
+		break;
+	}
 }
 
 void Camera::mouse(int button, int state, int x, int y) {

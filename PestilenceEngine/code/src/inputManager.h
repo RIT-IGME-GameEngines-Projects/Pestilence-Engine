@@ -5,6 +5,8 @@
 #include <GL/freeglut.h>
 #include <GL/GL.h>
 
+#include "camera.h"
+
 class InputManager {
 public:
 	~InputManager();

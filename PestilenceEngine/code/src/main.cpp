@@ -1,6 +1,6 @@
 #include "game.h"
 #include "inputManager.h"
-#include <Awesomium\WebCore.h>
+
 using namespace std;
 
 void update() { Game::instance().update(); }

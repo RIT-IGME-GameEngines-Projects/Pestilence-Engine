@@ -11,6 +11,7 @@
 #include "graphics\primitive.h"
 #include "Spline.h"
 #include "camera.h"
+#include "light\lightManager.h"
 
 #include "sse\quaternionX.h"
 
@@ -30,6 +31,7 @@ public:
 	void createGCubes();
 
 	Model cube;
+	Model suzanne1, suzanne2, suzanne3;
 	//Primitive cube;
 	MyVector<Vector3> gCubes;
 
@@ -47,7 +49,7 @@ private:
 
 	ObjLoader* objLoader;
 
-	GLuint m_VertexArray, m_VertexBuffer, m_MVPLoc;
+	GLuint m_VertexArray, m_VertexBuffer;
 	vector<vec3> vertices;
 };
 

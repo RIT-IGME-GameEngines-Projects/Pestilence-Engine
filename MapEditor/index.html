@@ -11,6 +11,7 @@
 				height: 70px;
 				border: 1px solid black;
 				padding: 15px;
+				background-image: url('images/grass-hex-sm.png');
 			}
 
 			.hexoffset {
@@ -20,24 +21,48 @@
 		</style>
 
 		<script>
+			var squareWidth = 0;
+			var squareHeight = 0;
+
 			function buildMap()
 			{
-				var t = document.querySelector('#square').content;
-				var width = document.getElementById('widthin').value;
-				var height = document.getElementById('heightin').value;
+				clearGrid();
 
-				for(var x = 0; x < height; x++) 
+				var t = document.querySelector('#square').content;
+				squareHeight = document.getElementById('widthin').value;
+				squareWidth = document.getElementById('heightin').value;
+
+				var count = 0;
+
+				var hexId = "hexelem-";
+				var textureId = "texture-";
+				var squareId = "squareheight-";
+
+				for(var x = 0; x < squareWidth; x++) 
 				{
 					var tr = document.createElement('tr');
-					if(x%2 == 1)
+					/*if(x%2 == 1)
 					{
 						var blankT = document.querySelector('#blanksquare').content;
 						var bContent = document.importNode(blankT, true);
 						tr.appendChild(bContent);
-					}
+					}*/
 
-					for(var y = 0; y < width; y++)
+					for(var y = 0; y < squareHeight; y++)
 					{
+						count++;
+						var nHexId = "hexelem-"+count;
+						var nTextureId = "texture-"+count;
+						var nSquareId = "squareheight-"+count;
+
+						t.getElementById(hexId).id = nHexId;
+						t.getElementById(textureId).id = nTextureId;
+						t.getElementById(squareId).id = nSquareId;
+
+						hexId = nHexId;
+						textureId = nTextureId;
+						squareId = nSquareId;
+
 						var content = document.importNode(t, true);
 						tr.appendChild(content);
 					}
@@ -47,9 +72,55 @@
 				$('#exportmap').prop('disabled', false);
 			}
 
+			function clearGrid()
+			{
+				document.getElementById('mapbody').innerHTML = "";
+			}
+
+			function changeImage(target)
+			{
+				var result = target.options[target.selectedIndex].value;
+				var index = target.id.split('-')[1];
+				var filename = "url('images/" + result + "-hex-sm.png')";
+				var targetId = "hexelem-"+index;
+
+				document.getElementById(targetId).style.backgroundImage = filename;
+			}
+
 			function exportMap()
 			{
+				var elements = [];
 
+				var count = 0;
+				for(var x = 0; x < squareWidth; x++)
+				{
+					for(var y = 0; y < squareHeight; y++)
+					{
+						count++;
+
+						var hexId = 'hexelem-' + count;
+						var textureId = 'texture-' + count;
+						var heightId = 'squareheight-' + count;
+
+						var texture = document.getElementById(textureId).value;
+						var height = document.getElementById(heightId).value;
+
+						var element = {
+							texture: texture,
+							height: height,
+							x: x,
+							y: y
+						}
+
+						elements.push(element);
+					}
+				}
+
+				var data = JSON.stringify(elements);
+
+				var url = 'data:text/json;charset=utf8,' + encodeURIComponent(data);
+				window.open(url, '_blank');
+				window.focus();
 			}
 		</script>
 	</head>
@@ -66,8 +137,6 @@
 
 		<table id="map">
 			<tbody id="mapbody">
-				<tr>
-				</tr>
 			</tbody>
 		</table>
 
@@ -75,14 +144,14 @@
 		<button id="exportmap" onclick="exportMap();" disabled>Export Map</button>
 
 		<template id="square">
-			<td class='gridsquare'>
-				<select id="texture">
+			<td id='hexelem-' class='gridsquare'>
+				<select id="texture-" onchange="changeImage(this);">
 					<option value="grass">Grass</option>
 					<option value="rock">Rock</option>
 					<option value="water">Water</option>
 					<option value="sand">Sand</option>
 				</select>
-				<input type="number" value='1' style="width:50px" id="squareheight"></input>
+				<input type="number" value='1' style="width:50px" id="squareheight-"></input>
 			</td>
 		</template>
 

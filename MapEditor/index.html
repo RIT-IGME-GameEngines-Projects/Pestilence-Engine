@@ -1,0 +1,163 @@
+<!doctype html>
+<html>
+	<head>
+		<title>Pestilence Engine Map Editor</title>
+
+		<script src="http://code.jquery.com/jquery-2.1.4.min.js"></script>
+
+		<style>
+			.gridsquare {
+				width: 70px;
+				height: 70px;
+				border: 1px solid black;
+				padding: 15px;
+				background-image: url('images/grass-hex-sm.png');
+			}
+
+			.hexoffset {
+				width: 15px;
+				height: 15px;
+			}
+		</style>
+
+		<script>
+			var squareWidth = 0;
+			var squareHeight = 0;
+
+			function buildMap()
+			{
+				clearGrid();
+
+				var t = document.querySelector('#square').content;
+				squareHeight = document.getElementById('widthin').value;
+				squareWidth = document.getElementById('heightin').value;
+
+				var count = 0;
+
+				var hexId = "hexelem-";
+				var textureId = "texture-";
+				var squareId = "squareheight-";
+
+				for(var x = 0; x < squareWidth; x++) 
+				{
+					var tr = document.createElement('tr');
+					/*if(x%2 == 1)
+					{
+						var blankT = document.querySelector('#blanksquare').content;
+						var bContent = document.importNode(blankT, true);
+						tr.appendChild(bContent);
+					}*/
+
+					for(var y = 0; y < squareHeight; y++)
+					{
+						count++;
+						var nHexId = "hexelem-"+count;
+						var nTextureId = "texture-"+count;
+						var nSquareId = "squareheight-"+count;
+
+						t.getElementById(hexId).id = nHexId;
+						t.getElementById(textureId).id = nTextureId;
+						t.getElementById(squareId).id = nSquareId;
+
+						hexId = nHexId;
+						textureId = nTextureId;
+						squareId = nSquareId;
+
+						var content = document.importNode(t, true);
+						tr.appendChild(content);
+					}
+					document.querySelector('#mapbody').appendChild(tr);
+				}
+
+				$('#exportmap').prop('disabled', false);
+			}
+
+			function clearGrid()
+			{
+				document.getElementById('mapbody').innerHTML = "";
+			}
+
+			function changeImage(target)
+			{
+				var result = target.options[target.selectedIndex].value;
+				var index = target.id.split('-')[1];
+				var filename = "url('images/" + result + "-hex-sm.png')";
+				var targetId = "hexelem-"+index;
+
+				document.getElementById(targetId).style.backgroundImage = filename;
+			}
+
+			function exportMap()
+			{
+				var elements = [];
+
+				var count = 0;
+				for(var x = 0; x < squareWidth; x++)
+				{
+					for(var y = 0; y < squareHeight; y++)
+					{
+						count++;
+
+						var hexId = 'hexelem-' + count;
+						var textureId = 'texture-' + count;
+						var heightId = 'squareheight-' + count;
+
+						var texture = document.getElementById(textureId).value;
+						var height = document.getElementById(heightId).value;
+
+						var element = {
+							texture: texture,
+							height: height,
+							x: x,
+							y: y
+						}
+
+						elements.push(element);
+					}
+				}
+
+				var data = JSON.stringify(elements);
+
+				var url = 'data:text/json;charset=utf8,' + encodeURIComponent(data);
+				window.open(url, '_blank');
+				window.focus();
+			}
+		</script>
+	</head>
+	<body>
+		<h1>Pestilence Engine Map Editor</h1>
+		<br>
+		<span>Map Width: </span>
+		<input type="number" value='5' style="width:50px" id="widthin"></input>
+		<span>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp Map Height: </span>
+		<input type="number" value='5' style="width:50px" id="heightin"></input>
+		<br>
+		<button id="buildmap" onclick="buildMap();">Build Map</button>
+		<br><br>
+
+		<table id="map">
+			<tbody id="mapbody">
+			</tbody>
+		</table>
+
+		<br><br>
+		<button id="exportmap" onclick="exportMap();" disabled>Export Map</button>
+
+		<template id="square">
+			<td id='hexelem-' class='gridsquare'>
+				<select id="texture-" onchange="changeImage(this);">
+					<option value="grass">Grass</option>
+					<option value="rock">Rock</option>
+					<option value="water">Water</option>
+					<option value="sand">Sand</option>
+				</select>
+				<input type="number" value='1' style="width:50px" id="squareheight-"></input>
+			</td>
+		</template>
+
+		<template id="blanksquare">
+			<td class='hexoffset'>
+			</td>
+		</template>
+	</body>
+</html>

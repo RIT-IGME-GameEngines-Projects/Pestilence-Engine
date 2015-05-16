@@ -1,0 +1,94 @@
+<!doctype html>
+<html>
+	<head>
+		<title>Pestilence Engine Map Editor</title>
+
+		<script src="http://code.jquery.com/jquery-2.1.4.min.js"></script>
+
+		<style>
+			.gridsquare {
+				width: 70px;
+				height: 70px;
+				border: 1px solid black;
+				padding: 15px;
+			}
+
+			.hexoffset {
+				width: 15px;
+				height: 15px;
+			}
+		</style>
+
+		<script>
+			function buildMap()
+			{
+				var t = document.querySelector('#square').content;
+				var width = document.getElementById('widthin').value;
+				var height = document.getElementById('heightin').value;
+
+				for(var x = 0; x < height; x++) 
+				{
+					var tr = document.createElement('tr');
+					if(x%2 == 1)
+					{
+						var blankT = document.querySelector('#blanksquare').content;
+						var bContent = document.importNode(blankT, true);
+						tr.appendChild(bContent);
+					}
+
+					for(var y = 0; y < width; y++)
+					{
+						var content = document.importNode(t, true);
+						tr.appendChild(content);
+					}
+					document.querySelector('#mapbody').appendChild(tr);
+				}
+
+				$('#exportmap').prop('disabled', false);
+			}
+
+			function exportMap()
+			{
+
+			}
+		</script>
+	</head>
+	<body>
+		<h1>Pestilence Engine Map Editor</h1>
+		<br>
+		<span>Map Width: </span>
+		<input type="number" value='5' style="width:50px" id="widthin"></input>
+		<span>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp Map Height: </span>
+		<input type="number" value='5' style="width:50px" id="heightin"></input>
+		<br>
+		<button id="buildmap" onclick="buildMap();">Build Map</button>
+		<br><br>
+
+		<table id="map">
+			<tbody id="mapbody">
+				<tr>
+				</tr>
+			</tbody>
+		</table>
+
+		<br><br>
+		<button id="exportmap" onclick="exportMap();" disabled>Export Map</button>
+
+		<template id="square">
+			<td class='gridsquare'>
+				<select id="texture">
+					<option value="grass">Grass</option>
+					<option value="rock">Rock</option>
+					<option value="water">Water</option>
+					<option value="sand">Sand</option>
+				</select>
+				<input type="number" value='1' style="width:50px" id="squareheight"></input>
+			</td>
+		</template>
+
+		<template id="blanksquare">
+			<td class='hexoffset'>
+			</td>
+		</template>
+	</body>
+</html>

@@ -29,13 +29,31 @@ void Map::readMap(char* filename) {
 void Map::buildHexMap() {
 
 	for (int i = 0; i < hexElements.size(); i++) {
-		Model hex = Model(hexModelPrefab);
+		
 		string texturePath = "../assets/textures/t_" + hexElements[i].Texture + ".jpg";
 		const char* texture = texturePath.c_str();
-		cout << texture << endl;
+		float x;
+		float z;
+		if (hexElements[i].Z % 2 == 1) {
+			x = hexElements[i].X * 14;
+			z = hexElements[i].Z * 4;
+		}
+		else {
+			x = 7 + (hexElements[i].X * 14);
+			z = hexElements[i].Z * 4;
+			
+		}
+
+		Model hex = Model(hexModelPrefab);
 		hex.loadTexture((char*)texture);
-		hex.translate(hexElements[i].X * 9, hexElements[i].Height * 2, hexElements[i].Z * 9);
+		hex.translate(x, 0, z);
 		hexModels.push_back(hex);
+		/*for (int y = 0; y < hexElements[i].Height; y++) {
+			Model hex = Model(hexModelPrefab);
+			hex.loadTexture((char*)texture);
+			hex.translate(x, y * 2, z);
+			hexModels.push_back(hex);
+		}*/
 		//cout << hexElements[i].Texture << endl;
 	}
 }

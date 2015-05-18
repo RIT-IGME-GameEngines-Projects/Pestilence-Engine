@@ -63,8 +63,22 @@
 						textureId = nTextureId;
 						squareId = nSquareId;
 
+						if(x%2 == 0)
+						{
+							var blankT = document.querySelector('#blanksquare').content;
+							var bContent = document.importNode(blankT, true);
+							tr.appendChild(bContent);
+						}
+
 						var content = document.importNode(t, true);
 						tr.appendChild(content);
+
+						if(x%2 == 1)
+						{
+							var blankT = document.querySelector('#blanksquare').content;
+							var bContent = document.importNode(blankT, true);
+							tr.appendChild(bContent);
+						}
 					}
 					document.querySelector('#mapbody').appendChild(tr);
 				}

@@ -17,9 +17,11 @@
     <ClCompile Include="src\game.cpp" />
     <ClCompile Include="src\graphics.cpp" />
     <ClCompile Include="src\graphics\primitive.cpp" />
+    <ClCompile Include="src\hexGridElement.cpp" />
     <ClCompile Include="src\inputManager.cpp" />
     <ClCompile Include="src\light\lightManager.cpp" />
     <ClCompile Include="src\main.cpp" />
+    <ClCompile Include="src\mapBuilder.cpp" />
     <ClCompile Include="src\model.cpp" />
     <ClCompile Include="src\ObjLoader.cpp" />
     <ClCompile Include="src\shaderManager.cpp" />
@@ -39,6 +41,7 @@
     <ClInclude Include="src\game.h" />
     <ClInclude Include="src\graphics.h" />
     <ClInclude Include="src\graphics\primitive.h" />
+    <ClInclude Include="src\hexGridElement.h" />
     <ClInclude Include="src\inputManager.h" />
     <ClInclude Include="src\light\directionalLight.h" />
     <ClInclude Include="src\light\lightManager.h" />
@@ -46,6 +49,7 @@
     <ClInclude Include="src\light\pointLight.h" />
     <ClInclude Include="src\light\spotLight.h" />
     <ClInclude Include="src\logger.h" />
+    <ClInclude Include="src\mapBuilder.h" />
     <ClInclude Include="src\model.h" />
     <ClInclude Include="src\MyVector.h" />
     <ClInclude Include="src\ObjLoader.h" />

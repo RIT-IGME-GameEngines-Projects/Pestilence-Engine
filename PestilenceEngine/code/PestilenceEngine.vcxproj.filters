@@ -58,6 +58,12 @@
     <ClCompile Include="src\shaderManager.cpp">
       <Filter>Graphics</Filter>
     </ClCompile>
+    <ClCompile Include="src\mapBuilder.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\hexGridElement.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\camera.h">
@@ -131,6 +137,12 @@
     </ClInclude>
     <ClInclude Include="src\graphics.h">
       <Filter>Graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="src\mapBuilder.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\hexGridElement.h">
+      <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

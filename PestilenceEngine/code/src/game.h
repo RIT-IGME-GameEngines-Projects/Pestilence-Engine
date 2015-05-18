@@ -3,6 +3,7 @@
 
 #include "graphics.h"
 #include "logger.h"
+#include "mapBuilder.h"
 
 #define FPS  60
 

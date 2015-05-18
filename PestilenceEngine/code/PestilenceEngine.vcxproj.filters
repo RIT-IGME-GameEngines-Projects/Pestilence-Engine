@@ -58,11 +58,14 @@
     <ClCompile Include="src\shaderManager.cpp">
       <Filter>Graphics</Filter>
     </ClCompile>
-    <ClCompile Include="src\mapBuilder.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="src\hexGridElement.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Map</Filter>
+    </ClCompile>
+    <ClCompile Include="src\mapBuilder.cpp">
+      <Filter>Map</Filter>
+    </ClCompile>
+    <ClCompile Include="src\map.cpp">
+      <Filter>Map</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -139,10 +142,13 @@
       <Filter>Graphics</Filter>
     </ClInclude>
     <ClInclude Include="src\mapBuilder.h">
-      <Filter>Header Files</Filter>
+      <Filter>Map</Filter>
+    </ClInclude>
+    <ClInclude Include="src\map.h">
+      <Filter>Map</Filter>
     </ClInclude>
     <ClInclude Include="src\hexGridElement.h">
-      <Filter>Header Files</Filter>
+      <Filter>Map</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -172,6 +178,9 @@
     </Filter>
     <Filter Include="Graphics">
       <UniqueIdentifier>{6621e3a6-c79c-4eaf-977b-d7bec1b4a5d6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Map">
+      <UniqueIdentifier>{6fe4059a-6039-4289-adba-b5e07df87ef2}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>

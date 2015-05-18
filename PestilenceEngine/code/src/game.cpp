@@ -16,9 +16,9 @@ Game& Game::instance() {
 
 void Game::init() {
 	currTime = clock();
-	graphics->init();
-
 	Map::instance().readMap("../assets/maps/demo-pmap.pmap");
+
+	graphics->init();
 }
 
 void Game::update() {

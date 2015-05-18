@@ -30,22 +30,20 @@ void Map::buildHexMap() {
 		string texturePath = "../assets/textures/t_" + hexElements[i].Texture + ".jpg";
 		const char* texture = texturePath.c_str();
 		cout << texture << endl;
-		//hex.loadTexture((char*)texture);
-		hex.translate(hexElements[i].X, hexElements[i].Height, hexElements[i].Z);
+		hex.loadTexture((char*)texture);
+		hex.translate(hexElements[i].X * 9, hexElements[i].Height * 2, hexElements[i].Z * 9);
 		hexModels.push_back(hex);
 		//cout << hexElements[i].Texture << endl;
 	}
 }
 
 void Map::buildHexGeometryBuffers(GLuint program)  {
-	hexModelPrefab.buildGeometryBuffers(program);
 	for (int i = 0; i < hexModels.size(); i++) {
 		hexModels[i].buildGeometryBuffers(program);
 	}
 }
 
 void Map::renderHex(GLuint program) {
-	hexModelPrefab.render(program);
 	for (int i = 0; i < hexModels.size(); i++) {
 		hexModels[i].render(program);
 	}

@@ -28,7 +28,7 @@ void Graphics::init() {
 
 	/*suzanne1 = Model();
 	suzanne1.clearModel();
-	suzanne1.loadModel("../assets/models/sm_suzanne.obj");
+	suzanne1.loadModel("../assets/models/sm_hexTile.obj");
 	suzanne1.loadTexture("../assets/textures/t_suzanne.png");
 
 	suzanne2 = Model();
@@ -50,6 +50,8 @@ void Graphics::init() {
 	cube.loadTexture("../assets/textures/t_crate.jpg");
 	cube.translate(0, 4, 0);*/
 
+	//buildUnitTest(5, 5, 5, "../assets/models/sm_hexTile.obj", "../assets/textures/t_hexTile_Fallback.png");
+
 	buildGeometryBuffers();
 }
 
@@ -66,6 +68,7 @@ void Graphics::buildGeometryBuffers() {
 	suzanne3.buildGeometryBuffers(program);
 	cube.buildGeometryBuffers(program);*/
 	Map::instance().buildHexGeometryBuffers(program);
+	//buildUnitTestBuffers();
 }
 
 
@@ -79,29 +82,37 @@ void Graphics::render() {
 	suzanne3.render(program);
 	cube.render(program);*/
 	Map::instance().renderHex(program);
+	//renderUnitTest();
 
 	glutSwapBuffers();
 }
 
+void Graphics::buildUnitTest(int countX, int countY, int countZ, char* objfile, char* texturefile) {
+	for (int x = 0; x < countX; x++) {
+		for (int y = 0; y < countY; y++) {
+			for (int z = 0; z < countZ; z++) {
+				Model m = Model(suzanne1);
+				m.loadTexture(texturefile);
+				/*m.clearModel();
+				m.loadModel(objfile);
+				m.loadTexture(texturefile);
+				*/
+				m.translate(x * 2, y * 2, z * 2);
 
-void Graphics::createCube() {
-	
+				unitTestModels.push_back(m);
+			}
+		}
+	}
 }
 
-void Graphics::createGCubes() {
-	for (int i = 0; i < spine->graphPoints->GetSize(); i++)
-	{
-		Vector3 currPt = *(spine->graphPoints->GetCopyAt(i));
-		if (i == 0)
-		{
-			cube.position.x = currPt.x;
-			cube.position.y = currPt.y;
-		}
-		//Model m = Model();
-		//m.clearModel(); 
-		//m.makeCube(); 
-		//m.translate(currPt.x, currPt.y, currPt.z, program);
-		gCubes.Push(currPt);
+void Graphics::buildUnitTestBuffers() {
+	for (int i = 0; i < unitTestModels.size(); i++) {
+		unitTestModels[i].buildGeometryBuffers(program);
 	}
-	buildGeometryBuffers();
+}
+
+void Graphics::renderUnitTest() {
+	for (int i = 0; i < unitTestModels.size(); i++) {
+		unitTestModels[i].render(program);
+	}
 }

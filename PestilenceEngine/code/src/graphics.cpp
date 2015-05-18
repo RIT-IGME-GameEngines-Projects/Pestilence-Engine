@@ -26,7 +26,7 @@ void Graphics::init() {
 
 	LightManager::instance().addDirectionalLight(DirectionalLight(vec3(4, 4, 4), vec3(1, 1, 1), 25.0f));
 
-	suzanne1 = Model();
+	/*suzanne1 = Model();
 	suzanne1.clearModel();
 	suzanne1.loadModel("../assets/models/sm_suzanne.obj");
 	suzanne1.loadTexture("../assets/textures/t_suzanne.png");
@@ -48,7 +48,7 @@ void Graphics::init() {
 	cube.clearModel();
 	cube.loadModel("../assets/models/sm_crate.obj");
 	cube.loadTexture("../assets/textures/t_crate.jpg");
-	cube.translate(0, 4, 0);
+	cube.translate(0, 4, 0);*/
 
 	buildGeometryBuffers();
 }
@@ -61,10 +61,11 @@ void Graphics::buildGeometryBuffers() {
 
 	LightManager::instance().buildBuffers(program);
 
-	suzanne1.buildGeometryBuffers(program);
+	/*suzanne1.buildGeometryBuffers(program);
 	suzanne2.buildGeometryBuffers(program);
 	suzanne3.buildGeometryBuffers(program);
-	cube.buildGeometryBuffers(program);
+	cube.buildGeometryBuffers(program);*/
+	Map::instance().buildHexGeometryBuffers(program);
 }
 
 
@@ -73,10 +74,11 @@ void Graphics::render() {
 
 	glUseProgram(program);
 
-	suzanne1.render(program);
+	/*suzanne1.render(program);
 	suzanne2.render(program);
 	suzanne3.render(program);
-	cube.render(program);
+	cube.render(program);*/
+	Map::instance().renderHex(program);
 
 	glutSwapBuffers();
 }

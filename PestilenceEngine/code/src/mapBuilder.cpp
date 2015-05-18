@@ -8,10 +8,8 @@ MapBuilder::~MapBuilder() {
 
 }
 
-void MapBuilder::readMap(char* filename) {
+void MapBuilder::readMap(char* filename, vector<HexGridElement> &outElements) {
 	FILE* file = fopen(filename, "r");
-
-	std::vector<HexGridElement> tempGridElements;
 
 	if (file == NULL)
 	{
@@ -28,17 +26,16 @@ void MapBuilder::readMap(char* filename) {
 			break;
 		else // parse lineHeader
 		{
-			cout << lineHeader << endl;
 			if (strcmp(lineHeader, "hex") == 0)
 			{
 				char texture[32];
 				int height;
 				int x;
-				int y;
-				fscanf(file, "%s %d %d %d\n", texture, &height, &x, &y);
+				int z;
+				fscanf(file, "%s %d %d %d\n", texture, &height, &x, &z);
 
-				HexGridElement hex = HexGridElement(texture, height, x, y);
-				tempGridElements.push_back(hex);
+				HexGridElement hex = HexGridElement(texture, height, x, z);
+				outElements.push_back(hex);
 			}
 		}
 	}

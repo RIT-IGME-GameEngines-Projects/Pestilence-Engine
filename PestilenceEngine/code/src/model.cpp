@@ -14,6 +14,24 @@ Model::Model() {
 	rotate(0, 0, 0);
 }
 
+Model::Model(const Model& other) {
+	angles = other.angles;
+	scalem = other.scalem;
+	position = other.position;
+
+	rotx = QuaternionX::euler(angles.yaw, angles.pitch, angles.roll);
+
+	translate(0, 0, 0);
+	scale(0, 0, 0);
+	rotate(0, 0, 0);
+
+	vertices = other.vertices;
+	uvs = other.uvs;
+	normals = other.normals;
+
+	texture = other.texture;
+}
+
 Model::Model(Vector3 pos, Vector3 scal, Euler3 angle) {
 	srand(time(NULL));
 

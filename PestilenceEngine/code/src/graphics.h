@@ -12,6 +12,7 @@
 #include "Spline.h"
 #include "camera.h"
 #include "light\lightManager.h"
+#include "map.h"
 
 #include "sse\quaternionX.h"
 

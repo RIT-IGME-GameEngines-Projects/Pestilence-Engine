@@ -15,7 +15,7 @@ public:
 	MapBuilder();
 	~MapBuilder();
 
-	void readMap(char* filename);
+	void readMap(char* filename, vector<HexGridElement> &outElements);
 };
 
 #endif

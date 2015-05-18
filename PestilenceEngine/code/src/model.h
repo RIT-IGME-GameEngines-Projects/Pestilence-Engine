@@ -34,6 +34,7 @@ class Model{
 
 public:
 	Model();
+	Model(const Model& other);
 	Model(Vector3 pos, Vector3 scal, Euler3 angle);
 	~Model();
 
@@ -58,11 +59,12 @@ public:
 	vector<vec2> uvs;
 	vector<vec3> normals;
 
+	GLuint texture;
+
 private:
 	QuaternionX rotx;
 	GLuint vertexBuffer, uvBuffer, normalBuffer;
-	GLuint texture;
-
+	
 	mat4 m_Translate, m_Scale, m_Rotation;
 };
 

@@ -4,11 +4,11 @@ HexGridElement::HexGridElement() {
 
 }
 
-HexGridElement::HexGridElement(char* texture, int height, int x, int y) {
+HexGridElement::HexGridElement(const string& texture, int height, int x, int z) {
 	Texture = texture;
 	Height = height;
 	X = x;
-	Y = y;
+	Z = z;
 }
 
 HexGridElement::~HexGridElement() {

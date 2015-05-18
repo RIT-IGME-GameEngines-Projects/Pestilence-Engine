@@ -12,6 +12,7 @@ uniform sampler2D textureSampler;
 uniform vec3 w_lightPos;
 uniform vec3 lightColor;
 uniform float lightPower;
+uniform bool isLit;
 
 void main()
 {
@@ -37,9 +38,15 @@ void main()
 
 	float cosAlpha = clamp(dot(E,R), 0, 1);
 
-	color = AmbientColor + 
-			DiffuseColor * lightColor * lightPower * cosTheta / (distance*distance) + 
-			SpecularColor * lightColor * lightPower * pow(cosAlpha, 5) / (distance*distance);
+	if(isLit) {
+		color = AmbientColor + 
+				DiffuseColor * lightColor * lightPower * cosTheta / (distance*distance) + 
+				SpecularColor * lightColor * lightPower * pow(cosAlpha, 5) / (distance*distance);
+	} else {
+		color = AmbientColor + 
+				DiffuseColor +
+				SpecularColor;
+	}
 }
 
 // REFERENCE: https://code.google.com/p/opengl-tutorial-org/source/browse/tutorial08_basic_shading/StandardShading.fragmentshader

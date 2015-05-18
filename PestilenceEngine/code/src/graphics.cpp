@@ -113,6 +113,6 @@ void Graphics::buildUnitTestBuffers() {
 
 void Graphics::renderUnitTest() {
 	for (int i = 0; i < unitTestModels.size(); i++) {
-		unitTestModels[i].render(program);
+		unitTestModels[i].render(program, true);
 	}
 }

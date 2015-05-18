@@ -27,6 +27,7 @@
     <ClCompile Include="src\ObjLoader.cpp" />
     <ClCompile Include="src\shaderManager.cpp" />
     <ClCompile Include="src\logger.cpp" />
+    <ClCompile Include="src\skyBox.cpp" />
     <ClCompile Include="src\Spline.cpp" />
     <ClCompile Include="src\sse\quaternionX.cpp" />
     <ClCompile Include="src\Triangle.cpp" />
@@ -56,6 +57,7 @@
     <ClInclude Include="src\MyVector.h" />
     <ClInclude Include="src\ObjLoader.h" />
     <ClInclude Include="src\shaderManager.h" />
+    <ClInclude Include="src\skyBox.h" />
     <ClInclude Include="src\Spline.h" />
     <ClInclude Include="src\sse\quaternionX.h" />
     <ClInclude Include="src\Triangle.h" />

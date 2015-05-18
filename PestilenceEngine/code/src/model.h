@@ -45,7 +45,7 @@ public:
 	void setUpTexture(GLuint program);
 
 	void buildGeometryBuffers(GLuint program);
-	void render(GLuint program);
+	void render(GLuint program, bool lit);
 
 	void scale(float x, float y, float z);
 	void translate(float x, float y, float z);

@@ -5,6 +5,7 @@
 
 #include "mapBuilder.h"
 #include "model.h"
+#include "skyBox.h"
 
 using namespace std;
 
@@ -32,6 +33,8 @@ private:
 	Model hexModelPrefab;
 
 	vector<Model> hexModels;
+
+	SkyBox skyBox;
 };
 
 #endif

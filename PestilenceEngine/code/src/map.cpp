@@ -7,6 +7,9 @@ Map::Map() {
 	hexModelPrefab.clearModel();
 	hexModelPrefab.loadModel("../assets/models/sm_hexTile.obj");
 	hexModelPrefab.loadTexture("../assets/textures/t_hexTile_Fallback.png");
+
+	skyBox = SkyBox();
+	skyBox.buildSkyBox("../assets/textures/t_skyBox.png");
 }
 
 Map::~Map() {
@@ -41,10 +44,12 @@ void Map::buildHexGeometryBuffers(GLuint program)  {
 	for (int i = 0; i < hexModels.size(); i++) {
 		hexModels[i].buildGeometryBuffers(program);
 	}
+	skyBox.buildSkyBoxBuffers(program);
 }
 
 void Map::renderHex(GLuint program) {
 	for (int i = 0; i < hexModels.size(); i++) {
-		hexModels[i].render(program);
+		hexModels[i].render(program, true);
 	}
+	skyBox.renderSkyBox(program);
 }

@@ -70,7 +70,7 @@ void Model::buildGeometryBuffers(GLuint program) {
 	glBufferData(GL_ARRAY_BUFFER, normals.size() * sizeof(vec3), &normals[0], GL_STATIC_DRAW);
 }
 
-void Model::render(GLuint program) {
+void Model::render(GLuint program, bool lit) {
 	mat4 mvp = Camera::instance().MVP();
 	mat4 m = Camera::instance().World();
 	mat4 v = Camera::instance().View();
@@ -92,6 +92,9 @@ void Model::render(GLuint program) {
 	glUniform3f(LightManager::instance().Sun().DirLoc(), lightPos.x, lightPos.y, lightPos.z);
 	glUniform3f(LightManager::instance().Sun().ColorLoc(), lightColor.x, lightColor.y, lightColor.z);
 	glUniform1f(LightManager::instance().Sun().PowerLoc(), lightPower);
+
+	GLuint litLoc = glGetUniformLocation(program, "isLit");
+	glUniform1i(litLoc, lit);
 
 	setUpTexture(program);
 

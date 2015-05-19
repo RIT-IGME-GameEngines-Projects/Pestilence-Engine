@@ -28,6 +28,18 @@ void Camera::buildBuffers(GLuint program) {
 	m_ScaleLoc = glGetUniformLocation(program, "m_scale");
 }
 
+void Camera::setPosition(float x, float y, float z) {
+	m_Position.x = x;
+	m_Position.y = y;
+	m_Position.z = z;
+}
+
+void Camera::setLookAt(float x, float y, float z) {
+	m_Forward.x = x;
+	m_Forward.y = y;
+	m_Forward.z = z;
+}
+
 void Camera::keyboard(unsigned char key, int x, int y) {
 	switch (key) {
 	case 'w' | 'W':

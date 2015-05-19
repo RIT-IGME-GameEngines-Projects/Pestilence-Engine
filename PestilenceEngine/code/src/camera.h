@@ -21,6 +21,9 @@ public:
 
 	void keyboard(unsigned char key, int x, int y);
 	void mouse(int button, int state, int x, int y);
+
+	void setPosition(float x, float y, float z);
+	void setLookAt(float x, float y, float z);
 	
 	mat4 Projection();
 	mat4 View();

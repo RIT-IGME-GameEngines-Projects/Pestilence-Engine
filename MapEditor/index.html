@@ -63,8 +63,22 @@
 						textureId = nTextureId;
 						squareId = nSquareId;
 
+						if(x%2 == 0)
+						{
+							var blankT = document.querySelector('#blanksquare').content;
+							var bContent = document.importNode(blankT, true);
+							tr.appendChild(bContent);
+						}
+
 						var content = document.importNode(t, true);
 						tr.appendChild(content);
+
+						if(x%2 == 1)
+						{
+							var blankT = document.querySelector('#blanksquare').content;
+							var bContent = document.importNode(blankT, true);
+							tr.appendChild(bContent);
+						}
 					}
 					document.querySelector('#mapbody').appendChild(tr);
 				}
@@ -116,7 +130,16 @@
 					}
 				}
 
-				var data = JSON.stringify(elements);
+				var data = "";
+				//var data = JSON.stringify(elements);
+				for(var i = 0; i < elements.length; i++) {
+					//data += JSON.stringify(elements[i]) + ' ';
+					data += 'hex ';
+					data += elements[i].texture + ' ';
+					data += elements[i].height + ' ';
+					data += elements[i].x + ' ';
+					data += elements[i].y + '\n';
+				}
 
 				var url = 'data:text/json;charset=utf8,' + encodeURIComponent(data);
 				window.open(url, '_blank');

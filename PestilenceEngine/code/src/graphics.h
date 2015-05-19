@@ -12,6 +12,7 @@
 #include "Spline.h"
 #include "camera.h"
 #include "light\lightManager.h"
+#include "map.h"
 
 #include "sse\quaternionX.h"
 
@@ -27,8 +28,9 @@ public:
 
 	void buildGeometryBuffers();
 
-	void createCube();
-	void createGCubes();
+	void buildUnitTest(int countX, int countY, int countZ, char* objfile, char* texturefile);
+	void buildUnitTestBuffers();
+	void renderUnitTest();
 
 	Model cube;
 	Model suzanne1, suzanne2, suzanne3;
@@ -51,6 +53,8 @@ private:
 
 	GLuint m_VertexArray, m_VertexBuffer;
 	vector<vec3> vertices;
+
+	vector<Model> unitTestModels;
 };
 
 #endif

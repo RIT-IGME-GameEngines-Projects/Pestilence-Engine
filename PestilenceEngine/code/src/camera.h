@@ -49,7 +49,7 @@ private:
 
 	vec3 m_Position, m_Forward, m_Up;
 
-	float speed = 0.1f;
+	float speed = 2.0f;
 
 	GLuint m_MVPLoc, m_MLoc, m_VLoc;
 	GLuint m_TranslateLoc, m_RotateLoc, m_ScaleLoc;

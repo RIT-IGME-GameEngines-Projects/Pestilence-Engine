@@ -48,12 +48,12 @@ void Map::buildHexMap() {
 		hex.loadTexture((char*)texture);
 		hex.translate(x, 0, z);
 		hexModels.push_back(hex);
-		/*for (int y = 0; y < hexElements[i].Height; y++) {
+		for (int y = 0; y < hexElements[i].Height; y++) {
 			Model hex = Model(hexModelPrefab);
 			hex.loadTexture((char*)texture);
 			hex.translate(x, y * 2, z);
 			hexModels.push_back(hex);
-		}*/
+		}
 		//cout << hexElements[i].Texture << endl;
 	}
 }

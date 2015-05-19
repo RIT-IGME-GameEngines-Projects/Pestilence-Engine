@@ -32,6 +32,8 @@ public:
 	void buildUnitTestBuffers();
 	void renderUnitTest();
 
+	GLuint Program() { return program; };
+
 	Model cube;
 	Model suzanne1, suzanne2, suzanne3;
 	//Primitive cube;

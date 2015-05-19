@@ -22,7 +22,7 @@ void Graphics::init() {
 	glEnable(GL_CULL_FACE);
 	glCullFace(GL_BACK);
 
-	glClearColor(1.0f, 1.0f, 1.0f, 1.0f);
+	glClearColor(0.392f, 0.584f, 0.929f, 1.0f);
 
 	LightManager::instance().addDirectionalLight(DirectionalLight(vec3(4, 4, 4), vec3(1, 1, 1), 25.0f));
 
@@ -67,7 +67,7 @@ void Graphics::buildGeometryBuffers() {
 	suzanne2.buildGeometryBuffers(program);
 	suzanne3.buildGeometryBuffers(program);
 	cube.buildGeometryBuffers(program);*/
-	Map::instance().buildHexGeometryBuffers(program);
+	
 	//buildUnitTestBuffers();
 }
 

@@ -159,7 +159,7 @@
     <ClInclude Include="src\skyBox.h">
       <Filter>Map</Filter>
     </ClInclude>
-    <ClInclude Include="awesomiumManager.h">
+    <ClInclude Include="src\utils\awesomiumManager.h">
       <Filter>Utils</Filter>
     </ClInclude>
   </ItemGroup>

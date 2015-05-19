@@ -16,25 +16,26 @@ public:
 	awesomiumManager();
 	~awesomiumManager();
 
-	WebCore* web_core; 
+	WebConfig config;
+	WebCore* web_core;
 
 
 	void initAwesomium()
 	{
-		web_core = WebCore::Initialize(WebConfig());
+		web_core = WebCore::Initialize(config);
 
 		WebView* myWebView = web_core->CreateWebView(1920, 1080);
 
-		WebURL url(WSLit(URL)); 
-		myWebView->LoadURL(url); 
+		WebURL url(WSLit(URL));
+		myWebView->LoadURL(url);
 
-		while (myWebView->IsLoading()) web_core->Update(); 
+		while (myWebView->IsLoading()) web_core->Update();
 
 		// sleep a little and update once more to give scripts a chance to finish loading
-		Sleep(300); 
+		Sleep(300);
 		web_core->Update();
 
-		BitmapSurface* surface = (BitmapSurface*)myWebView->surface(); 
+		BitmapSurface* surface = (BitmapSurface*)myWebView->surface();
 
 		// make sure surface not null
 		if (surface != 0)
@@ -49,7 +50,7 @@ public:
 		web_core->Update();
 	}
 
-	
+
 };
 
 #endif

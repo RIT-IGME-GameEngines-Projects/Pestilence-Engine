@@ -1,11 +1,11 @@
 #include "game.h"
 #include "inputManager.h"
-#include <Awesomium\include\Awesomium\WebCore.h>
+
 using namespace std;
 
 void update() { Game::instance().update(); }
 void render() { Game::instance().render(); }
- 
+
 int main(int argc, char **argv)
 {
 	glutInit(&argc, argv);

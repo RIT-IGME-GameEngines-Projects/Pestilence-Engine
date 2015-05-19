@@ -16,9 +16,9 @@
 #define AWESOMIUM_BITMAP_SURFACE_H_
 #pragma once
 
-#include <Awesomium/Platform.h>
-#include <Awesomium/Surface.h>
-#include <Awesomium/WebString.h>
+#include <Awesomium\include\Awesomium\Platform.h>
+#include <Awesomium\include\Awesomium\BitmapSurface.h>
+#include <Awesomium\include\Awesomium\WebString.h>
 
 namespace Awesomium {
 

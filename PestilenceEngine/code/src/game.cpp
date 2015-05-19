@@ -1,3 +1,5 @@
+#ifndef GAME_H
+#define GAME_H
 #include "game.h"
 
 Game::Game() {
@@ -43,6 +45,8 @@ void Game::init() {
 
 	Map::instance().readMap("../assets/maps/demo-pmap.pmap");
 	Map::instance().buildHexGeometryBuffers(graphics->Program());
+
+	this->aManager->initAwesomium();
 }
 
 void Game::update() {
@@ -66,3 +70,4 @@ void Game::update() {
 void Game::render() {
 	graphics->render();
 }
+#endif

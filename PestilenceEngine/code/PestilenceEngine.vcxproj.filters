@@ -70,6 +70,9 @@
     <ClCompile Include="src\skyBox.cpp">
       <Filter>Map</Filter>
     </ClCompile>
+    <ClCompile Include="src\utils\awesomiumManager.cpp">
+      <Filter>Utils</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\camera.h">
@@ -155,6 +158,9 @@
     </ClInclude>
     <ClInclude Include="src\skyBox.h">
       <Filter>Map</Filter>
+    </ClInclude>
+    <ClInclude Include="awesomiumManager.h">
+      <Filter>Utils</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

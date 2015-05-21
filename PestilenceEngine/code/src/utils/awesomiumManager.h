@@ -44,7 +44,7 @@ public:
 		if (surface != 0)
 		{
 			// save bitmapsurgace to jpeg
-			surface->SaveToJPEG(WSLit("./result.jpg"));
+			surface->SaveToJPEG(WSLit("../output/result.jpg"));
 		}
 	}
 

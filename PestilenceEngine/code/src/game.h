@@ -4,6 +4,9 @@
 #include "graphics.h"
 #include "logger.h"
 #include "map.h"
+#include "utils\awesomiumManager.h"
+
+using namespace Awesomium;
 
 #define FPS  60
 
@@ -21,13 +24,13 @@ private:
 	Game();
 
 	Graphics* graphics;
-
+	awesomiumManager* aManager;
 	clock_t currTime;
 	int index = 0;
 	int cnt = 0;
 	float timer = 0.1;
 
 	Logger* logger;
-};
+}; 
 
 #endif

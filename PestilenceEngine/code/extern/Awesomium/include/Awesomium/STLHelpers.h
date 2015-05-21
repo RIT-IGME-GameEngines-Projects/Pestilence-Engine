@@ -17,7 +17,7 @@
 #ifndef AWESOMIUM_STL_HELPERS_H_
 #define AWESOMIUM_STL_HELPERS_H_
 
-#include <Awesomium/WebString.h>
+#include <Awesomium\include\Awesomium\WebString.h>
 #include <string>
 #include <cstring>
 #include <ostream>

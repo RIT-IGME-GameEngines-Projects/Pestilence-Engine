@@ -4,6 +4,7 @@
 #include <Awesomium\include\Awesomium\WebCore.h>
 #include <Awesomium\include\Awesomium\BitmapSurface.h>
 #include <Awesomium\include\Awesomium\STLHelpers.h>
+#include <Awesomium\include\Awesomium\WebConfig.h>
 
 #define URL "http://www.google.com"
 
@@ -22,10 +23,12 @@ public:
 
 	void initAwesomium()
 	{
+		config = Awesomium::WebConfig();
 		web_core = WebCore::Initialize(config);
 
 		WebView* myWebView = web_core->CreateWebView(1920, 1080);
-
+		
+		// load the page - for now, google.com
 		WebURL url(WSLit(URL));
 		myWebView->LoadURL(url);
 

@@ -46,6 +46,8 @@ void Game::init() {
 	Map::instance().readMap("../assets/maps/demo-pmap.pmap");
 	Map::instance().buildHexGeometryBuffers(graphics->Program());
 
+	this->aManager = new awesomiumManager();
+	//logger->log(_ALL, "Awesomium Manager Created");
 	this->aManager->initAwesomium();
 }
 
@@ -69,5 +71,6 @@ void Game::update() {
 
 void Game::render() {
 	graphics->render();
+	
 }
 #endif
